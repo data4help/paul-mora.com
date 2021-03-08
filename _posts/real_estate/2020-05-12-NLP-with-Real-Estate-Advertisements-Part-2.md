@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/real_estate/cover8.png
+toc: true
 ---
 
 Applying our NLP feature vector to the Gradient Boosting model.

@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/real_estate/cover3.png
+toc: true
 ---
 
 Preparing the data for feature extraction and modeling

@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/real_estate/cover7.png
+toc: true
 ---
 
 Analyzing and exploring real estate advertisement descriptions using NLP pre-processing and visualization techniques.

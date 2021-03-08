@@ -6,9 +6,10 @@ categories:
   - R
 header:
     image: /assets/article_images/polarization/cover3.png
+toc: true
 ---
 
-<em> Why geographically correct maps show elections results inaccurately </em
+<em> Why geographically correct maps show elections results inaccurately </em>
 
 [Github Repository](https://github.com/data4help/cartogram_usa)
 

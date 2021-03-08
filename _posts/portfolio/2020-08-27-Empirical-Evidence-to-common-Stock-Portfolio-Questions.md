@@ -6,6 +6,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/portfolio/cover1.png
+toc: true
 ---
 
 *An intuitive and replicable explanation to some of the most important questions of portfolio building*

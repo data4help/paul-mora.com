@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/richter/cover1.png
+toc: true
 ---
 
 

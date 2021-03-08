@@ -6,6 +6,7 @@ categories:
   - Dash
 header:
     image: /assets/article_images/movies/cover2.png
+toc: true
 ---
 
 An intuitive explanation of how to deal with a multi-label classification problem using ImdB movie-data.

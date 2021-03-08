@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/real_estate/cover4.png
+toc: true
 ---
 
 

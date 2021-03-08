@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/real_estate/cover1.png
+toc: true
 ---
 
 Machine learning is an extremely powerful tool, applicable to an astounding breadth of use cases. Today, almost any question imaginable can be the starting point for a machine learning project.

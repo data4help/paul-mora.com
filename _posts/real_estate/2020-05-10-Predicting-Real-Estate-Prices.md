@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/real_estate/cover6.png
+toc: true
 ---
 
 Machine Learning for predicting Spanish real estate prices.

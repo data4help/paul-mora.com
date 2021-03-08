@@ -6,6 +6,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/classifier/cover.png
+toc: true
 ---
 
 

@@ -6,6 +6,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/portfolio/cover2.gif
+toc: true
 ---
 
 *Building and simulating different stock portfolio and assessing risk and return with Python and R Shiny*

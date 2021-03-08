@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/real_estate/cover9.png
+toc: true
 ---
 
 What we learned predicting real estate prices with data scraped from the web.

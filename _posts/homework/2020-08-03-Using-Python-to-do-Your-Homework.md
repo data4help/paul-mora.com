@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/homework/cover1.png
+toc: true
 ---
 
 *Applying OpenCV and Tesseract to do your math-homework*

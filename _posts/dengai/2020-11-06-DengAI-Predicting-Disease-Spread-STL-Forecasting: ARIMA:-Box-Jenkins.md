@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/dengai/cover2.png
+toc: true
 ---
 
 Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.

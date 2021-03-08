@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/movies/cover1.png
+toc: true
 ---
 
 As an economist it is pretty frustrating to hear the news anchor saying that the cast of the new James Bond movies did it again. "The highest gross revenue ever…" Of course, we are more than convinced that Daniel Craig gave his everything, but the inflation rate helps as well.

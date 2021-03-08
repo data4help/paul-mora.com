@@ -5,6 +5,7 @@ categories:
   - Python
 header:
     image: /assets/article_images/dengai/cover1.png
+toc: true
 ---
 
 <em> [Github Repository](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Fdata4help%2Fdengai) </em>

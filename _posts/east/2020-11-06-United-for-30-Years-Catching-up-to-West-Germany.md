@@ -5,6 +5,7 @@ categories:
   - R
 header:
     image: /assets/article_images/east/cover.png
+toc: true
 ---
 
 <em> Visualizing 30 years of economic data between East and West Germany </em>
@@ -15,7 +16,7 @@ It is important to stress that the historical context of the split and reunifica
 
 Image for post
 
-![Source: pixabay](/assets/post_images/polarization/picture1.gif)
+![Source: pixabay](/assets/post_images/east/picture1.gif)
 
 ## Historical Context
 
@@ -50,19 +51,17 @@ In a command economy, on the other hand, the government does all the planning of
 
 A high level of corruption, low level of efficiency and productivity, and the focus on industrial goods (around 90%) in a time when these goods where less in demand and more cheaply produced in Asia countries (Japan) led to the financial collapse of the command economy in the Soviet Union. By how much exactly the economy in the east was lagging the western economy, is visualized in the graph below.
 
-![Source: Sleifer, Jaap (2006). “Chapter 3.1: High Growth of an Underachiever?”. Planning Ahead and Falling Behind: The East German Economy in Comparison with West Germany 1936–2002. p. 50. ISBN 9783050085395 — via Google Books.](/assets/post_images/polarization/picture2.png)
-
 ## The notable case of the state of Berlin
 
 Even though Berlin is counted as an Eastern state within our analysis, it has to be said that this is not an obvious decision and might well be disputed. Berlin was, equally to the rest of Germany, geographically split by the Allies into a western and an eastern part. Therefore Berlin, even though located deep in the east of Germany, was partly under the authority of the western government.
 
-![](/assets/post_images/polarization/picture3.png)
+![](/assets/post_images/east/picture3.png)
 
 The sudden alienation between east and west Berlin in 1948 took western forces by surprise, resulting in no electricity in many parts of west Berlin. Soon after west Berlin was cutoff from its geographical surroundings [11].
 
 In order to supply the people in West Berlin with food and other supplies, the renowned Berlin airlift was put in place. Planes arrived every few minutes to West Berlin airports carrying all supplies needed by the population.
 
-![Source: https://en.wikipedia.org/wiki/History_of_Berlin#/media/File:C-54landingattemplehof.jpg](/assets/post_images/polarization/picture4.png)
+![Source: https://en.wikipedia.org/wiki/History_of_Berlin#/media/File:C-54landingattemplehof.jpg](/assets/post_images/east/picture4.png)
 
 The tension between the East and West peaked in 1961, when East Germany began to build a wall which divided the eastern Berlin from western Berlin. This division ruled out the possibility of around 50.000 people from East Berlin to pursue their work in West Berlin, which subsequently greatly hurt the economic power of West Berlin.
 
@@ -70,7 +69,7 @@ During this time of geographic isolation, West Berlin could count on the help of
 
 Given the help of Federal Republic of Germany to West Berlin, it makes Berlin as a whole difficult to compare to other states in the former East which did not have that level of economic support. It is therefore important to remember when looking at the upcoming analysis that Berlin’s performance is not completely representative for the economic performance of East Germany, even though it is counted as an eastern state.
 
-![https://theconversation.com/30-years-after-the-berlin-wall-came-down-east-and-west-germany-are-still-divided-126589](/assets/post_images/polarization/picture5.png)
+![https://theconversation.com/30-years-after-the-berlin-wall-came-down-east-and-west-germany-are-still-divided-126589](/assets/post_images/east/picture5.png)
 
 ## Data and Methodology
 
@@ -88,13 +87,13 @@ Before moving into the cross-sectional analysis, where we look at figures for ea
 
 A box-plot is a tool from descriptive statistics for graphically depicting groups of numerical data by their quartiles. They are capable of showing five pieces of information, namely the minimum, maximum, the median (50th percentile), as well as the first quartile (25th percentile) and third quantile (75 percentile). Box-plots represent a great to get a feeling for the underlying distribution of the data.
 
-![](/assets/post_images/polarization/picture6.png)
+![](/assets/post_images/east/picture6.png)
 
 The chart above contains several insights worth to pointing out. To begin with, we see that the Interquartile range (IQR), which describes the length of each box, decreases drastically in first couple of years. That means that the GDP per Capita for the States are brought more into line and closer to one another. After 1995, it seems though that there is not significant change visible.
 
 Another notable observation is the positive development of the entire boxplot. Across all years, with the sole exception of the direct aftermath of the financial crisis in 2009, it looks like the box-plot as a whole is shifted upwards. This would indicate a systematic increase of GDP per Capita for all states in Germany. In order to test whether that effect also carries statistical significance, a linear regression is conducted. The results of this regression are shown below.
 
-![](/assets/post_images/polarization/picture7.png)
+![](/assets/post_images/east/picture7.png)
 
 The significant positive coefficient of time (year_num) indicates that on average the GDP per Capita is rising by 318.29 Euros per year. This effect is shown to be significant, with a p-value below of the 5% hurdle. It is to be noted that we are looking at real GDP per Capita, and that these numbers are not simply a result of inflation.
 
@@ -104,13 +103,13 @@ After seeing that we find an overall positive trend in GDP for all states, it wo
 
 In 1991 the dark blue in East Germany indicates the comparatively bad economic shape the East was in back then. Over the years, the stark color difference fades slowly but surely away, indicating the lower inequality between states.
 
-![](/assets/post_images/polarization/picture8.gif)
+![](/assets/post_images/east/picture8.gif)
 
 In order to get a better feeling for magnitude, we also look at the dynamic bar-chart below. In order to better compare the Eastern and Western states, we colored all Western states in turquoise and the Eastern states in red.
 
 The chart displays the economic dominance of the West. Next to Berlin, which cannot completely be referred to as a Eastern State, all Eastern states take the last places for all years.
 
-![](/assets/post_images/polarization/picture9.gif)
+![](/assets/post_images/east/picture9.gif)
 
 ## Inequality Measure Over Time
 
@@ -122,7 +121,7 @@ Directly related to the Lorenz curve is the Gini-Coefficient which can be seen a
 
 The chart below nicely shows how the blue-shaded area, and with it the Gini coefficient slowly decays over time. A clear sign of how the inequality in Germany reduces over time.
 
-![](/assets/post_images/polarization/picture10.gif)
+![](/assets/post_images/east/picture10.gif)
 
 ## Awakening from a bad dream
 
@@ -140,7 +139,7 @@ A solution does not come easy, with many politicians trying to appeal to prosper
 
 Looking back on the developments of the last thirty years, the numbers speak a clear language. The relative disparity became significantly lower over time. Looking at the chart below, we can see that in 2019 Eastern Germany had an average GDP per Capita level which represents 75% of the corresponding Western figure. It will probably take a lot longer before the disparity between the East and West completely vanishes. The eastern states were simply unlucky to have fallen into a zone which would turn out to be so damaging economically. It is now up to Germany to show unity and to reunify East and West also economically.
 
-![](/assets/post_images/polarization/picture11.png)
+![](/assets/post_images/east/picture11.png)
 
 [1] McCauley, Martin (1998). Gorbachev. Profiles in Power. London and New York: Longman. ISBN 978–0582215979.
 [2] Deutsche Einheit — 100 Milliarden Euro fließen pro Jahr in den Osten. In: Welt Online. 21. August 2009, abgerufen am 31. Oktober 2009.
