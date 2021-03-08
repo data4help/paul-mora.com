@@ -1,0 +1,978 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins - Econometrics &amp; Data Science</title>
+<meta name="description" content="Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins">
+<meta property="og:url" content="http://localhost:4000/time%20series/python/DengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins/">
+
+
+  <meta property="og:description" content="Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/dengai/cover2.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-11-06T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/time%20series/python/DengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/dengai/cover2.png" alt="DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins">
+    <meta itemprop="description" content="Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.">
+    <meta itemprop="datePublished" content="2020-11-06T00:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.</p>
+
+<p>This post builds on our first blogpost which dealt with the initial data-transformation of the exogenous variables. Now we build a first model using only target variable itself. This is done by using the <a href="https://www.statsmodels.org/stable/examples/notebooks/generated/stl_decomposition.html">STL Forecasting method</a>. This allows us to model time series which are affected by seasonal effects, by first removing the specified seasonality through a STL decomposition and then modeling the deseasonalized time series with a model of our choice — which is an Autoregressive Integrated Moving Average Model (ARIMA).</p>
+
+<p>For those not familiar with the <a href="https://www.drivendata.org/competitions/44/dengai-predicting-disease-spread/page/82/">forecasting challenge</a>, this competition deals with the prediction of dengue fever in two cities, or in the words from DrivenData themselves:</p>
+
+<p><em>
+Your goal is to predict the total_cases label for each (city, year, weekofyear) in the test set. There are two cities, San Juan and Iquitos, with test data for each city spanning 5 and 3 years respectively. You will make one submission that contains predictions for both cities.
+</em></p>
+
+<p>In order for better readability, this blogpost only shows and discusses graphs from the city San Juan. Further, the related code for every graph is found directly below each graph. Additionally the entire code (for both cities) is found at the bottom of this blogpost, or <a href="https://github.com/data4help/dengai">on GitHub</a>.</p>
+
+<p>In the center of our prediction approach is the aforementioned so-called STL method. STL stands for Seasonal-Trend decomposition method using LOESS. This method decomposes a time series into three components, namely its trend, its seasonality and its residuals. LOESS stands for locally estimated scatterplot smoothing and is extracting smooth estimates of the three aforementioned components.</p>
+
+<h2 id="structural-changes">Structural Changes</h2>
+
+<p>Looking at the time series of dengue fever in San Juan, several things are worth pointing out. For once there is a strong seasonal component visible. In the first half of the data it looks like the seasonal pattern is yearly (52 weeks), whereas in the second half of the time series the pattern somewhat switched to a two-yearly pattern. The other predominant characteristic of the time series are the few but stark spikes. Especially in the first half of the time series we see two outbursts in the target variable of a magnitude which is unparalleled in the second half.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_1.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_cutoff_comparison</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+ 
+    <span class="n">first_half</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">[:</span><span class="n">cutoff</span><span class="p">]</span>
+    <span class="n">first_half</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"First Half"</span>
+    <span class="n">second_half</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">[</span><span class="n">cutoff</span><span class="p">:]</span>
+    <span class="n">second_half</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Second Half"</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Complete Series"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">axvline</span><span class="p">(</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"r"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">"--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Cutoff"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">second_half</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s">"Series from observation {} onwards"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">cutoff</span><span class="p">))</span>
+    <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">axes</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">():</span>
+        <span class="n">axes</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span> <span class="n">loc</span><span class="o">=</span><span class="s">"upper right"</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}/{}_cutoff_plot.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span>
+                                                   <span class="n">approach_method</span><span class="p">,</span>
+                                                   <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">first_half</span><span class="p">,</span> <span class="n">second_half</span>
+</code></pre></div></div>
+
+<p>At this point it is important to stress the higher importance of newer data compared to older data within time series problems. Normally within data science projects, we are very always interested in gathering more data, as this would in general increase the robustness and accuracy of our model. Though, when it comes to time series data, we have to weight the importance of new data on when exactly the data was sampled. If we are for example interested in predicting the stock price for a certain company, the company’s financial statements of the last couple of years, are undoubtely more important than the company’s performance 100 years ago. Why is that so? Because it could be possible that underlying data generating process changed over time. That would imply that older data is not giving us any information about future data and is therefore not only incorrect, but could also hurt our model performance.</p>
+
+<p>The three charts below visualize the differences between the first and second half of the time series.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_2.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">difference_in_distribution</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span> <span class="n">series2</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+
+    <span class="c1"># CDF
+</span>    <span class="k">def</span> <span class="nf">ecdf</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="s">""" Compute ECDF """</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">size</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+    <span class="n">test_results</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s">"KS 2 Sample Test"</span><span class="p">,</span> <span class="s">"ANOVA"</span><span class="p">],</span>
+                                <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"Statistic"</span><span class="p">,</span> <span class="s">"P Value"</span><span class="p">])</span>
+    <span class="n">test_results</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">ks_2samp</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span> <span class="n">series2</span><span class="p">)</span>
+    <span class="n">test_results</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">f_oneway</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span> <span class="n">series2</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+
+    <span class="c1"># Time series
+</span>    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">series1</span><span class="p">)),</span> <span class="n">series1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"b"</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">series1</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">series2</span><span class="p">)),</span> <span class="n">series2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"r"</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">series2</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Level Data"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+    <span class="c1"># Boxplots
+</span>    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">boxplot</span><span class="p">([</span><span class="n">series1</span><span class="p">,</span> <span class="n">series2</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Boxplots"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">series1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">series2</span><span class="p">.</span><span class="n">name</span><span class="p">],</span>
+                           <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                           <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">series1</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"b"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">series1</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">series2</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Empirical Cumulative Distribution Function"</span><span class="p">,</span>
+                     <span class="n">fontsize</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"r"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">series2</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">():</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}/{}_cutoff_plot.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span>
+                                                   <span class="n">approach_method</span><span class="p">,</span>
+                                                   <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">test_results</span>
+</code></pre></div></div>
+
+<p>Next to individual visual judgement, there are also several tests to formally check whether the distribution of the data is different, namely the Chow Test, the Kolmogrov Smirnov 2-Sample test, and an Analysis of Variance (ANOVA). For the latter two we find the test results between the first half and the second half of the data below.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_3.png" alt="" /></p>
+
+<p>The significance test results confirm our initial hypothesis of a structural difference in the data generating process between the first and second half of the data.</p>
+
+<p>Though it is important to note that only because the data is found to be different, we do not necessarily have to discard all observations from the first half. Instead we will winsorize and use the seasonality found in the second half of the data.</p>
+
+<h2 id="winsorizing">Winsorizing</h2>
+
+<p>Winsorizing presents a valid alternative compared to simply dropping the data. This method is used when instead of throwing out potential outliers, we would like to keep them but alter their magnitude. This is done by specifying by much a potential outlier should be adjusted. A winsorizing value of X% for example means that all values which are higher than the (100-X) percentile are set to the value of the (100-X) percentile. A more thorough explanation of the process can be found here.</p>
+
+<p>The chart below shows the impact of winsorizing our data to the 2.5% level (a value that is chosen to equalize the outbursts in the first half of the data). When looking at the scale of the y-axis the effect of the measure becomes apparent, the magnitude of the outliers has dampened.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_4.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">winsorizer</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+
+    <span class="n">decimal_level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="n">wind_series</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">mstats</span><span class="p">.</span><span class="n">winsorize</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">decimal_level</span><span class="p">])</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Original Time Series"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">wind_series</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s">"Winsorized at the {}% level"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">level</span><span class="p">))</span>
+    <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">axes</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">():</span>
+        <span class="n">axes</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span> <span class="n">loc</span><span class="o">=</span><span class="s">"upper right"</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}/{}_win.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span>
+                                           <span class="n">approach_method</span><span class="p">,</span>
+                                           <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wind_series</span>
+</code></pre></div></div>
+
+<p>Of course this does measure does not come without any risks. Winsorizing, or outlier altering in general, implies that we do not expect to see levels as high as the altered values. Given that the second half of the time series, which spans eight years of data, does not exhibit outbursts in any comparable magnitude, we feel confident to proceed with the winsorization.</p>
+
+<h2 id="seasonality-detection">Seasonality Detection</h2>
+
+<p>When using a STL decomposition, we need to specify which periodicity the seasonality is supposed to have. In order to find that out, we can either specify an appropriate time index and let the frequency be inferred automatically, or we can look at the autocorrelation function (ACF) of the time series. The ACF shows us the correlation between time series observations and observations with various lagged version of the very same time series. A high autocorrelation with the first lag would for example describe a process where the value today is very much alike the value yesterday. Following the same logic, it is also possible to spot a potential seasonality in the data. Namely, by finding a timely reoccurring amplitude in the ACF of a time series.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_5.png" alt="Source: https://www.quora.com/What-is-the-SI-unit-of-amplitude" /></p>
+
+<p>Below we can see in the upper plot the actual target variable, namely the number of Dengue Fever cases in San Juan. The plot underneath shows the discussed autocorrelation function of that time series. The ACF plot indicates that initially (up until lag 400) we find a yearly pattern. That means that the amplitude is occurring at multiple of 52 (52 weeks equal a year). Beyond lag 400 we find a different pattern though. Something that resembles rather a two-year seasonality. Given the aforementioned higher importance of more recent data, we will therefore continue with a 104 week (or 2 year) seasonality.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_6.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">acf_plots</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">max_lags</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">sm</span><span class="p">.</span><span class="n">graphics</span><span class="p">.</span><span class="n">tsa</span><span class="p">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">values</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(),</span>
+                             <span class="n">lags</span><span class="o">=</span><span class="n">max_lags</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">missing</span><span class="o">=</span><span class="s">"drop"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Autocorrelation Plot"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Original Time Series"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">():</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}/{}_raw_acf.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="c1"># Individual output path
+</span>                                               <span class="n">approach_method</span><span class="p">,</span> <span class="c1"># Individual folder
+</span>                                               <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="autoregressive-integrated-moving-average-model">Autoregressive Integrated Moving Average Model</h2>
+
+<p>Next in line is the parameterization of the ARIMA model. For that we have to remember that the STL Forecasting function is applying the prediction model on the deasonalized time series data, and not on the raw data. We therefore have to deseasonalize our data before examining it. This is by using the STL decomposition, specifying aforementioned 14 as our period.</p>
+
+<p>In the image below we can see the original series at the very top, followed by the seasonality and the difference between the original series and the seasonality. It is the latter time series we will use to identify the appropriate paramerterization of the ARIMA model.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_7.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">stl_decomposing</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">STL</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">robust</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+    <span class="n">time_series</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">"Original Series"</span><span class="p">)</span>
+    <span class="n">time_series_wo_season</span> <span class="o">=</span> <span class="n">time_series</span> <span class="o">-</span> <span class="n">res</span><span class="p">.</span><span class="n">seasonal</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">seasonal</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">time_series_wo_season</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Original Series"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Seasonality"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Original Series Minus Seasonality"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">():</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}/{}_decomposed_acf.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span>
+                                                      <span class="n">approach_method</span><span class="p">,</span>
+                                                      <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">time_series_wo_season</span>
+</code></pre></div></div>
+
+<p>Given that the deasonalized time series does not suffer from any kind of non-stationarity, we do not have to worry about the number of integration within the ARIMA model, since none is necessary. The bigger question is how many autoregressive (AR) and moving averages (MA) lags are necessary. In practice the lag length of the AR and MA processes are denoted by the letter p and q respectively.</p>
+
+<p>One well-known approach for specifying the optimal lag length of AR and MA processes is the so-called Box-Jenkins method. This method involves three steps:</p>
+
+<ol>
+  <li>After ensuring stationarity, use plots of the autocorrelation function (ACF) and the partial autocorrelation function (PACF) to make an initial guess of the lag length for the AR and MA process</li>
+  <li>Use the parameters gauged from the first step and specify a model</li>
+  <li>Lastly check the residuals of the fitted model for serial correlation (independence of each other) and for stationarity. The former can be achieved using a Ljung-Box test. If the specified model fails these tests, go back to step 2 and use slightly different parameter for p and/or q</li>
+</ol>
+
+<p>Following the three steps outlined above, we start by plotting the autocorrelation function and the partial autocorrelation function. These can be seen in the graph below.</p>
+
+<p>A partial autocorrelation is the amount of correlation between a variable and a lag of itself that is not explained by correlations at all lower-order-lags. That is done by regressing the time series with all n-1 lags and therefore controlling for them when assesing the n-th partial correlation. It contrasts with the autocorrelation function, which does not control for other lags.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_8.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">acf_pacf_plots</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">nlags</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+
+    <span class="c1"># Plotting results
+</span>    <span class="n">no_nan_time_series</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">sm</span><span class="p">.</span><span class="n">graphics</span><span class="p">.</span><span class="n">tsa</span><span class="p">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">no_nan_time_series</span><span class="p">,</span>
+                             <span class="n">lags</span><span class="o">=</span><span class="n">nlags</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">sm</span><span class="p">.</span><span class="n">graphics</span><span class="p">.</span><span class="n">tsa</span><span class="p">.</span><span class="n">plot_pacf</span><span class="p">(</span><span class="n">no_nan_time_series</span><span class="p">,</span>
+                              <span class="n">lags</span><span class="o">=</span><span class="n">nlags</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="p">[</span><span class="s">"ACF"</span><span class="p">,</span> <span class="s">"PACF"</span><span class="p">]):</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}/{}_acf_pacf.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span>
+                                                <span class="n">approach_method</span><span class="p">,</span>
+                                                <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The way of how to identify the appropriate lag length from the two plots above is summarized in the following table:</p>
+
+<p><img src="/assets/post_images/polarization/picture2_9.png" alt="Source: https://www.kevinsheppard.com/files/teaching/mfe/notes/financial-econometrics-2019-2020.pdf" /></p>
+
+<p>From that we can see that the appropriate lag length of the AR process is the number of initial non-zero lags in the partial autocorrelation function. Looking at the plot above, we can see that this should be around 6, given that the seventh lag lies within the boundaries of the 95% confidence interval and is therefore not significant. It is to be noted that the very first vertical line represent the partial autocorrelation with itself and should be not counted.</p>
+
+<p>The number of MA processes is taken by counting the number of initial non-zero terms within the autocorrelation function. In our example, we find rather many, namely around 20. It is important to note that the exact number is not too important as will empirically check a multitude of models before deciding for one.</p>
+
+<p>It is important to stress that the Box-Jenkins method builds on the parsimony principal. Quoting the Oxford econometrician Kevin Sheppard:</p>
+
+<p><em>
+Parsimony is a property of a model where the specification with the fewest parameters capable of capturing the dynamics of a time series is preferred to other representations equally capable of capturing the same dynamics.
+</em></p>
+
+<p>That means that if we find multiple models which meet our conditions regarding serial correlation, we will choose the model with the smallest amount of lags. Therefore we check the results of the Ljung-Box serial correlation test not only for the lag lengths 6 and 20 (which is already way too many), but for all smaller lengths as well. The p-values of the Ljung-Box tests are captured in the image below.</p>
+
+<p>It is visible that nearly all model parameterization find a significant Ljung-Box test, signaling serious serial correlation. Luckily, we also find some model parameterizations with non-significant serial correlation within the residuals. Applying the parsimony principle leads us then to take the AR-2 MA-2 model.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_10.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">box_jenkins_lb_finder</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">year_in_weeks</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+    <span class="n">lb_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"MA_{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="p">)],</span>
+                         <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s">"AR_{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">)])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">stlf</span> <span class="o">=</span> <span class="n">STLForecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ARIMA</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">year_in_weeks</span><span class="p">,</span> <span class="n">robust</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                               <span class="n">model_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s">"c"</span><span class="p">))</span>
+            <span class="n">stlf_res</span> <span class="o">=</span> <span class="n">stlf</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
+            <span class="n">results_as_html</span> <span class="o">=</span> <span class="n">stlf_res</span><span class="p">.</span><span class="n">summary</span><span class="p">().</span><span class="n">tables</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">as_html</span><span class="p">()</span>
+            <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">results_as_html</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">lb_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="s">"AR_{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                      <span class="s">"MA_{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Create heatmaps out of all dataframes
+</span>    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">lb_df</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">".2f"</span><span class="p">,</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">18</span><span class="p">},</span>
+                <span class="n">vmin</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nb">min</span><span class="p">(</span><span class="n">lb_df</span><span class="p">.</span><span class="n">values</span><span class="p">),</span>
+                <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">lb_df</span><span class="p">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"MA Terms"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"AR Terms"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}/{}_lb_comp.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">approach_method</span><span class="p">,</span>
+                                               <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="in-sample-check-and-forecasting">In-Sample Check and Forecasting</h2>
+
+<p>Finally it is time to look at some predictions from our model. It is important to note that in this forecasting challenge we are not interested in one-step ahead predictions, but a 260-step ahead forecast. In order to validate our performance we therefore need to specify a dynamic prediction method. That means that the model does not treat prior values as realized from a defined point onward, but is aware that these are predictions themselves.The graph below shows predictions of 260 values with the aforementioned dynamic forecasting method. The mean absolute error of 15.7 still represents an in-sample value and can therefore not be taken as representative for out-of-sample performance.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_11.png" alt="" /></p>
+
+<p>After applying the same steps for the other city in our data, we can then hand in our prediction results. From the picture below we can see that our predictions are far away from being competitive. Though, it has to be said that this performance, which is more or less equally good compared to the benchmark model provided by DrivenData, did not make use of any exogenous variable, meaning that there is still a lot improvement potential.</p>
+
+<p><img src="/assets/post_images/polarization/picture2_12.png" alt="" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#time-series" class="page__taxonomy-item" rel="tag">Time Series</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-11-06T00:00:00+01:00">November 6, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=DengAI%3A+Predicting+Disease+Spread+%E2%80%94+STL+Forecasting%2F+ARIMA%2F+Box-Jenkins%20http%3A%2F%2Flocalhost%3A4000%2Ftime%2520series%2Fpython%2FDengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftime%2520series%2Fpython%2FDengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftime%2520series%2Fpython%2FDengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorial/r/How-to-create-Country-Heatmaps-in-R/" class="pagination--pager" title="How to create Country Heatmaps in R
+">Previous</a>
+    
+    
+      <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" class="pagination--pager" title="United for 30 Years — Catching up to West Germany
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

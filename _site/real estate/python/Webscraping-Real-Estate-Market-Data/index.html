@@ -1,0 +1,795 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Webscraping Real Estate Market Data - Econometrics &amp; Data Science</title>
+<meta name="description" content="Using BeautifulSoup and Python to scrape real estate data from the web">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Webscraping Real Estate Market Data">
+<meta property="og:url" content="http://localhost:4000/real%20estate/python/Webscraping-Real-Estate-Market-Data/">
+
+
+  <meta property="og:description" content="Using BeautifulSoup and Python to scrape real estate data from the web">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/real_estate/cover2.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-06T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/real%20estate/python/Webscraping-Real-Estate-Market-Data/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/real_estate/cover2.png" alt="Webscraping Real Estate Market Data" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Webscraping Real Estate Market Data">
+    <meta itemprop="description" content="Using BeautifulSoup and Python to scrape real estate data from the web">
+    <meta itemprop="datePublished" content="2020-05-06T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Webscraping Real Estate Market Data
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Using BeautifulSoup and Python to scrape real estate data from the web</p>
+
+<p>At the beginning of every data science project the central question is: where do we get the data from? As is the case for many projects, the web provides us with tons of data which can be used- if one knows how to obtain it. This first post of our Real Estate Data Science Project series shows how to web scrape using the example of the Spanish real estate market.</p>
+
+<p>This article proceeds as follows:</p>
+<ol>
+  <li>Finding the right scraping strategy for the project</li>
+  <li>Inspecting the HTML code and initial steps</li>
+  <li>Scraping properties from each province</li>
+  <li>Problems caused by website irregularities</li>
+  <li>Conclusion</li>
+</ol>
+
+<h2 id="01-finding-the-right-scraping-strategy-for-the-project">01 Finding the right scraping strategy for the project</h2>
+
+<p>Web scraping can be tiresome. That is because web scraping truly depends on how clean the html code underlying the website is. Every time there is an irregularity, the scraping will run into problems, resulting in the need to run the entire process again. Later in this blogpost several of these irregularities will be shown with their respective workarounds. Pragmatic solutions are critical. Web scrapping is truly the “dirty work” of data science. On the plus side, having this ability to create data out of nothing is essential and the basis for many data science projects. It also opens up a wealth of project options that otherwise would not be available if one had to rely solely on published data.</p>
+
+<p>Given the oftentimes frustrating nature of web scraping, it is essential to automate as many steps in the scraping process as possible. As an example: the Real Estate observations which are scraped for this project are divided into different areas in Spain. That means in order to find and group every property for each area it is first necessary to find all the URLs associated with that individual area. This strategy of finding the hierarchical nature of the data on the website is visualized below. Here, two explanatory provinces from the website are shown, namely Alicante and Murcia. Clicking on these pictures on the website then leads to the available properties in each of those regions. The graphic below shows two properties for each.</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_1.png" alt="" /></p>
+
+<p>The strategy of the scraping then starts with first finding all the links to each province and second to scrape all the relevant property information for each region. With this plan and understanding of the website structure in mind, we can proceed to looking at the website’s underlying HTML code.</p>
+
+<h2 id="02-inspecting-the-html-code-and-initial-steps">02 Inspecting the HTML code and initial steps</h2>
+<p>Opening the underlying HTML code of a website (Crtl+Shift+I) for the first time might be a scary experience. It is truly overwhelming how much information is stored behind the façade of a pretty looking website. The good news is that most of this information is not relevant- it’s all about finding the right point where to start. Our strategy outlined above tells us that the first thing we should find are the links to all provinces. Starting on the home page of the website, the first thing we do is to right click on (for example) the picture of “Alicante Province”.</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_2.png" alt="" /></p>
+
+<p>What is seen on the right side is the HTML code of the site. When we right clicked on the picture of Alicante, the HTML code of this picture gets highlighted in blue. We suspect that the link of the estate of Alicante are not too far from where the picture is embedded. Let us take a closer look at the HTML code:</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_3.png" alt="" /></p>
+
+<p>As in the picture before that, we can see the highlighted (in grey this time) HTML code of where the picture is embedded. Also visible right above we find the URL of the properties for Alicante province. This information now has to be extracted. We want to repeat this process for all provinces on this website. To do so, it is important to see how the link is stored within the HTML code. Namely, it says:</p>
+
+<p>&lt;a class=”location-tile__link” href=”https://www.XXXX.com/en/alicante-province-property-for-sale-0l3”&gt;</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_4.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Packages needed for scraping and extracting
+</span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="c1"># The website link
+</span><span class="n">url</span> <span class="o">=</span> <span class="s">"https://www.XXXX.com/"</span>
+<span class="c1"># Making the request look like a normal browser
+</span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'User-Agent'</span><span class="p">:</span> <span class="s">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'</span><span class="p">}</span> 
+<span class="c1"># Requesting the sites content
+</span><span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="p">.</span><span class="n">content</span><span class="p">,</span> <span class="s">"html.parser"</span><span class="p">)</span>
+<span class="c1"># Getting the relevant links
+</span><span class="n">links_html</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">'locations-list__link'</span><span class="p">)</span>
+<span class="c1"># Turning the soup into a list of strings
+</span><span class="n">links_v1</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">links_html</span><span class="p">]</span>
+<span class="c1"># Extracting the relevant links for all regions
+</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">'href="(.*)"&gt;'</span>    
+<span class="n">links_v2</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">x</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">links_v1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>What is happening here is that HTML of the URL specified is requested and saved. The <code class="language-plaintext highlighter-rouge">header</code> command disguises our request to make it look like a normal browser request of the website. Then the entirety of the HTML code is saved in the soup variable. Now the relevant part of how the links are stored within the HTML code kicks in. The first argument of the <code class="language-plaintext highlighter-rouge">find_all</code> command takes the tag name. The tag name is the first letter in the HTML code before the start of the object class. For this class, it is the letter a in the beginning of the code. The second part specifies what kind of class we are looking for here. This information was also already available to us within the HTML snippet. Afterwards we change the format into a string for easier usage later. Finally, we remove problematic substrings like “href=” in order to obtain the raw links. The output of that code looks like this:</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_5.png" alt="" /></p>
+
+<p>These links now open up the possibility to scrape properties from over 107 different provinces in Spain. One can only imagine how long that would have taken if done manually.</p>
+
+<h2 id="03-scraping-properties-from-each-province">03 Scraping properties from each province</h2>
+<p>The next step after obtaining all provinces is to scrape the individual estate data from each province individually and loop over all provinces individually. The first step, as always, is to inspect the website.</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_6.png" alt="" /></p>
+
+<p>The picture above shows an example of what kind of information a property is providing. We are interested in extracting almost every detail provided. We want know for example how expensive the property is, how many bedrooms it has, number of bathrooms, square meters of living space has and whether it has a pool. All this information must be available in the HTML code if it is written on the website. After some deeper digging through the website’s code, we find following:</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_7.png" alt="" /></p>
+
+<p>We can see that the information about the property price is nicely saved under the class card-property__price. The information about the bedroom and bathrooms is a bit trickier to find. Both of them are saved under the header “card-property__feature-item”. That does not make it very easy to distinguish bed and bathrooms. What is helping us here is the little icon the website is providing next to the number of each room. Namely, the little icon placed next to the number shows up with a distinct name in the HTML code, which reveals whether it is a bed or bathroom.</p>
+
+<p><em>Bedroom: “kicon el-ml-sm el-mr-sm kicon bed”</em></p>
+
+<p><em>Bathroom: “kicon el-ml-sm el-mr-sm kicon-bath”</em></p>
+
+<p>The next question would then be how to best extract all this information in a neat and concise way. This problem is a bit more difficult than the extraction of links done earlier since the information is hidden further down within the HTML code. Furthermore, the information is not saved as the type “class”. This makes the find_all command a bit more difficult to apply. The workaround is to save the entirety of the HTML code as a string and use the regular expression package to scan the text. In order to see how that would look in code, the following snippet shows how the bathroom information is extracted. The variable “relevant_list” represents the HTML string of an estate.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Specifying the pattern which incorporates the prices
+</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">'"&gt;(.*?)&lt;/span&gt;&lt;span&gt;&lt;i class="kicon el-ml-sm el-mr-sm kicon-bath"&gt;'</span>    
+<span class="c1"># Extracting the price information
+</span><span class="n">bathroom_v1</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">x</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">relevant_list</span><span class="p">]</span>
+<span class="c1"># Taking the last part of each string since that contains the number
+</span><span class="n">bathroom_v2</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"&gt;"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">bathroom_v1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>To further explain the code shown in this snippet: the idea is to extract the number of bathrooms by finding the number in between a certain string combination. As we can see in the HTML, the integer of how many bathrooms an estate has is specified after an “&gt;” sign and directly in front of the</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;&lt;</span><span class="n">span</span><span class="o">&gt;&lt;</span><span class="n">i</span> <span class="n">class</span><span class="o">=</span><span class="err">”</span><span class="n">kicon</span> <span class="n">el</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">sm</span> <span class="n">el</span><span class="o">-</span><span class="n">mr</span><span class="o">-</span><span class="n">sm</span> <span class="n">kicon</span><span class="o">-</span><span class="n">bath</span><span class="err">”</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>part. Once the bedroom information is located and extracted from the regular expressions search operator, it is saved in a list. This very same procedure is also applied to the number of bedrooms, the square meters of the property and whether it has access to a pool. Additionally, the small excerpt of the description text which every ad provides is extracted in order to apply Natural Language Processing algorithms to extract further features.</p>
+
+<h2 id="04-problem-caused-by-website-irregularities">04 Problem caused by website irregularities</h2>
+
+<p>As with every web scraping project, the biggest cause of code adjustments and the need to re-run the code is the occurrence of irregularities. Glancing at a page of listings, an example can be quickly found</p>
+
+<p><img src="/assets/post_images/real_estate/picture2_8.png" alt="" /></p>
+
+<p>This property provides information about square meters, where it is located, and even has some nice advertisement text, but does not provide any information about bedrooms or bathrooms. This property is not useful as a datapoint since it lacks the information we would like to feed into our model. The extraction code provided earlier would run into a problem and break when it comes across this property. It would try to look for the occurrence of the bed and bathroom strings, which do not appear. This will result in an error and a necessary adjustment of the code. This problem is solved in the following way: Every property ad is first checked for the existence of all required strings. If all required strings do not exist, that property is eliminated and no further scraping actions are taken on the property. To do this, after each property’s full HTML code is separately stored, and advertisement text is separated from the other information. This text is then run through a test function which checks for the existence of substrings like “bed”, “bath” and “m²” within the HTML code. This works since these keywords only show up if the little icons denoting “bed”, “bath” or “m²” are also available. In the property shown above, these keywords would not exist since the little icons are not present. This property would then be eliminated during this test step.</p>
+
+<h2 id="05-conclusion">05 Conclusion</h2>
+<p>Web scraping is a powerful tool and does not require very complicated coding. It does however require patience and creativity to work around irregularities. In the end our code was able to scrape 42,367 estates from the entire website. This should be enough not only for interesting analysis of the market, but also to train machine learning algorithm</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#real-estate" class="page__taxonomy-item" rel="tag">Real Estate</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-06T00:00:00+02:00">May 6, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Webscraping+Real+Estate+Market+Data%20http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FWebscraping-Real-Estate-Market-Data%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FWebscraping-Real-Estate-Market-Data%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FWebscraping-Real-Estate-Market-Data%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/real%20estate/python/Introduction-End-to-End-Machine-Learning-for-Real-Estate-Price-Prediction/" class="pagination--pager" title="Introduction - End-to-End Machine Learning for Real Estate Price Prediction
+">Previous</a>
+    
+    
+      <a href="/real%20estate/python/Outlier-detection-in-Real-Estate-Data/" class="pagination--pager" title="Outlier detection in Real Estate Data
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

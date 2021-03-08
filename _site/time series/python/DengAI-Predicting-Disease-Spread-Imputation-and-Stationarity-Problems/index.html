@@ -1,0 +1,1461 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>DengAI: Predicting Disease Spread - Imputation and Stationarity Problems - Econometrics &amp; Data Science</title>
+<meta name="description" content="Github Repository">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="DengAI: Predicting Disease Spread - Imputation and Stationarity Problems">
+<meta property="og:url" content="http://localhost:4000/time%20series/python/DengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems/">
+
+
+  <meta property="og:description" content="Github Repository">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/dengai/cover1.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-24T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/time%20series/python/DengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/dengai/cover1.png" alt="DengAI: Predicting Disease Spread - Imputation and Stationarity Problems" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="DengAI: Predicting Disease Spread - Imputation and Stationarity Problems">
+    <meta itemprop="description" content=" Github Repository ">
+    <meta itemprop="datePublished" content="2020-10-24T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">DengAI: Predicting Disease Spread - Imputation and Stationarity Problems
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          24 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em> <a href="https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Fdata4help%2Fdengai">Github Repository</a> </em></p>
+
+<p>One of the biggest data challenge on DrivenData, with more than 9000 participants is the <a href="https://medium.com/r/?url=https%3A%2F%2Fwww.drivendata.org%2Fcompetitions%2F44%2Fdengai-predicting-disease-spread%2F">DengAI challenge</a>. The objective of this challenge is predict the number of dengue fever cases in two different cities.</p>
+
+<p>This blogpost series covers our journey of tackling this problem, starting from initial data analysis, imputation and stationarity problems up un to the different forecasting attempts. This first post covers the imputation and stationarity checks for both cities in the challenge, before moving on to trying different forecasting methdologies.</p>
+
+<p>Throughout this post, code-snippets are shown in order to give an understanding of how the concepts discussed are implemented into code. The entire Github repository for the imputation and stationary adjustment can be found here.</p>
+
+<p>Furthermore, in order to ensure readability we decided to show graphs only for the city San Jose instead showing it for both cities.</p>
+
+<h2 id="imputation">Imputation</h2>
+
+<p>Imputation describes the process of filling missing values within a dataset. Given the wide range of possibilities for imputation and the severe amount of missing data within this project, it is worthwhile to go over some of the methods and empirically check which one to use.</p>
+
+<p>Overall, we divide all imputation methods into the two categories: basic and advanced. With basic methods we mean off the shelf, quick imputation methods, which are oftentimes already build into Pandas. Advanced imputation methods deal with model-based approaches where the missing values are attempted to be predicted, using the remaining columns.</p>
+
+<p>Given that the model-based imputation methods normally result in superior performance, the question might arise why we do not simply use the advanced method for all columns. The reason for that is that our dataset has several observations where all features are missing. The presence of these observations make multivariate imputation methods impossible.</p>
+
+<p>We therefore divide the features into two categories. All features, or columns, which have fewer than 1 percent missing observations are imputed using more basic methods, whereas model-based approaches are used for features which exhibit more missing observations than this threshold.</p>
+
+<p>The code snippet below counts the percentage of missing observations, divides all features into one of two aforementioned categories and creates a graph to visualize the results.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pct_missing_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+        <span class="s">"""
+        This method does two things. First, it creates a chart showing the
+        percentages of missing data. Second, it returns which columns
+        have less than a certain threshold percentage of data, and which
+        columns have more.
+
+        Parameters
+        ----------
+        data : DataFrame
+            DataFrame containing all the data
+        cols : list
+            List containing all the columns we have to fill
+        threshold : int
+            The threshold which divides the easy and difficult columns
+        city_name : str
+            A string containing the city name for which we calculate
+
+        Returns
+        -------
+        easy_columns : list
+            List containing the columns which have less then the threshold
+            missing data
+        diff_columns : list
+            List containing the columns which have more than the threshold
+            missing data
+
+        """</span>
+
+        <span class="c1"># Calculating the percentage missing
+</span>        <span class="n">num_of_obs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">num_of_nans</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">cols</span><span class="p">].</span><span class="n">isna</span><span class="p">().</span><span class="nb">sum</span><span class="p">()</span>
+        <span class="n">df_pct_missing</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">num_of_nans</span>
+                                      <span class="o">/</span> <span class="n">num_of_obs</span><span class="o">*</span><span class="mi">100</span><span class="p">).</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">df_pct_missing</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">"index"</span><span class="p">:</span> <span class="s">"columns"</span><span class="p">,</span>
+                                       <span class="mi">0</span><span class="p">:</span> <span class="s">"pct_missing"</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">df_sorted_values</span> <span class="o">=</span> <span class="n">df_pct_missing</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s">"pct_missing"</span><span class="p">,</span>
+                                                      <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="c1"># Column division
+</span>        <span class="n">bool_easy</span> <span class="o">=</span> <span class="n">df_sorted_values</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"pct_missing"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">threshold</span>
+        <span class="n">easy_columns</span> <span class="o">=</span> <span class="n">df_sorted_values</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bool_easy</span><span class="p">,</span> <span class="s">"columns"</span><span class="p">]</span>
+        <span class="n">diff_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">easy_columns</span><span class="p">))</span>
+
+        <span class="c1"># Plotting the data
+</span>        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df_sorted_values</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"columns"</span><span class="p">],</span>
+                <span class="n">df_sorted_values</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"pct_missing"</span><span class="p">])</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">labelrotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Percentage of missing observations"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Variables"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">"dashed"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s">"{} percent threshold"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">threshold</span><span class="p">))</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+        <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}_miss_data_pct.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">city_name</span><span class="p">),</span>
+                    <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">easy_columns</span><span class="p">,</span> <span class="n">diff_columns</span>
+</code></pre></div></div>
+
+<p>The resulting graph below shows four features which have more than 1 percent of observations missing. Especially the feature ndvi_ne, which describes satellite vegetation in the north-west of the city has a severe amount of missing data, with more around 20% of all observation missing.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_1.png" alt="" /></p>
+
+<p>All imputation methods applied are compared using the <a href="http://normalized%20root%20mean%20squared%20error">normalized root mean squared error</a> (NRMSE). We use this quality estimation method because of its capability for making variables with different scales comparable. Given that the NRMSE is not directly implemented in Python, we use the following snippet to implement it.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">nrmse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="s">"""
+    This function calculates the normalized root mean squared error.
+
+    Parameters
+    ----------
+    y_true : array
+        The true values
+    y_pred : array
+        The predictions
+    n : int
+        The number of rows we testing for performance
+
+    Returns
+    -------
+    rounded_nrmse : float
+        The resulting, rounded nrmse
+
+    """</span>
+    <span class="n">ts_min</span><span class="p">,</span> <span class="n">ts_max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">min</span><span class="p">(</span><span class="n">y_true</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">y_true</span><span class="o">-</span><span class="n">y_pred</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">nrmse_value</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ts_max</span><span class="o">-</span><span class="n">ts_min</span><span class="p">)</span>
+    <span class="n">rounded_nrmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">nrmse_value</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rounded_nrmse</span>
+</code></pre></div></div>
+
+<h2 id="basic-imputation-methods">Basic imputation methods</h2>
+
+<p>Python, and in particular the library Pandas, has multiple off-the-shelf imputation methods available. Arguably the most basic ones are forward fill (ffill) and backward fill (bfill), where we simply set the missing valueequal to the prior value (ffill) or to the proceeding value (bfill).</p>
+
+<p>Other methods include the linear or cubic (the Scipy package also includes higher power if wanted) interpolation around a missing observation.</p>
+
+<p>Lastly, we can use the average of the k nearest neighbours of a missing observations. For this problem we took the preceding and proceeding four observations of a missing observation and imputed it with the average of these eight values. This is not a build in method and therefore defined by us in the following way:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">knn_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+      <span class="s">"""
+      This function calculates the mean value of the n/2 values before
+      and after it. This approach is therefore called the k nearest
+      neighbour approach.
+
+      Parameters
+      ----------
+      ts : array
+          The time series we would like to impute
+      n : int
+          The number of time period before + after we would like
+          to take the mean of
+
+      Returns
+      -------
+      out : array
+          The filled up time series.
+
+      """</span>
+      <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
+          <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+              <span class="n">n_by_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+              <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">n_by_2</span><span class="p">)])</span>
+              <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">min</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">n_by_2</span><span class="p">)])</span>
+              <span class="n">ts_near</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ts</span><span class="p">[</span><span class="n">lower</span><span class="p">:</span><span class="n">i</span><span class="p">],</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">upper</span><span class="p">]])</span>
+              <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">ts_near</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">out</span>
+</code></pre></div></div>
+
+<p>Now it is time to apply and compare of these methods. We do that by randomly dropping 50 observations of all columns, which are afterwards imputed by all before mentioned methods. Afterwards we assess each method’s performance through their NRMSE score. All of that, and the graphing of the results is done through the following code snippet.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">imputation_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+        <span class="s">"""
+        This method calculates the nrmse for all columns and inserts them
+        in a table. Additionally a graph is plotted in order for visual
+        inspection afterwards. The score is calculated by randomly dropping
+        50 values and then imputing them. Afterwards the performance is
+        assessed.
+
+        Parameters
+        ----------
+        data : DataFrame
+            Dataframe which includes all columns
+        cols : list
+            List of columns we would like to impute
+        city_name : str
+            In order to know which city data was used, we specify the name
+
+        Returns
+        -------
+        nrmse_df : DataFrame
+            The results of each method for each column.
+
+        """</span>
+
+        <span class="n">nrmse_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Create imputation table"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+
+            <span class="n">original_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+            <span class="n">time_series</span> <span class="o">=</span> <span class="n">original_series</span><span class="p">.</span><span class="n">dropna</span><span class="p">().</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+            <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+            <span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+            <span class="n">rand_num</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_series</span><span class="p">)),</span> <span class="n">n</span><span class="p">)</span>
+
+            <span class="n">time_series_w_nan</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">time_series_w_nan</span><span class="p">[</span><span class="n">rand_num</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">nan</span>
+
+            <span class="c1"># Forward fill ----
+</span>            <span class="n">ts_ffill</span> <span class="o">=</span> <span class="n">time_series_w_nan</span><span class="p">.</span><span class="n">ffill</span><span class="p">()</span>
+            <span class="n">nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="s">"ffill"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">nrmse</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">ts_ffill</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+            <span class="c1"># Backward fill ----
+</span>            <span class="n">ts_bfill</span> <span class="o">=</span> <span class="n">time_series_w_nan</span><span class="p">.</span><span class="n">bfill</span><span class="p">()</span>
+            <span class="n">nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="s">"bfill"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">nrmse</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">ts_bfill</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+            <span class="c1"># Linear Interpolation ----
+</span>            <span class="n">ts_linear</span> <span class="o">=</span> <span class="n">time_series_w_nan</span><span class="p">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">"linear"</span><span class="p">)</span>
+            <span class="n">nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="s">"linear"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">nrmse</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span>
+                                                     <span class="n">ts_linear</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+            <span class="c1"># Cubic Interpolation ----
+</span>            <span class="n">ts_cubic</span> <span class="o">=</span> <span class="n">time_series_w_nan</span><span class="p">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">"cubic"</span><span class="p">)</span>
+            <span class="n">nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="s">"cubic"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">nrmse</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">ts_cubic</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+            <span class="c1"># Mean of k nearest neighbours ----
+</span>            <span class="n">ts_knn</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">knn_mean</span><span class="p">(</span><span class="n">time_series_w_nan</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="n">nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="s">"knn"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">nrmse</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">ts_knn</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+        <span class="c1"># Plotting results
+</span>        <span class="n">adj_df</span> <span class="o">=</span> <span class="n">nrmse_df</span><span class="p">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">long_format</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">melt</span><span class="p">(</span><span class="n">adj_df</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s">"index"</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="p">[</span><span class="s">"nrmse"</span><span class="p">])</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"index"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"value"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">"nrmse"</span><span class="p">,</span>
+                    <span class="n">data</span><span class="o">=</span><span class="n">long_format</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">labelrotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Normalized Root Mean Squared Root Error"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Variables"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+        <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}_imput_performance.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span>
+                                                          <span class="n">city_name</span><span class="p">),</span>
+                    <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">nrmse_df</span>
+</code></pre></div></div>
+<p>The resulting graph below clearly shows which method is to be favored, namely the k nearest neighbours approach. The linear method also performs well, even though not as well as the knn method. The more naive methods like ffill and bfill do not perform as strongly.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_2.png" alt="" /></p>
+
+<p>Afterwards, we impute all features which had fewer observations missing than our threshold of one percent. That means all features except the first four. The code below selects the best method for each column and afterwards imputes all actual missing values.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fill_by_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_series</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+    <span class="s">"""
+    After we know what the best method is for each column, we would
+    like to impute the missing values. This function lists all
+    potential methods, except the model build one.
+    Parameters
+    ----------
+    original_series : array
+        The original array with all its missing values
+    method : str
+        A string describing the best working method
+    Returns
+    -------
+    time_series : array
+        The original array now filled the missing values with the
+        method of choice
+    """</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">"ffill"</span><span class="p">:</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="n">original_series</span><span class="p">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">"bfill"</span><span class="p">:</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="n">original_series</span><span class="p">.</span><span class="n">bfill</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">"linear"</span><span class="p">:</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="n">original_series</span><span class="p">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">"linear"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">"cubic"</span><span class="p">:</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="n">original_series</span><span class="p">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">"cubic"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">"knn"</span><span class="p">:</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">knn_mean</span><span class="p">(</span><span class="n">original_series</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time_series</span>
+
+<span class="k">def</span> <span class="nf">fill_easy_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">easy_columns</span><span class="p">,</span> <span class="n">nrmse_df</span><span class="p">):</span>
+    <span class="s">"""
+    This method goes through all easy declared columns and fills them
+    up
+    Parameters
+    ----------
+    data : Dataframe
+        DataFrame containing all columns
+    easy_columns : list
+        List of all columns which can undergo the easy imputation
+    nrmse_df : DataFrame
+        Dataframe which contains the performance metrices of
+        all imputation methods
+    Returns
+    -------
+    data : Dataframe
+        Dataframe with imputated columns
+    """</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">"Filling easy columns"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">easy_columns</span><span class="p">):</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+        <span class="n">best_method</span> <span class="o">=</span> <span class="n">nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="p">:].</span><span class="n">sort_values</span><span class="p">().</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ts_filled</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">fill_by_method</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">best_method</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts_filled</span>
+
+        <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">].</span><span class="n">isna</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> \
+            <span class="s">"Easy imputation went wrong"</span>
+    <span class="k">return</span> <span class="n">data</span>
+</code></pre></div></div>
+
+<h2 id="the-potential-flaws-of-the-knnapproach">The potential flaws of the knn approach</h2>
+
+<p>Unfortunately, the superior performance of the knn model comes with a price. For some features, we do not have a only one observation missing at a time, but multiple consecutively missing observations.</p>
+
+<p>If for example we have 12 consecutive missing observations, the knn method cannot calculate any average out of the preceding and proceeding four observations, given that they are missing as well.</p>
+
+<p>The image below, which was created with the beatiful missingno package, shows us that all four columns which were classified as being above our one percent threshold have at one point 15 consecutive missing observations. This makes it impossible to use the knn method for these columns and is the reason why we cannot use this imputation method for the heavily sparse columns.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_3.png" alt="" /></p>
+
+<h2 id="model-based-imputation-methods">Model-based imputation methods</h2>
+
+<p>The model-based imputation methods use, as already described earlier, the column with the missing observations as the target and uses all other possible columns as the features. After imputing all columns with fewer than one percent missing observations, we can now use all of them as features.</p>
+
+<p>The model we are using is a RandomForestRegressor because of its good handling of noisy data. The code snippet below which hyperparameters were gridsearched.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">imputation_model</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"model"</span><span class="p">:</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">28</span><span class="p">),</span>
+        <span class="s">"param"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"n_estimators"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span>
+            <span class="s">"max_depth"</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span>
+                          <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">)],</span>
+            <span class="s">"min_samples_split"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+            <span class="s">"min_samples_leaf"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+</code></pre></div></div>
+<p>We now run all four columns through the model-based approach and compare their performance to all aforementioned basic imputation methods. The following code snippet takes care of exactly that.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fill_diff_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">diff_columns</span><span class="p">,</span>
+                          <span class="n">easy_columns</span><span class="p">,</span> <span class="n">nrmse_df</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+        <span class="s">"""
+        This method imputes the difficult columns. Difficult means that
+        these columns miss more than the specified threshold percentage
+        of observations. Because of that a model based approach is tried.
+        If this approach proves better than the normal methods, it is
+        applied.
+        Furthermore, we plot the nrmse of the model based approach in order
+        to compare these with the normal methods
+        Parameters
+        ----------
+        data : DataFrame
+            Dataframe containing all data
+        model : dictionary
+            Here we specify the model and the parameters we would like to try
+        diff_columns : list
+            List of columns we would like to try
+        easy_columns : list
+            List of columns which have less than the threshold percentage
+            data missing
+        nrmse_df : Dataframe
+            Dataframe with the nrmse for all methods and columns
+        city_name : str
+            String specifying which city we are talking about
+        Returns
+        -------
+        data : Dataframe
+            Dataframe with imputated columns
+        diff_nrmse_df : Dataframe
+            Dataframe showing the nrmse performance of the difficult
+            columns and all methods
+        """</span>
+        <span class="n">non_knn_method</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">nrmse_df</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="s">"knn"</span><span class="p">]))</span>
+        <span class="n">diff_nrmse_df</span> <span class="o">=</span> <span class="n">nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">diff_columns</span><span class="p">,</span> <span class="n">non_knn_method</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Filling difficult columns"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">diff_columns</span><span class="p">):</span>
+
+            <span class="c1"># Getting data ready
+</span>            <span class="n">time_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+            <span class="n">non_nan_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">non_nan_data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">easy_columns</span><span class="p">]</span>
+            <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">().</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+            <span class="n">scaled_features</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">non_nan_data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+
+            <span class="c1"># Model building and evaluation
+</span>            <span class="n">model_file_name</span> <span class="o">=</span> <span class="s">"{}/{}_{}_model.pickle"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span>
+                                                             <span class="n">city_name</span><span class="p">,</span>
+                                                             <span class="n">col</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">model_file_name</span><span class="p">):</span>
+                <span class="n">model_info</span> <span class="o">=</span> <span class="n">model_train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">scaled_features</span><span class="p">,</span>
+                                         <span class="n">target</span><span class="p">,</span>
+                                         <span class="s">"neg_mean_squared_error"</span><span class="p">,</span>
+                                         <span class="bp">False</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_file_name</span><span class="p">,</span> <span class="s">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+                    <span class="n">pickle</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_info</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_file_name</span><span class="p">,</span> <span class="s">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">model_info</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">target_min</span><span class="p">,</span> <span class="n">target_max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">min</span><span class="p">(</span><span class="n">target</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+            <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">model_info</span><span class="p">[</span><span class="s">"scores"</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">nrmse_value</span> <span class="o">=</span> <span class="n">rmse</span> <span class="o">/</span> <span class="p">(</span><span class="n">target_max</span><span class="o">-</span><span class="n">target_min</span><span class="p">)</span>
+            <span class="n">diff_nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="s">"model"</span><span class="p">]</span> <span class="o">=</span> <span class="n">nrmse_value</span>
+
+            <span class="c1"># Imputing the difficult ones
+</span>            <span class="n">argmin_method</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">diff_nrmse_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">best_method</span> <span class="o">=</span> <span class="n">diff_nrmse_df</span><span class="p">.</span><span class="n">columns</span><span class="p">[</span><span class="n">argmin_method</span><span class="p">]</span>
+            <span class="n">bool_target_nan</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">.</span><span class="n">isna</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">best_method</span> <span class="o">==</span> <span class="s">"model"</span><span class="p">:</span>
+                <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bool_target_nan</span><span class="p">,</span> <span class="n">easy_columns</span><span class="p">]</span>
+                <span class="n">scaled_features</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="n">model_info</span><span class="p">[</span><span class="s">"model"</span><span class="p">].</span><span class="n">predict</span><span class="p">(</span><span class="n">scaled_features</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bool_target_nan</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">fill_by_method</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">best_method</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bool_target_nan</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span>
+
+        <span class="k">assert</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="nb">list</span><span class="p">(</span><span class="n">easy_columns</span><span class="p">)</span> <span class="o">+</span> <span class="n">diff_columns</span><span class="p">]</span>\
+            <span class="p">.</span><span class="n">isna</span><span class="p">().</span><span class="nb">any</span><span class="p">().</span><span class="nb">any</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">,</span> <span class="s">"Still missing data"</span>
+
+        <span class="c1"># Plotting results
+</span>        <span class="n">adj_df</span> <span class="o">=</span> <span class="n">diff_nrmse_df</span><span class="p">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">long_format</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">melt</span><span class="p">(</span><span class="n">adj_df</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s">"index"</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="p">[</span><span class="s">"nrmse"</span><span class="p">])</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"index"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"value"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">"nrmse"</span><span class="p">,</span>
+                    <span class="n">data</span><span class="o">=</span><span class="n">long_format</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">labelrotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Normalized Root Mean Squared Root Error"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Variables"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+        <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}_diff_columns.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">city_name</span><span class="p">),</span>
+                    <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">diff_nrmse_df</span>
+</code></pre></div></div>
+
+<p>Below we can see that our work was worthwhile. For three out of four columns we find a superior performance of the model-based approach compared to the basic imputation methods. We are now left with a fully imputed dataset with which we can proceed.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_4.png" alt="" /></p>
+
+<h2 id="stationarity-problems-seasonality-andtrend">Stationarity Problems - Seasonality and Trend</h2>
+
+<p>In contrast to cross-sectional data, time series data comes with a whole bunch of different problems. Undoubtedly one of the biggest issues is the problem of stationarity. Stationarity describes a measure of regularity. It is this regularity which we depend on to exploit when building meaningful and powerful forecasting models. The absence of regularity makes it difficult at best to construct a model.</p>
+
+<p>There are two types of stationarity, namely strict and covariance stationarity. In order for a time series to be fulfil strict stationarity, the series needs to be time independent. That would imply that the relationship between two observations of a series is only driven by the timely gap between them, but not on the time itself. This assumption is difficult, if not impossible for most time series to meet and therefore more focus is drawn on covariance stationarity.</p>
+
+<p>For a time series to be covariance stationary, it is required that the unconditional first two moments, so the mean and variance, are finite and do not change with time. It is important to note that the time series is very much allowed to have a varying conditional mean. Additionally, it is required that the auto-covariance of a time series is only depending on the lag number, but not on the time itself. All these requirements are also stated below.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_5.png" alt="" /></p>
+
+<p>There are many potential reasons for a time series to be non-stationary, including seasonalities, unit roots, deterministic trends and structural breaks. In the following section we will check and adjust our exogenous variable for each of these criteria to ensure stationarity and superior forecasting behavior.</p>
+
+<h2 id="seasonality">Seasonality</h2>
+
+<p>Seasonality is technically a form of non-stationarity because the mean of the time series is dependent on time factor. An example would be the spiking sales of a gift-shop around Christmas. Here the mean of the time series is explicitly dependent on time.</p>
+
+<p>In order to adjust for seasonality within our exogenous variables, we first have to find out which variables actually exhibits that kind of behavior. This is done by applying a Fourier Transform. A Fourier transform disentangles a signal into its different frequencies and assesses the power of each individual frequency. The resulting plot, which shows power as a function of frequency is called a power spectrum. The frequency with the strongest power could then be potentially the driving seasonality in our time series. More information about Fourier transform and signal processing in general can be read up on an earlier blogpost of ours here.</p>
+
+<p>The following code allows us to take a look into the power-plots of our 20 exogenous variable.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">spike_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+        <span class="s">"""
+        This method calculates the power-plots for all specified
+        variables. Afterwards spikes above a certain threshold and
+        which exhibit the desired prominence are marked. Afterwards
+        an image of all columns is saved
+        Parameters
+        ----------
+        data : DataFrame
+            Dataframe containing all the columns for which we would
+            like to calculate the power-plots of
+        cols : list
+            Columns which we would like to examine
+        city_name : str
+            A string denoting which city we are looking at
+        Returns
+        -------
+        spikes_dict : dict
+            Dictionary which saves the dominant and prominent
+            frequencies for each exogenous variables
+        """</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+                                <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelcolor</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                        <span class="n">left</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Frequency [1 / Hour]"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Amplitude"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="n">spikes_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+
+            <span class="n">signal</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">].</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">fft_output</span> <span class="o">=</span> <span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">.</span><span class="n">values</span><span class="p">)</span>
+            <span class="n">power</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft_output</span><span class="p">)</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="n">fft</span><span class="p">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
+
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">freq</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="n">pos_freq</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="n">power</span> <span class="o">=</span> <span class="n">power</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">pos_freq</span><span class="p">,</span> <span class="n">power</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            
+            <span class="n">relevant_power</span> <span class="o">=</span> <span class="n">power</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">power</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)]</span>
+            <span class="n">prominence</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">relevant_power</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span>
+            <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">relevant_power</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">relevant_power</span><span class="p">)</span>
+            <span class="n">peaks</span> <span class="o">=</span> <span class="n">sig</span><span class="p">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">relevant_power</span><span class="p">,</span> <span class="n">prominence</span><span class="o">=</span><span class="n">prominence</span><span class="p">,</span>
+                                   <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">peak_freq</span> <span class="o">=</span> <span class="n">pos_freq</span><span class="p">[</span><span class="n">peaks</span><span class="p">]</span>
+            <span class="n">peak_power</span> <span class="o">=</span> <span class="n">power</span><span class="p">[</span><span class="n">peaks</span><span class="p">]</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">peak_freq</span><span class="p">,</span> <span class="n">peak_power</span><span class="p">,</span> <span class="s">"ro"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">peak_freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">spikes_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">peak_freq</span><span class="p">).</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">spikes_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">nan</span>
+</code></pre></div></div>
+
+<p>The plot below shows the resulting 20 exogenous variables. Whether or not a predominant and significant threshold is met for a variable is indicated by a red dot on top of a spike. If a red dot is visible, that means that the time series has a significantly driving frequency and therefore a strong seasonality component.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_6.png" alt="" /></p>
+
+<p>One possibility to cross-check the results of the Fourier Transforms is to plot the Autocorrelation function. If we would try have a seasonality of order X, we would expect a significant correlation with lag X. The following snippet of code plots the autocorrelation function for all features and highlights those features which are found to have a seasonal affect according to the Fourier Transform.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">acf_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">spike_dict</span><span class="p">,</span> <span class="n">city_name</span><span class="p">):</span>
+    <span class="s">"""
+    This method plots the autocorrelation functions for all
+    specified columns in a specified dataframe. Furthermore,
+    the biggest possible spike for each column, if there is any,
+    is made visible through a vertical line and a legend
+    Parameters
+    ----------
+    data : DataFrame
+        The dataframe which contains all exogenous variables.
+    cols : list
+        A list containing the columns which should be
+        analysed
+    spike_dict : dict
+        A dictionary having all columns as the keys and the
+        potential spike as the value
+    city_name : str
+        A string to save the resulting png properly
+    Returns
+    -------
+    None.
+    """</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                            <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelcolor</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Lags"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Correlation"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">max_lags</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">nanmax</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">spike_dict</span><span class="p">.</span><span class="n">values</span><span class="p">())))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">].</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">sm</span><span class="p">.</span><span class="n">graphics</span><span class="p">.</span><span class="n">tsa</span><span class="p">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">series</span><span class="p">.</span><span class="n">values</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(),</span>
+                                 <span class="n">lags</span><span class="o">=</span><span class="n">max_lags</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">missing</span><span class="o">=</span><span class="s">"drop"</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="p">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">spike_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]):</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">axvline</span><span class="p">(</span><span class="n">spike_dict</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s">"Periodicity: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">spike_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]))</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"upper center"</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">'size'</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/{}_autocorrelation_function.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span>
+                                                             <span class="n">city_name</span><span class="p">),</span>
+                <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>From the ACF plots below, we can extract a lot of useful information. First of all, we can clearly see that for all columns where the Fourier transforms find a significant seasonality, we also find confirming picture. This is because we see a peaking and significant autocorrelation at the lag which was found by the power-plot.</p>
+
+<p>Additionally, we find some variables (e.g. ndvi_nw) which exhibit a constant significant positive autocorrelation. This is a sign of non-stationarity, which will be addressed in the next section which will be dealing of stochastic and deterministic trends.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_7.png" alt="" /></p>
+
+<p>In order to get rid of the seasonal component, we decompose each seasonality-affected feature into its unaffected version its seasonality component and trend component. This is done by the STL decomposition which was developed by Cleveland, McRae &amp; Terpenning (1990). STL is an acronym for “Seasonal and Trend decomposition using Loess”, while Loess is a method for estimating non-linear relationships.</p>
+
+<p>The following code snippet decomposes the relevant time series, and subtracts (given that we face additive seasonalities) the seasonality and the trend from the time series.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">season_trend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">spike_dict</span><span class="p">):</span>
+        <span class="s">"""
+        This method decomposes the time series by removing
+        (subtracting) the modelled seasonality and trend.
+        Parameters
+        ----------
+        data : DataFrame
+            A dataframe containing the relevant time series
+        cols : list
+            A list which specifies all potentially affected columns
+        spike_dict : dict
+            A dictionary stating the significant seasonality for
+            each column
+        Returns
+        -------
+        data : Dataframe
+            After decomposing and 'cleaning', we put the variables
+            back into the dataframe which is returned
+        """</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+            <span class="n">period</span> <span class="o">=</span> <span class="n">spike_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+            <span class="n">time_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="p">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">period</span><span class="p">):</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">STL</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">spike_dict</span><span class="p">[</span><span class="n">col</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+                <span class="n">adjusted_series</span> <span class="o">=</span> <span class="n">time_series</span> <span class="o">-</span> <span class="n">res</span><span class="p">.</span><span class="n">seasonal</span>
+                <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">adjusted_series</span>
+
+        <span class="k">return</span> <span class="n">data</span>
+</code></pre></div></div>
+
+<h2 id="deterministic-trends">Deterministic Trends</h2>
+
+<p>One more obvious way to breach the assumptions of covariance stationarity is if the series has a deterministic trend. It is important to stress the difference between a deterministic and not a stochastic trend (unit root). Whereas it is possible to model and remove a deterministic trend, this is not possible with a stochastic trend, given its unpredictable and random behavior.</p>
+
+<p>A deterministic trend is the simplest form of a non-stationary process and time series which exhibit such a trend can be decomposed into three components:</p>
+
+<p><img src="/assets/post_images/polarization/picture1_71.png" alt="" /></p>
+
+<p>The most common type of trend is a linear trend. It is relatively straight forward to test for such a trend and remove it, if one is found. We apply the original Mann-Kendall test, which does not consider seasonal effects, which we already omitted in the part above. If a trend is found, it is simply subtracted from the time series. These steps are completed in the method shown below.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">trend_detecter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+      <span class="s">"""
+      This method tests for a deterministic trend using the
+      Mann-Kendall test. If the test is found to be significant,
+      the trend is removed (subtracted).
+      Parameters
+      ----------
+      data : DataFrame
+          A dataframe containing all the relevant columns
+      cols : list
+          A list of column names for which we apply the test
+      Returns
+      -------
+      no_nan_data : DataFrame
+          A dataframe with the potentially removed trend series
+      trend_dict : dict
+          A dictionary containing the information of the detrending
+      """</span>
+      <span class="n">trend_dict</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+          <span class="n">trend_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+          <span class="n">time_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+          <span class="n">result</span> <span class="o">=</span> <span class="n">mk</span><span class="p">.</span><span class="n">original_test</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+          <span class="n">trend_dict</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s">"pre_trend"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">trend</span>
+
+          <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="n">trend</span> <span class="o">!=</span> <span class="s">"no trend"</span><span class="p">:</span>
+              <span class="n">d_trend</span> <span class="o">=</span> <span class="p">[(</span><span class="n">result</span><span class="p">.</span><span class="n">intercept</span> <span class="o">+</span> <span class="n">result</span><span class="p">.</span><span class="n">slope</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+                         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_series</span><span class="p">))]</span>
+              <span class="n">trend_dict</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s">"intercept"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">intercept</span>
+              <span class="n">trend_dict</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s">"slope"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">slope</span>
+
+              <span class="n">adj_time_series</span> <span class="o">=</span> <span class="n">time_series</span> <span class="o">-</span> <span class="n">d_trend</span>
+              <span class="n">result</span> <span class="o">=</span> <span class="n">mk</span><span class="p">.</span><span class="n">original_test</span><span class="p">(</span><span class="n">adj_time_series</span><span class="p">)</span>
+              <span class="n">trend_dict</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s">"post_trend"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">trend</span>
+              <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">adj_time_series</span>
+
+      <span class="n">no_nan_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">cols</span><span class="p">).</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">no_nan_data</span><span class="p">,</span> <span class="n">trend_dict</span>
+</code></pre></div></div>
+
+<p>The result can be viewed here. As we can see, most time series exhibited a linear trend, which was then removed.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">|</span> <span class="n">ndvi_ne</span>    <span class="o">|</span> <span class="n">ndvi_nw</span>                <span class="o">|</span> <span class="n">ndvi_se</span>                 <span class="o">|</span> <span class="n">ndvi_sw</span>  <span class="o">|</span> <span class="n">precipitation_amt_mm</span>    <span class="o">|</span> <span class="n">reanalysis_air_temp_k</span> <span class="o">|</span> <span class="n">reanalysis_avg_temp_k</span> <span class="o">|</span> <span class="n">reanalysis_dew_point_temp_k</span> <span class="o">|</span> <span class="n">reanalysis_max_air_temp_k</span> <span class="o">|</span> <span class="n">reanalysis_min_air_temp_k</span> <span class="o">|</span> <span class="n">reanalysis_precip_amt_kg_per_m2</span> <span class="o">|</span> <span class="n">reanalysis_relative_humidity_percent</span> <span class="o">|</span> <span class="n">reanalysis_sat_precip_amt_mm</span> <span class="o">|</span> <span class="n">reanalysis_specific_humidity_g_per_kg</span> <span class="o">|</span> <span class="n">reanalysis_tdtr_k</span>     <span class="o">|</span> <span class="n">station_avg_temp_c</span>     <span class="o">|</span> <span class="n">station_diur_temp_rng_c</span> <span class="o">|</span> <span class="n">station_max_temp_c</span>     <span class="o">|</span> <span class="n">station_min_temp_c</span>      <span class="o">|</span> <span class="n">station_precip_mm</span>     <span class="o">|</span>                     <span class="o">|</span>
+<span class="o">|------------|------------------------|-------------------------|----------|-------------------------|-----------------------|-----------------------|-----------------------------|---------------------------|---------------------------|---------------------------------|--------------------------------------|------------------------------|---------------------------------------|-----------------------|------------------------|-------------------------|------------------------|-------------------------|-----------------------|---------------------|</span>
+<span class="o">|</span> <span class="n">Trend</span>      <span class="o">|</span> <span class="n">decreasing</span>             <span class="o">|</span> <span class="n">decreasing</span>              <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span> <span class="o">|</span> <span class="n">decreasing</span>              <span class="o">|</span> <span class="n">decreasing</span>            <span class="o">|</span> <span class="n">increasing</span>            <span class="o">|</span> <span class="n">increasing</span>                  <span class="o">|</span> <span class="n">increasing</span>                <span class="o">|</span> <span class="n">increasing</span>                <span class="o">|</span> <span class="n">increasing</span>                      <span class="o">|</span> <span class="n">decreasing</span>                           <span class="o">|</span> <span class="n">decreasing</span>                   <span class="o">|</span> <span class="n">decreasing</span>                            <span class="o">|</span> <span class="n">increasing</span>            <span class="o">|</span> <span class="n">increasing</span>             <span class="o">|</span> <span class="n">increasing</span>              <span class="o">|</span> <span class="n">decreasing</span>             <span class="o">|</span> <span class="n">decreasing</span>              <span class="o">|</span> <span class="n">increasing</span>            <span class="o">|</span> <span class="n">increasing</span>          <span class="o">|</span>
+<span class="o">|</span> <span class="n">Slope</span>      <span class="o">|</span> <span class="o">-</span><span class="mf">8.804180148944889e-05</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.00010508442895612228</span> <span class="o">|</span> <span class="n">NA</span>       <span class="o">|</span> <span class="o">-</span><span class="mf">1.9969121004566154e-05</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.003975390783667321</span> <span class="o">|</span> <span class="mf">0.00079050539377047</span>   <span class="o">|</span> <span class="mf">0.0007647709685904174</span>       <span class="o">|</span> <span class="mf">0.0004375871000444891</span>     <span class="o">|</span> <span class="mf">0.000685165752960625</span>      <span class="o">|</span> <span class="mf">0.0006468026767682056</span>           <span class="o">|</span> <span class="o">-</span><span class="mf">0.012109224127889808</span>                <span class="o">|</span> <span class="o">-</span><span class="mf">0.0017669399624736161</span>       <span class="o">|</span> <span class="o">-</span><span class="mf">0.003975390783667321</span>                 <span class="o">|</span> <span class="mf">0.0004258943155599426</span> <span class="o">|</span> <span class="mf">0.00032172583198841135</span> <span class="o">|</span> <span class="mf">0.0001547004468416762</span>   <span class="o">|</span> <span class="o">-</span><span class="mf">0.0009195402298850562</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.00030887303593728855</span> <span class="o">|</span> <span class="mf">0.0006413032891119354</span> <span class="o">|</span> <span class="mf">0.00986137183746052</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Intercept</span>  <span class="o">|</span> <span class="mf">0.10424117470021918</span>    <span class="o">|</span> <span class="mf">0.12204044630128306</span>     <span class="o">|</span> <span class="n">NA</span>       <span class="o">|</span> <span class="mf">0.17419584980022826</span>     <span class="o">|</span> <span class="mf">31.7450108145569</span>      <span class="o">|</span> <span class="mf">298.76309596706034</span>    <span class="o">|</span> <span class="mf">298.8943108197956</span>           <span class="o">|</span> <span class="mf">294.9033123255635</span>         <span class="o">|</span> <span class="mf">301.01619501182535</span>        <span class="o">|</span> <span class="mf">297.00822681183297</span>              <span class="o">|</span> <span class="mf">32.6573650987486</span>                     <span class="o">|</span> <span class="mf">79.43547713504724</span>            <span class="o">|</span> <span class="mf">31.7450108145569</span>                      <span class="o">|</span> <span class="mf">16.345457478691138</span>    <span class="o">|</span> <span class="mf">2.292595026925666</span>      <span class="o">|</span> <span class="mf">26.96210500459904</span>       <span class="o">|</span> <span class="mf">7.149425287356321</span>      <span class="o">|</span> <span class="mf">31.81129219530351</span>       <span class="o">|</span> <span class="mf">22.338233161530237</span>    <span class="o">|</span> <span class="mf">19.02484232581643</span>   <span class="o">|</span>
+<span class="o">|</span> <span class="n">Post</span> <span class="n">Trend</span> <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>               <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                <span class="o">|</span> <span class="n">NA</span>       <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>              <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>              <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                    <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                  <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                  <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                        <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                             <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                     <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                              <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>              <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>               <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>               <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>                <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>              <span class="o">|</span> <span class="n">no</span> <span class="n">trend</span>            <span class="o">|</span>
+</code></pre></div></div>
+
+<p>Even though we removed a deterministic trend, this did not ensure that our time series are actually stationary now. That is because what works for a deterministic trend does not work for a stochastic trend, meaning that the trend-removing we just did does not ensure stationary of unit-roots.</p>
+
+<p>We therefore have to explicitly test for a unit-root in every time series.</p>
+
+<h2 id="stochastic-trends-unitroots">Stochastic Trends - Unit roots</h2>
+
+<p>A unit root process is the generalization of the classic random walk, which is defined as the succession of random steps. Given this definition, the problem of estimating such a time series are obvious. Furthermore, a unit root process violates the covariance stationarity assumptions of not being dependent on time.</p>
+
+<p>To see why that is the case, we assume an autoregressive model where today’s value only depends on yesterday’s value and an error term.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_8.png" alt="" /></p>
+
+<p>If we parameter a_1 would now be equal to one, the process would simplify to</p>
+
+<p><img src="/assets/post_images/polarization/picture1_9.png" alt="" /></p>
+
+<p>By repeated substitution we could also write this expression as:</p>
+
+<p><img src="/assets/post_images/polarization/picture1_10.png" alt="" /></p>
+
+<p>When now calculating the variance of y_t, we face a variance which is positively and linearly dependent on time, which violates the second covariance stationarity rule.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_11.png" alt="" /></p>
+
+<p>This would have not been the case if a_1 would be smaller than one. That is also basically what is tested in an unit-root test. Arguably the most well-known test for an unit root is the Augmented Dickey Fuller (ADF) test. This test has the null hypothesis of having a unit root present in an autoregressive model. The alternative is normally that the series is stationary or trend-stationary. Given that we already removed a (linear) trend, we assume that the alternative is a stationary series.</p>
+
+<p>In order to be technically correct, it is to be said that the ADF test is not directly testing that a_1 is equal to zero, but rather looks at the characteristic equation. The equation below illustrates what is meant by that:</p>
+
+<p><img src="/assets/post_images/polarization/picture1_12.png" alt="" /></p>
+
+<p>We can see that the difference to the equation before is that we do not look at the level of y_t, but rather at the difference of y_t. Capital Delta represent here the difference operator. The ADF is now testing whether the small delta operator is equal to zero. If that would not be the case, then the difference between yesterday’s and tomorrow’s value would depend on yesterday’s value. That would mean if the today’s value is high, the difference between today’s and tomorrow’s value will also be large which is a self-enforcing and explosive process which clearly depends on time and therefore breaks the assumptions of covariance stationarity.</p>
+
+<p>In case of a significant unit-root (meaning a pvalue above 5%), we difference the time series as often as necessary until we find a stationary series. All of that is done through the following two methods.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dickey_fuller_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+    <span class="s">"""
+    Method to test certain rows from a dataframe whether
+    an unit root is present through the ADF test
+    Parameters
+    ----------
+    data : Dataframe
+        A dataframe which contains all series we would like to
+        test
+    cols : list
+        A list containing all columns names for which we would
+        like to conduct the test for.
+    Returns
+    -------
+    adf_dict : dict
+        Dictionary containing the test result for every series.
+    """</span>
+    <span class="n">adf_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">].</span><span class="n">dropna</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">autolag</span><span class="o">=</span><span class="s">"AIC"</span><span class="p">,</span> <span class="n">regression</span><span class="o">=</span><span class="s">"c"</span><span class="p">)</span>
+        <span class="n">adf_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adf_dict</span>
+
+<span class="k">def</span> <span class="nf">diff_sign_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">adf_dict</span><span class="p">):</span>
+    <span class="s">"""
+    This method differences the time series if a non significant
+    dickey fuller test is shown. This is done as long as the
+    adf is not significant.
+    Parameters
+    ----------
+    data : Dataframe
+        A dataframe containing all the time series we would like to test
+    cols : list
+        List of column names we would like to test
+    adf_dict : dict
+        dictionary containing the test results of the dickey fuller test
+    Returns
+    -------
+    data : DataFrame
+        A dataframe with the now potentially differenced series
+    adf_dict : dict
+        A dictionary with the now significant dickey fuller tests
+    number_of_diff : dict
+        A dictionary telling how often each series was differenced.
+    """</span>
+    <span class="n">number_of_diff</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="n">pvalue</span> <span class="o">=</span> <span class="n">adf_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+        <span class="n">time_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">].</span><span class="n">dropna</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">pvalue</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+            <span class="n">time_series</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">pvalue</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">time_series</span><span class="p">.</span><span class="n">dropna</span><span class="p">(),</span>
+                              <span class="n">autolag</span><span class="o">=</span><span class="s">"AIC"</span><span class="p">,</span>
+                              <span class="n">regression</span><span class="o">=</span><span class="s">"c"</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">number_of_diff</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">time_series</span><span class="p">.</span><span class="n">isna</span><span class="p">())</span>
+        <span class="n">adf_dict</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalue</span>
+        <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">time_series</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">adf_dict</span><span class="p">,</span> <span class="n">number_of_diff</span>
+</code></pre></div></div>
+
+<p>The following table shows that we do not find any significant ADF test, meaning that no differencing was needed and that no series exhibited a significant unit root.</p>
+
+<h2 id="finishing-up">Finishing up</h2>
+<p>Last but not least we take a look at our processed time series. It is nicely visible that none of the time series are trending anymore and they do not exhibit significant seasonality anymore.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_13.png" alt="" /></p>
+
+<p>Additionally we take a look at how the distributions of all of the series look. It is important to note that there are no distributional assumptions of the feature variables when it comes to forecasting. That means that even if we find highly skewed variables, it is not necessary to apply any transformation.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_14.png" alt="" /></p>
+
+<p>After sufficiently transforming all exogenous variables, it is now time to shift our attention on the forecasting procedure of both cities.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#time-series" class="page__taxonomy-item" rel="tag">Time Series</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-24T00:00:00+02:00">October 24, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=DengAI%3A+Predicting+Disease+Spread+-+Imputation+and+Stationarity+Problems%20http%3A%2F%2Flocalhost%3A4000%2Ftime%2520series%2Fpython%2FDengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftime%2520series%2Fpython%2FDengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftime%2520series%2Fpython%2FDengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/data%20journalism/web%20scraping/r/Polarization-in-the-Senate/" class="pagination--pager" title="Polarization in the Senate
+">Previous</a>
+    
+    
+      <a href="/tutorial/r/How-to-create-Country-Heatmaps-in-R/" class="pagination--pager" title="How to create Country Heatmaps in R
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

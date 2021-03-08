@@ -1,0 +1,736 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Introduction - End-to-End Machine Learning for Real Estate Price Prediction - Econometrics &amp; Data Science</title>
+<meta name="description" content="Machine learning is an extremely powerful tool, applicable to an astounding breadth of use cases. Today, almost any question imaginable can be the starting point for a machine learning project.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Introduction - End-to-End Machine Learning for Real Estate Price Prediction">
+<meta property="og:url" content="http://localhost:4000/real%20estate/python/Introduction-End-to-End-Machine-Learning-for-Real-Estate-Price-Prediction/">
+
+
+  <meta property="og:description" content="Machine learning is an extremely powerful tool, applicable to an astounding breadth of use cases. Today, almost any question imaginable can be the starting point for a machine learning project.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/real_estate/cover1.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-05T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/real%20estate/python/Introduction-End-to-End-Machine-Learning-for-Real-Estate-Price-Prediction/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/real_estate/cover1.png" alt="Introduction - End-to-End Machine Learning for Real Estate Price Prediction" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Introduction - End-to-End Machine Learning for Real Estate Price Prediction">
+    <meta itemprop="description" content="Machine learning is an extremely powerful tool, applicable to an astounding breadth of use cases. Today, almost any question imaginable can be the starting point for a machine learning project.">
+    <meta itemprop="datePublished" content="2020-05-05T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Introduction - End-to-End Machine Learning for Real Estate Price Prediction
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Machine learning is an extremely powerful tool, applicable to an astounding breadth of use cases. Today, almost any question imaginable can be the starting point for a machine learning project.</p>
+
+<ul>
+  <li>“What products should we recommend to customers to complete their order?”</li>
+  <li>“What will stock prices be tomorrow?”</li>
+  <li>“How much should this house cost? How can we better estimate prices?”</li>
+</ul>
+
+<p>This last question was especially interesting to us in the context of Spanish real estate. Spain is a diverse country, with tourist-haven islands and coastal towns, aging mountain villages, big cities, and everything in between. This makes it a very interesting case study and challenging prediction problem.</p>
+
+<p>Starting with this question, “What is that house worth? How can we better estimate its price?”, the first step is to gather the data needed to answer it and develop a modeling plan. These are the first steps in the well known CRISP-DM process for data science — business understanding, and data understanding.</p>
+
+<p><img src="/assets/post_images/real_estate/picture1_1.png" alt="" /></p>
+
+<p>Once we have the data, we can assess which data preparation and machine learning methods will help us answer this question. The articles in this series dive deep into each step of this process, including data preparation, modeling, and iteration on these steps based on evaluations of the models in order to find the best possible model for predicting Spanish real estate prices.</p>
+
+<h2 id="getting-the-data">Getting the data</h2>
+
+<p>Real estate is a topic with a wealth of information online — but often not in an easily-accessible public format. It would be very difficult if not impossible to find up-to-date information about real estate listings freely available on the web in a format that’s easy to work with from a data science perspective, like a CSV. Instead, data like this is often stored in a format that’s more human-readable and less machine-readable, like flashy advertisements on a website.</p>
+
+<p><img src="/assets/post_images/real_estate/picture1_2.png" alt="Recent listings from realtor.com" /></p>
+
+<p>How can the data hidden in these advertisements be used to help us estimate real estate prices? What other data influences prices? Is all of this data included in the advertisements, or do we need to find additional data on the web?</p>
+
+<p>We start by showing how we acquired the initial real estate data using web scraping in article 2, Webscraping Real Estate Market Data.</p>
+
+<p>Gleaning information from the data
+Once we have scraped this information from the web, the next step is to transform this human-readable data into a machine-readable format. We start this process by removing data that we don’t want to use in our prediction model — this helps streamline the data processing steps which come later.</p>
+
+<p>Removing unwanted data or data that is not applicable to modeling is shown in article 3, Outlier Detection.
+After these datapoints are removed, features are extracted from the data. Features are individual categories of information that each datapoint contains. These features together tell a story about the datapoint and are used for prediction the target variable. For example, features for predicting real estate prices include categories like number of bedrooms, number of bathrooms, location of the property, and indicators like whether the property has a garage.
+Article 4 in the series, Feature Creation, shows how these features were extracted from the raw data scraped from the real estate website.</p>
+
+<p>As part of the initial analysis, unsupervised clustering methods were used to further understand the data. Clustering methods work by trying to identify previously unseen patterns in the data. Article 5, Clustering, shows the outcome of this unsupervised modeling and how the clusters identified can be used as a further feature for supervised modeling.</p>
+
+<h2 id="initial-modeling">Initial modeling</h2>
+
+<p>Once the initial features were extracted and clustering was completed, we moved on to supervised modeling. All supervised methods shown are regression methods, as the target variable Price is a continuous variable.
+We began by training a simple multiple linear regression model as a baseline, then moved on to tree-based algorithms including Random Forest and XG-Boost. Article 6, Predicting Real Estate Prices, shows the results from this initial modeling.</p>
+<h2 id="model-improvement">Model improvement</h2>
+
+<p>Our initial models included only features from the advertisements that were already in numeric format , like square meters or number of bathrooms, or those that could be easily calculated with additional data found on the web, like distance away from a major metropolitan city. This meant that these models did not see any information nested in the advertisement text. The advertisement text often includes more detailed information about the location of the property, its condition, and additional amenities.</p>
+
+<p>The next article in our series, NLP Part 1: Text Exploration, shows initial analysis of the text feature of the data, and how the text data was prepared for modeling. Article 8, NLP Part 2: Modeling with Text Features shows how these text features were vectorized using a TF-IDF vectorizer and presents the results from including this text feature vector in the model.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The final article in our series shows how the models which incorporate NLP features compare to the original models. We also present further next steps to take, such as deploying the model to make predictions on unseen data.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#real-estate" class="page__taxonomy-item" rel="tag">Real Estate</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-05T00:00:00+02:00">May 5, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Introduction+-+End-to-End+Machine+Learning+for+Real+Estate+Price+Prediction%20http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FIntroduction-End-to-End-Machine-Learning-for-Real-Estate-Price-Prediction%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FIntroduction-End-to-End-Machine-Learning-for-Real-Estate-Price-Prediction%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FIntroduction-End-to-End-Machine-Learning-for-Real-Estate-Price-Prediction%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/real%20estate/python/Webscraping-Real-Estate-Market-Data/" class="pagination--pager" title="Webscraping Real Estate Market Data
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

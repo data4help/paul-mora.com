@@ -1,0 +1,799 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Clustering Real Estate Data - Econometrics &amp; Data Science</title>
+<meta name="description" content="Using unsupervised learning techniques to create features for supervised price prediction.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Clustering Real Estate Data">
+<meta property="og:url" content="http://localhost:4000/real%20estate/python/Clustering-Real-Estate-Data/">
+
+
+  <meta property="og:description" content="Using unsupervised learning techniques to create features for supervised price prediction.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/real_estate/cover4.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-08T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/real%20estate/python/Clustering-Real-Estate-Data/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/real_estate/cover4.png" alt="Clustering Real Estate Data" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Clustering Real Estate Data">
+    <meta itemprop="description" content="Using unsupervised learning techniques to create features for supervised price prediction.">
+    <meta itemprop="datePublished" content="2020-05-08T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Clustering Real Estate Data
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Using unsupervised learning techniques to create features for supervised price prediction.</p>
+
+<h2 id="01-what-is-clustering-and-what-can-it-be-usefulfor">01 What is clustering and what can it be useful for</h2>
+<p>Clustering has many applications. Most people know it as an unsupervised learning technique. Here, we use clustering to find similarities in observations of real estate listings and allocate similar observations into buckets, but clustering can also be used for other use cases like customer segmentation.</p>
+
+<p>Whenever a new property comes on the market, the question of how it should be priced naturally arises. One good approximation for that is to see how similar properties are priced. The goal here is to define what exactly makes one property similar to another. Clustering can be helpful here to identify which larger category of properties a given property belongs, and which features influence belonging in this category. One can then use the average from this category to get an indication of the price.</p>
+
+<p>Another use case for clustering is to use the cluster information as an additional feature within a supervised prediction model. The reason why that could be a helpful is that a cluster variable provides condensed information to the model. A tree model, for example, has an easier time splitting observations based on one variable instead of splitting based on many variables individually.</p>
+
+<p>To explain that in more depth, let us assume a Random Forest model, which is a special form of bagging. It is special in the sense that it does not consider all features for every tree, but chooses random features for every tree. If a tree chooses the features number of bathrooms and bedrooms but not the number of square meters, it has an incomplete picture. Even though the Random Forest model tries to average out this incompleteness through a majority vote of trees, the tree would have an easier time to have variable which condenses much of the basic information of the property already. That would lead to fewer misclassifications of properties which show an unexpected value for one of their features.</p>
+
+<p>A more elaborate post on the usefulness of using a cluster variable within a supervised predction model is shown <a href="https://medium.com/r/?url=https%3A%2F%2Ftowardsdatascience.com%2Fkmeans-clustering-for-classification-74b992405d0a">here</a>.</p>
+
+<h2 id="02-clustering-method-kmeans">02 Clustering Method - K Means</h2>
+<p>The clustering method used in this example is K Means. The reasons for choosing that clustering method compared to more complicated methods are:</p>
+
+<ol>
+  <li>Simplicity - K Means, compared to many other clustering methods, is relatively easy to understand and to implement. Given that clustering is used as a simple additional feature, the use case does not require an overly complex model.</li>
+  <li>Adaptive approach - The algorithm is known to easily adapt to new observations. This means that newly added data can easily classified with this algorithm</li>
+  <li>Guaranteed convergence - by trying to minimize the total SSE as an objective function over a number of iterations.</li>
+</ol>
+
+<p>Before jumping into any results it is important to elaborate a bit more on how the K Means algorithm works. The first step, and at the same time one of the most difficult steps within this approach, is to set how many clusters we want our data to be split into. This is challenging - how are we supposed to know how many clusters the data needs? We will elaborate a bit later on how to make an educated guess on that number. For now, we will simply call that mysterious number of clusters k.</p>
+
+<p>We start by taking k randomly selected observations from our dataset. In our case, we choose k randomly chosen properties. These are our initial centroids. A centroid a fancy name for the mean of a cluster. Given that this is our first observation within each cluster, it therefore also represents the mean. Afterwards, we assign all other properties left (N-k) to exactly one of the k groups. This is done by calculating the difference between the features of a property to all possible centroids. Having more than one feature requires us to use the euclidean distance for that. The euclidean distance is the square root of the sum of all squared features of a property.</p>
+
+<p>After we have assigned all properties to one cluster, we re-calculate the means (centroids) of each of the k groups. This is done by calculating the simple average of all observations for each cluster. This calculation marks the end of the first iteration.</p>
+
+<p>The next iteration starts again by allocating all properties to one of the k centroids again, using the euclidean distance of each property. It could now be that some observations which were assigned to a certain group change over to a different of the k groups. If that happens, that means that the model has not yet converged and needs more iterations.</p>
+
+<p>After many iterations, no observation will change its group assignment anymore. When that happens, the algorithm is done and said to have converged. This also means that the summed variation of all k groups has reached a minimum.
+K Means is heavily dependent on which initial values were randomly chosen at the start. In order to test the robustness of the result, it is advised to apply algorithms such as k-means seeding. These methods test different initial values and assess the change in results.</p>
+
+<p>The entirety of the explanation above can also be summarized in the pseudo code below:</p>
+
+<p><img src="/assets/post_images/real_estate/picture4_1.png" alt="" /></p>
+
+<h2 id="021-choosingk">02.1 Choosing K</h2>
+<p>As stressed before, one disadvantage of clustering is the necessity of choosing the number of clusters at the start. This task seems truly difficult since it somewhat requires us to have an initial idea about the data. For cases where we have up to three variables, this problem can be solved by simply plotting the observations and see visually which number of clusters could be sensible.</p>
+
+<p>There are multiple problems with that approach, however. The main problem is probably that “eyeballing” the number of clusters to use based on a plot is not very scientific and very subjective. A more sophisticated approach is the silhouette score, which is explained in the next section.</p>
+
+<p>On a high level, what the silhouette score does is to assess whether an observation fits nicely to a certain cluster and badly to a neighboring cluster. This is done through the comparison of two distance measurements. The first is the measurement of how far an observation within a certain cluster is away from the other observations within the cluster. This is done by calculating the average euclidean distance of one observation i to all other observations within the same cluster.</p>
+
+<p><img src="/assets/post_images/real_estate/picture4_2.png" alt="" /></p>
+
+<p>The second measurement is to see how well an observation in a certain cluster fits to all other observations within a so called “neighboring cluster”. A neighboring cluster is the cluster which, on average, is closest to a another cluster. The assessment is done by calculating the average distance of a certain observation to all other observations of a neighboring cluster.</p>
+
+<p><img src="/assets/post_images/real_estate/picture4_3.png" alt="" /></p>
+
+<p>The last step is then to compare these measurements. The silhouette score is defined for a certain observation as the difference between the average distance to a neighboring cluster and the average distance within its cluster. This number is standardized by dividing the difference by the maximum of a(i) and b(i).</p>
+
+<p><img src="/assets/post_images/real_estate/picture4_4.png" alt="" /></p>
+
+<p>Through this standardization the silhouette score will be between -1 and 1. In order to assess how well the clustering fits not only one observation, but the entirety, the silhouette score is calculated for all observations and then averaged.
+In our example the average silhouette score for all observations has the following shape:</p>
+
+<p><img src="/assets/post_images/real_estate/picture4_5.png" alt="" /></p>
+
+<p>From the graph above, we can see that the best silhouette score is achieved by having three clusters. This result is interpreted as follows: Having three clusters, on average, the mean euclidean distance between an observation and a neighboring cluster is greater than the mean euclidean distance between an observation and other observations within the same cluster.</p>
+<h2 id="022-code-implementation">02.2 Code Implementation</h2>
+
+<p>When implementing K Means, it is important to start by figuring out which value k should take using the silhouette score.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Number of maximum clusters tried 
+</span><span class="n">max_cluster</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1"># Initialise dictionary 
+</span><span class="n">sil_graph</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="c1"># Looping starting with 2 clusters and then
+</span><span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_cluster</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>    
+    <span class="c1"># Calculate the kmeans with clusters
+</span>    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">cluster</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1"># Calculate the kmeans labels
+</span>    <span class="n">sil_graph</span><span class="p">[</span><span class="n">cluster</span><span class="p">]</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">data_v3</span><span class="p">,</span> <span class="n">kmeans</span><span class="p">.</span><span class="n">labels_</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>As seen above, when implementing the silhouette score, we have to state the number of clusters from the start. For our example we tried all cluster levels up to 5. It is important to allow for a relatively high amount of potential clusters. Otherwise, it could happen that the calculation will be only able to find a local minimum.</p>
+
+<p>The second step is then to implement the K Means algorithm with the optimal value of clusters, namely three. This is relatively easy and shown below.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Choosing decided cluster level
+</span><span class="n">cluster_level</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1"># Initialising cluster level
+</span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">cluster_level</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># Assign cluster labels
+</span><span class="n">cluster_label</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">.</span><span class="n">labels_</span>
+</code></pre></div></div>
+
+<p>It should be said that before feeding the observations in any of the clustering algorithms, it is advised to first standardize the data. This ensures comparable scaling of the variables.</p>
+<h2 id="03-clustering-results">03 Clustering Results</h2>
+<p>After deciding for three clusters, it would be interesting to see how the data was split. As discussed before, plotting the variables and highlighting the cluster gets difficult whenever more than three variables are at play.</p>
+
+<p>One workaround is the usage of Principal Component Analysis (PCA). What PCA does is to compress the information of many variables in a selected amount of fewer variables. The graphic below shows exactly that - here, we have projected all the feature variables onto a 2-dimensional plane for plotting.</p>
+
+<p>First, the variables #of bathrooms, # of bedrooms, # of squaremeters, longitude and latitude are used to build exactly two principal components. Afterwards these two newly created variables are plotted. The color of each point shows its assigned cluster group.</p>
+
+<p><img src="/assets/post_images/real_estate/picture4_6.png" alt="" /></p>
+
+<p>At first glance, the clusters don’t look very intuitive. It seems that we have two islands of observations, one larger than the other.</p>
+
+<p>Given that we are in possession of the location data of the properties, it is also interesting to see how the clustering is spread through the country. One very interesting observation here is that the grey-blue dots are mostly solely in Gran Canaria, whereas all other observations are in Peninsular Spain. This finding explains the two “islands” seen in the original PCA graph.</p>
+
+<p><img src="/assets/post_images/real_estate/picture4_7.png" alt="" /></p>
+
+<p>The other mystery that remains now is what causes the two cluster groups within Peninsular Spain. This can be explained with the other variables. The 3-D plot below shows the other 3 features and shows that the cluster group one shows more extreme values for all variables compared to cluster group two.</p>
+
+<h2 id="04-conclusion">04 Conclusion</h2>
+<p>In this post, we explained what clustering can be used for, how the relatively simple method of k-means works, and how to determine k. Furthermore, we showed example code of how to implement the clustering, and the results of clustering our real estate features. We further showed methods of how to visualize the results of clustering.</p>
+
+<p>In the upcoming posts we will use the cluster group as a feature in our prediction model. So stay tuned to read about the performance of this variable!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#real-estate" class="page__taxonomy-item" rel="tag">Real Estate</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-08T00:00:00+02:00">May 8, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Clustering+Real+Estate+Data%20http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FClustering-Real-Estate-Data%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FClustering-Real-Estate-Data%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FClustering-Real-Estate-Data%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/real%20estate/python/Outlier-detection-in-Real-Estate-Data/" class="pagination--pager" title="Outlier detection in Real Estate Data
+">Previous</a>
+    
+    
+      <a href="/real%20estate/python/Feature-Creation-for-Real-Estate-Prices/" class="pagination--pager" title="Feature Creation for Real Estate Prices
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,744 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Human vs. Machine — Reinforcement Learning in the Context of Snake - Econometrics &amp; Data Science</title>
+<meta name="description" content="This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with two players in one playing field.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Human vs. Machine — Reinforcement Learning in the Context of Snake">
+<meta property="og:url" content="http://localhost:4000/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/">
+
+
+  <meta property="og:description" content="This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with two players in one playing field.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-11-06T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Human vs. Machine — Reinforcement Learning in the Context of Snake">
+    <meta itemprop="description" content="This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with two players in one playing field.">
+    <meta itemprop="datePublished" content="2020-11-06T00:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with two players in one playing field.</p>
+
+<h2 id="reinforcement-learning-basics-of-q-tables">Reinforcement Learning: Basics of Q Tables</h2>
+
+<p>For the Snake to play the game itself, the Snake has to answer at every step the very same question: What to do when faced with conditions such as a certain position of its body, position of the snack and position of the walls which would end the game if touched by the Snake. The information used to describe the situation or state of the Snake is referred to as “state variables”. A visual example is made to illustrate the problem at hand in a different context. Imagine a fictional character who is dressed in one of the following four ways:</p>
+
+<p><img src="/assets/post_images/snake/picture1.png" alt="Visual Example of a state's information" /></p>
+
+<p>The way the character is dressed should be taken as a given and represents the state variables. Furthermore, the fictional character now has four possible destinations to go to next. The destinations look like this:</p>
+
+<p><img src="/assets/post_images/snake/picture2.png" alt="Visual Example of the action" /></p>
+
+<p>The question at hand is: at which of these four places would the fictional character experience the most pleasure, given its clothes? Answering this question might seem intuitive. Perhaps this experience of wearing too warm clothing (or even winter clothing) in a warm environment has already been made in the past, and the lesson from the discomfort experienced as a result has been learned. Furthermore, this combination of state variable and action has also already been evaluated. In the situation of winter clothes and the beach, the evaluated outcome was most definitely negative. This evaluation of an action given its state variable that we have experienced and learned from in our own pasts is exactly the point of reinforcement learning. Using past experiences to indicate whether a certain action is a good or bad decision is exactly how Q-Tables work in the context of reinforcement learning. It is crucial to notice that a certain action given the state was only possible because the situation of wearing winter clothes (state variables) and going to the beach (action) were already experienced.</p>
+
+<p><img src="/assets/post_images/snake/picture3.png" alt="Evaluation of an action given a certain state" /></p>
+
+<p>Using logic of how it should theoretically feel to wear warm clothes at the beach without having prior experience is an inference and would require some sort of forecasting model, which is not used in the basic setting of Q-Tables. This implies that when a situation occurs where the fictional character is dressed in a way that it had never been before, meaning it is not known how pleasurable it would be to go to one of the four possible locations dressed in that manner. The image illustrates this last argument, meaning that it has to visit all four different locations at least once to make an evaluation.</p>
+
+<h2 id="q-tables-applied-in-the-game-snake">Q-Tables applied in the game Snake</h2>
+
+<p>The difference between the situation of the fictional character and the Snake is how the state is described and what kind of actions are at hand. The image below shows a normal scenario of a Snake game. The Snake’s body is shown as purple, the boundaries of the playing field are black, and the objective (the snack) is shown as green. The Snake has now four options what to do: it could go left, right, up or down. In the following situation it might seem intuitive for the Snake to go right and simply eat the snack. Why is that intuitive? Because this action was taken in the past and received as a positive experience. What about going left and backing up into itself? This combination of state and action was experienced as something negative.</p>
+
+<p>As visible on the right side, the state at hand is described by two kind of variable categories. The “Danger Variables” give an indication whether the Snake is of risk of dying when going into a certain direction. As discussed before, going left and backing up into itself would kill the Snake. The other variable category is related to the snack the Snake would like to eat. This snack lies in a 90-degree position away from the Snake’s head and is only one field away to be eaten.</p>
+
+<p><img src="/assets/post_images/snake/picture4.png" alt="" /></p>
+
+<p>A examplatory position of the snake and the calculation of the Q-Value</p>
+
+<h2 id="foundations-of-the-bellman-equation">Foundations of the Bellman Equation</h2>
+
+<p>In order to understand the magic of Reinforcement learning, it is necessary to discuss the Bellman Equation which is stated on the right side of the graphic. This equation calculates the Q-Values for every move the Snake can take. In order to understand what a Q-Value is, it is necessary to introduce the concept of rewards and penalties. Within Reinforcement Learning the algorithm receives feedback immediately for every action it takes. In the case the algorithm did something favourable (going to the beach when dressed in summer clothing), then a positive reward of is noted. Following the same logic, a negative reward is given for something unfavourable (going out into the snow with summer clothing) and a neutral reward is given for action which did not lead to a success or failure of the algorithm (going to church in summer clothing). For scaling purposes, normally a standardized reward structure is taken. This means for our Snake example: In case the Snake eats the snack, the algorithm receives a reward of plus one, if it dies it receives a reward of negative one and if it simply makes a move without dying nor eating a snack, it receives a reward of zero. This reward is represented by the “r” within the Bellman equation.</p>
+
+<p>Moreover, it is important for the algorithm to apply some sort of forward thinking. As for many games or tasks, it is not only important to receive the next immediate reward, but also to consider the longer-term goal after that. This consideration of the importance of the future is denoted and incorporated by the “γ”. This gamma coefficient should be carefully chosen. If it is too low, then the agent will not care about the future and only try to receive the reward of the current state as soon as possible, sacrificing a favourable position for the long-term reward to come. If the discount rate is chosen too high, then the current goal is neglected since it carries a relatively low importance compared to the future. The max Operator within the Bellman Equation can be interpreted as the calculated upcoming rewards when a certain action is taken, meaning that if the Snake decides to go left then it knows that it will go e.g. right afterwards to receive the snack. Hence, not only the “left movement” carries importance, but also the upcoming “right movement”.</p>
+
+<h2 id="q-table-performance">Q Table Performance</h2>
+
+<p>When the Q-Table is completely filled out, it is nothing other than a lookup table for the algorithm to decide what to do when a certain state occurs.</p>
+
+<p><img src="/assets/post_images/snake/picture5.png" alt="" /></p>
+
+<p>The Q-Table serves as a simple lookup table which is iteratively filled as soon as a certain state is shown to the algorithm</p>
+
+<p>The next question would then be, how does the algorithm fill the table? The answer is simple, it just starts collecting the data itself by moving at random. By moving at random the algorithm collects its own data and iteratively gets better and learns how to react in every observed state. Since the algorithm is constantly learning, it is more and more encouraged to apply actions it learned in the past. Below two graphics are visible. On the left, the untrained algorithm is shown. It is clearly visible that there is no clear pattern in its movements and it strikingly fails to succeed in the game. On the right, on the other hand, a trained algorithm is shown. This difference is that this algorithm has learned to make its own decisions after approximately 50.000 iterations.</p>
+
+<p><img src="/assets/post_images/snake/picture6.gif" alt="Untrained Algorithm" /></p>
+
+<p><img src="/assets/post_images/snake/picture7.gif" alt="Algorithm with 500k iterations" /></p>
+
+<p>On the top an untrained algorithm is shown. It moves via random actions taken. On the bottom an algorithm which was trained with approx. 500k iterations is shown. It performs fairly well already.</p>
+
+<p>Every time the Snake dies, the Snake is less advised to use a random algorithm for decision making purposes, but rather to make the decision given its past acquired knowledge. This approach is called Epsilon Decay, but there are other ways to steer the exploration and exploitation problem faced. A summary of the most well-known approaches is given below:</p>
+
+<p>Epsilon Decay: The algorithm is taking a random action with probability epsilon. This probability then decays with a predefined rate before the next action is taken</p>
+
+<p>Upper Confidence Bound: The action with the highest uncertainty is taken. When an action is taken often enough, and the outcome of that action is less uncertain, another action is taken</p>
+
+<p>Epsilon Greedy: A random movement is taken with a pre-defined probability, in comparison to the Epsilon Decay approach, this probability never changes, meaning that even a trained model still takes random action.</p>
+
+<p>When training the algorithm, the graphic that everybody would like to see is how the average reward develops over time. An increase in this chart would imply that there is a positive correlation between the numbers of games the algorithm saw and how well the algorithm succeeds. The chart below shows exactly the desired pattern: Over time the Snake algorithm increases its average body length. Since creating a longer Snake is the goal of the game in the first place, the algorithms trains!</p>
+
+<p><img src="/assets/post_images/snake/picture8.png" alt="" /></p>
+
+<p>Moving average (300 units) of the body length of the Snake over 50k training steps</p>
+
+<h2 id="introducing-a-second-player">Introducing a second player</h2>
+
+<p>Lastly, the game is made to appeal more to the end user. For that purpose, a second, human-controlled player (snake) is inserted in the very same playing field where the algorithm is already playing. Furthermore, the visual appearance of the now two Snakes is enhanced. This enhancement required only some simple editing in MS Paint.</p>
+
+<p>No changes had to be made to the machine-controlled Snake. Whenever it faces the human controlled Snake, it will simply treat it as it treats any danger proximities- it avoids them! Because of the incredibly fast reaction time of the algorithm, no human stands a chance (even after playing 50 times, no one came close to beating it).</p>
+
+<p>Everybody is encouraged to try to beat the machine. The rules are simple: you have one minute to score a higher Snacks-eaten/Deaths ratio than the machine. The entire code is found here on Github.</p>
+
+<p><img src="/assets/post_images/snake/picture9.gif" alt="" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#reinforcement-learning" class="page__taxonomy-item" rel="tag">Reinforcement Learning</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-11-06T00:00:00+01:00">November 6, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Human+vs.+Machine+%E2%80%94+Reinforcement+Learning+in+the+Context+of+Snake%20http%3A%2F%2Flocalhost%3A4000%2Freinforcement%2520learning%2Fpython%2FHuman-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freinforcement%2520learning%2Fpython%2FHuman-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freinforcement%2520learning%2Fpython%2FHuman-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" class="pagination--pager" title="United for 30 Years — Catching up to West Germany
+">Previous</a>
+    
+    
+      <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" class="pagination--pager" title="How the People Really Voted
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/time%20series/python/DengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins/" rel="permalink">DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

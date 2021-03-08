@@ -1,0 +1,828 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How Polarized Is America Really? - Econometrics &amp; Data Science</title>
+<meta name="description" content="Evidence for increasing polarization from the voting record of the United States Congress">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="How Polarized Is America Really?">
+<meta property="og:url" content="http://localhost:4000/data%20journalism/web%20scraping/r/How-Polarized-Is-America-Really/">
+
+
+  <meta property="og:description" content="Evidence for increasing polarization from the voting record of the United States Congress">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/polarization/cover1.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-05T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/data%20journalism/web%20scraping/r/How-Polarized-Is-America-Really/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/polarization/cover1.png" alt="How Polarized Is America Really?" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How Polarized Is America Really?">
+    <meta itemprop="description" content=" Evidence for increasing polarization from the voting record of the United States Congress ">
+    <meta itemprop="datePublished" content="2020-10-05T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How Polarized Is America Really?
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em> Evidence for increasing polarization from the voting record of the United States Congress </em></p>
+
+<p><a href="https://github.com/data4help/polarized">Github Repository</a></p>
+
+<p>The first presidential debate of 2020 seemed to reach a new low. The internet was awash with think pieces about just how contemptuous the relationship between the candidates seemed, with most people convinced that the clash between Joe Biden and Donald Trump was even dirtier than past debates. The same could have been said in 2016, comparing the debates between Hillary Clinton and Donald Trump in that year to debates prior. Is it only a coincidence that these debates get ever more heated over the years, or is this actually the product of a growing polarization in the country?</p>
+
+<p>In his best-selling book “Why We’re Polarized”, Ezra Klein describes how the polarization in America came to reach its current fever pitch. America, and arguably the entire world, is getting more polarized year over year. Quoting from the book, “…when Gerald Ford ran against Jimmy Carter, only 54 percent of the electorate believed the Republican Party was conservative than the Democratic Party. Almost 30 percent said there was no ideological difference at all between the two parties”- a statement which would be unthinkable to describe today’s politics.</p>
+
+<p>Klein’s book inspired us to dig deeper into the numbers and see if just how bad the polarization problem is. But how could we quantify polarization? One way would be to look at how America’s elected politicians voted in Congress. As Klein’s book mentioned, in an un-polarized system, there is not such a strong ideological divide between members of each party. In terms of voting, this means that members of each party would be more likely to cross party lines when voting on certain issues. In a more polarized system, members would be much more likely to vote only inline with their party.</p>
+
+<p>We thus decided to look at the voting positions of members of both parties over the past 30 years. Every vote the House and the Senate take are publicly available online (<a href="https://www.congress.gov/roll-call-votes">here</a>), in the format shown below.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_1.png" alt="" /></p>
+
+<h2 id="about-the-congress">About the Congress</h2>
+
+<p>To understand this data, we must first understand the US legislative system.</p>
+
+<p>The U.S. has a bi-cameral legislature, meaning there are 2 houses that make up the legislative branch. The legislature is called Congress. The two houses (also called chambers) comprising the Congress are the House of Representatives (lower house), and Senate (upper house). The House of Representatives (often shortened to just “the House”) is based on population. There are 435 total Representatives (also called Congresswomen or Congressmen), and each state receives a different number of Representatives depending on their state population. For example, California, with a state population of 39.5 million, has 53 representatives, whereas Nebraska with its population of 1.9 million has 3. The number of representatives assigned to each state is updated every 10 years, after the US census is completed. This is why the census in America is highly <a href="https://apnews.com/article/9a7593702f07d10038dedeca635ba2fd">politicized</a>. Each Representative in the House serves for 2 years. This means that the entire House has the possibility to be renewed every 2 years.</p>
+
+<p>The Senate works differently — each state receives 2 Senators, regardless of its population. Since the US has 50 states, there are 100 Senators in total. Senators serve 6-year terms, meaning that every 2 years, 1/3 of the total Senate has the possibility to be renewed.</p>
+
+<p>Both houses of Congress can propose bills. Bills then receive an ID number. If the bill was proposed by the House, its number will start with “H.R.”. If it was proposed by the Senate, its number will start with “S”. The chamber which proposed the bill will vote on it first, but to become law, both chambers must vote on the bill. Bills are then signed into law (or vetoed) by the President.</p>
+
+<p>Now that we have some background about the two chambers of Congress, we can take a closer look at the outcome statistics of one House and Senate vote, respectively.</p>
+
+<h2 id="data">Data</h2>
+
+<p>The image below shows one example of the result of a vote in the House. From the header we can see in which year the vote was held and which bill was voted on. Our data also includes a table showing how members of each party voted on the measure.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_2.png" alt="Example of the results of a house-vote" /></p>
+
+<p>For the Senate, the data we have about each vote is more detailed. In order to find out how many Democrats or Republicans voted with either “Yea” or “Nay”, we have to extract that information from the Senator-specific table which is given below.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_3.png" alt="Example of the results of a senate-vote" /></p>
+
+<p>We used web scraping to extract and save the data for each vote in the House and Senate. The Python script for this webscraping can be found in the github repository for this project.</p>
+
+<h2 id="empirical-evidence">Empirical Evidence</h2>
+
+<p>After scraping all decisions of the Senate and House between 1989 and 2020, it is time to look at some visualizations to better understand our data. First, we look at how many people of each party held seats, on average, in the House and Senate. This is done by averaging the data over the years and grouping by party (Democratic or Republican) and type (House or Senate).</p>
+
+<p><img src="/assets/post_images/polarization/picture1_4.png" alt="" /></p>
+
+<p>This image nicely shows how the majority in the House and Senate changes over time. We can see a general correlation between the majoirty party in both chambers — when the House is controlled by Republicans, generally the Senate is as well. Given that the entire House is replaced every second year, compared to only 1/3 of the Senate, it is logical that we see a drastically higher fluctuation over time. Given the fact that is replacing the Senate simply takes significantly longer than to replace the House, we can also see that after one party gained the majority in the House, the corresponding switch in majority in the Senate trails behind, switching a couple of years afterwards.</p>
+
+<p>This correlation between the House and Senate is also visible when looking at the correlation matrix below. Here we can see majority in the House and Senate are strongly positively correlated with a value of 0.72 for the democratic and 0.67 for the republican party.</p>
+
+<p>Especially interesting is the last row of the correlation matrix. Here we can see that between 1989 and 2020, we see on average an increase in the number of seats for the republicans in the Senate as well as House. Given that the Senate and House have a fixed number of seats, we find a negative correlation between Year and the number of seats for democrats.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_5.png" alt="" /></p>
+
+<p>Another interesting figure to look at is the number of decisions made in the House as well as the Senate over time. This number is calculated by a simple count of votes for every year between 1989 and 2020. From the chart below we can see that the House voted on a higher number of decisions, compared to the Senate. Furthermore, we can see that both lines seem highly correlated over time. This is sensible given that much legislation has to go through both the Senate as well as the House in order to be passed.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_6.png" alt="" /></p>
+
+<h2 id="the-concept-of-polarization">The concept of Polarization</h2>
+
+<p>After covering some summary statistics of the data and US legislature, we shift to focus on the polarization within American politics. It is first crucial how we define as polarization. In order to create a better understanding of that term, we will paraphrase some parts from the aforementioned, well-researched book from Ezra Klein:</p>
+
+<p><em>
+There is a long-running debate whether what we witness in American politics is actually polarization or “only” sorting. In order to explain the difference we take the example of abortion and assume 100 randomly drawn people. Forty people would like to ban abortion, another forty would like to make it legal and the missing twenty have not made up their mind yet.</em></p>
+
+<p>Let us now assume that all people who are in favor of the right to get an abortion join the Democratic Party and the ones who are not in favor join the Republican Party, and the undecided voters join evenly both parties. In this case, we would say that the beliefs are perfectly sorted by party. It is important to note that nobody changed his or her opinion compared to the point before when nobody joined a party.</p>
+
+<p>In order to show what polarization is, we change the example a bit. We now say there are no more undecided voters and that we now have fifty people on each side of the spectrum. The elimination of the middle ground and the clustering around the opposite political poles of an issue is called polarization.
+&lt;/em&gt;</p>
+
+<p>That means that as the party puts more focus on certain policy issues, it becomes harder and harder for people to stay undecided. The influence of the political parties and its members make the standpoints of the opposite parties even more distant from one another.</p>
+
+<p>Furthermore, the interaction between the ever-growing distance between the two standpoints and the resulting political division between people is a self-reinforcing one. People who joined the Democratic Party given their pro-choice beliefs expect to be represented accordingly by the Party. This push by its members to fight for these issues makes the position of the Democratic Party even more contrasting to the views of the Republican Party. This polarization process will then result in a decreasing number of undecided voters over time.</p>
+
+<p>The concept of polarization is further visualized in the GIF below. Note the image number at the bottom right of each image, we will use these to describe what’s happening in each polarization phase.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_7.png" alt="" /></p>
+
+<p>The first picture (1) shows a case where we have an unsorted nation — people with certain beliefs are not part of any of the two available sides of the problem. The second picture (2) shows the phenomena of sorting. All people are now on either the Republican or Democratic side. We still have a couple of undecided voters who do not have a strong opinion regarding the topic of abortion. The third picture (3) is then the crucial one. The reinforcing effect of the stronger party focus on the issue increases the contrast between the two parties to an such an extent that it is hardly possible to stay undecided. Like a magnet that grows stronger over time, undecided voters are pulled to either side.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_8.gif" alt="" /></p>
+
+<h2 id="empirical-measurement-of-polarization">Empirical Measurement of Polarization</h2>
+<p>After covering what we mean when we talk about polarization, it is now the time to define it mathematically, in order to quantify it.</p>
+
+<p>Measuring polarization means simply assessing how strong the clustering is around certain political issues. If the clustering is strong, we would assume that the disagreement between the Democratic and Republican parties is high. When having a vote, clustering would mean that the absolute difference between the relative amount of Democrats who said yes (no) to the relative amount of Republican who said yes (no). Given that rationale, we define empirical polarization as the following:</p>
+
+<p><img src="/assets/post_images/polarization/picture1_9.png" alt="" /></p>
+
+<p>The reason for taking the average of the absolute relative difference of the Yeas and Nays, instead of simply taking either one of them, is to account for the special case of having non-voters.</p>
+
+<p>We are now able to quantify how high the polarization was for every single vote held in the Senate and House. Next, we average the resulting polarization numbers for each vote on a yearly basis, separating for House and Senate. The graph below show the result of these steps.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_10.png" alt="" /></p>
+
+<p>From the graph above it looks like the overall polarization increased over time. Since we do not want only trust our eyesight, we also fit a linear regression line through the observations. The resulting line and summary statistics are visible below.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_11.png" alt="" /></p>
+
+<p>The resulting line above strengthens our belief of the positive relationship between year and average polarization. Looking at the summary statistics below confirms that this positive linear relationship is also significant. The coefficient is to be interpret the following way: holding all else constant, the influence of increasing the year by one changes the average polarization score by 0.00679.</p>
+
+<p>That the effect is significant can be seen from the p-value. The p-value tells you how likely it would be to find such a test result, or an even more extreme one, assuming the null hypothesis is correct. The null hypothesis when testing a beta coefficient within a linear regression is that the true value of beta is equal to zero.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_12.png" alt="" /></p>
+
+<p>From the regression above we learned that the average polarization increases by approximately half a percentage point every year. This might seem insignificant on first glance, but when putting this number into perspective, we see that long-lasting implications of it. If the average polarization value was around 40% in 1990, the coefficient of 0.00679 would imply an increase average polarization of 0.00679 * 30 years = 0.2037. An increase of 20 percentage points! This increase is mindblowing and truly shows the direction of american politics and reflects the mindset of the people.</p>
+
+<p>Lastly, given that we could see from the graph before that the average polarization did not increase linearly but actually more in a step-function, we test whether these increases are related to a change in the party holding the majority in each chamber. In the graph below we colored the background according to the majority in the given chamber.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_13.png" alt="" /></p>
+
+<p>On first glance it does not seem that which party has the majority has any effect on the average polarization. In order to also quantify this hypothesis we measured the correlation between who has the majority (Republicans encoded as 1 and Democrats as 0) and the average polarization. From the image below we see our initial judgement of the graph above validated. With a relatively small correlation of 0.12, it does not empirically show that who has the majority of either the House and Senate has any effect on the increase of the average polarization.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_14.png" alt="" /></p>
+
+<h2 id="assessing-party-unity">Assessing Party Unity</h2>
+
+<p>After assessing the average polarization over the years, it would be interesting to assess the respective party unity. A higher value of polarization might imply a higher value of party unity, though, we do not know which party, if not both, developed a stronger standpoint on a topic.</p>
+
+<p>For that reason we also now define mathematically what we mean with party unity:</p>
+
+<p><img src="/assets/post_images/polarization/picture1_15.png" alt="" /></p>
+
+<p>The formula above has a maximum of one, for the case where the all Representatives or Senators of a party unanimously vote either yes or no. The minimum of the function is zero, when we have exactly half of the party votes yes and the other half votes against it.</p>
+
+<p>After calculating the party unity for all votes we have in our data, we then average the unity over the years. The resulting data and fitted regression lines for the House and Senate are shown in the image below.</p>
+
+<p><img src="/assets/post_images/polarization/picture1_16.png" alt="" /></p>
+
+<p>Given that we already established a significant trend of polarization within the Congress, it is no surprise to find positive trend lines. Overall, it looks like the House has a stronger party unity compared to the Senate for both parties. This fact could be explained by the fact that the entire House is replaced every two years, and therefore that chamber is more susceptile to increasing polarization of public opinion. The Senate, on the other hand, changes only 1/3 of its members every two years and thus is less affected by these fluctuations.</p>
+
+<p>Another interesting note is that for both chambers we see a higher level of party unity for the Democratic party. Especially for the Senate the difference in the slope coefficient becomes apparent. That said, it’s also important to note that the intercept for the Republican party is higher for both chambers. Combined with the somewhat smaller slope, that means that Republicans used to be more united than the Democrats, but lost that top-spot to the Democrats over the years.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Statistics can help us verify our gut feelings on a given topic. In this article, we were able to empirically prove what many observers of American politics have long felt — that our country is becoming more divided. By defining equations for both polarization and party unity, we were also able to quantify the extent to which these effects are worsening.</p>
+
+<p>Now that we know polarization really is a problem that’s getting worse over time, the next logical question is what we can do to stymie it. In “Why We’re Polarized”, Klein’s advice to readers is to move their politics and hopes for the issues that matter to them from the national to the local level. By engaging in local politics and community engagement, we engage directly with issues on the ground, which helps take the focus on these issues away from the parties themselves. This helps break the self-reinforcing cycle where policy polarization feeds political polarization. Other solutions are more structural and involve re-wiring our political system to better serve the needs of the country today. Klein also mentions that institutions that block the will of the people from being heard, such as the Electoral College, further fuel polarization and should be eliminated.</p>
+
+<p>It’s clear that we must take look for both cultural and structural solutions to the problem of polarization if we want to see civility brought back to our politics, and their biggest stage, our presidential debates.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#data-journalism" class="page__taxonomy-item" rel="tag">Data Journalism</a><span class="sep">, </span>
+    
+      <a href="/categories/#r" class="page__taxonomy-item" rel="tag">R</a><span class="sep">, </span>
+    
+      <a href="/categories/#web-scraping" class="page__taxonomy-item" rel="tag">Web Scraping</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-05T00:00:00+02:00">October 5, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=How+Polarized+Is+America+Really%3F%20http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fweb%2520scraping%2Fr%2FHow-Polarized-Is-America-Really%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fweb%2520scraping%2Fr%2FHow-Polarized-Is-America-Really%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fweb%2520scraping%2Fr%2FHow-Polarized-Is-America-Really%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/portfolio/finance/python/Markowitz-Portfolio-Theory-An-Empirical-Explanation/" class="pagination--pager" title="Markowitz Portfolio Theory - An empirical explanation
+">Previous</a>
+    
+    
+      <a href="/data%20journalism/web%20scraping/r/Polarization-in-the-Senate/" class="pagination--pager" title="Polarization in the Senate
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

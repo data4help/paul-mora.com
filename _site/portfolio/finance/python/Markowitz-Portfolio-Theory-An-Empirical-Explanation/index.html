@@ -1,0 +1,1038 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Markowitz Portfolio Theory - An empirical explanation - Econometrics &amp; Data Science</title>
+<meta name="description" content="Building and simulating different stock portfolio and assessing risk and return with Python and R Shiny Link to App">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Markowitz Portfolio Theory - An empirical explanation">
+<meta property="og:url" content="http://localhost:4000/portfolio/finance/python/Markowitz-Portfolio-Theory-An-Empirical-Explanation/">
+
+
+  <meta property="og:description" content="Building and simulating different stock portfolio and assessing risk and return with Python and R Shiny Link to App">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/portfolio/cover2.gif">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-27T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/portfolio/finance/python/Markowitz-Portfolio-Theory-An-Empirical-Explanation/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/portfolio/cover2.gif" alt="Markowitz Portfolio Theory - An empirical explanation" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Markowitz Portfolio Theory - An empirical explanation">
+    <meta itemprop="description" content="Building and simulating different stock portfolio and assessing risk and return with Python and R ShinyLink to App">
+    <meta itemprop="datePublished" content="2020-08-27T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Markowitz Portfolio Theory - An empirical explanation
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          11 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Building and simulating different stock portfolio and assessing risk and return with Python and R Shiny</em>
+<a href="https://medium.com/r/?url=https%3A%2F%2Fdata4help.shinyapps.io%2Fmarkowitz_app%2F">Link to App</a></p>
+
+<p>Building a portfolio is easier said than done. The sheer amount of combination possibilities is overwhelming. Furthermore, it is oftentimes not completely clear what a certain stock combination will do to the portfolio return and risk. This blog-post clarifies how to determine the portfolio risk and return by showing a two-asset example before moving on to the general n-asset example.</p>
+
+<p>Before starting, we declare the needed packages in Python as well as the directories we are going to need. Furthermore we import the a function which creates financial return data by inputting the</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Packages
+</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">quandl</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="n">solver</span>
+<span class="c1"># Paths
+</span><span class="n">main_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"/Users/user/Documents/projects/markowitz"</span>
+<span class="n">raw_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/00 Raw"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">main_path</span><span class="p">)</span>
+<span class="n">code_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/01 Code"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">main_path</span><span class="p">)</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/02 Data"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">main_path</span><span class="p">)</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/03 Output"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">main_path</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="portfolios-of-two-riskyassets">Portfolios of Two Risky Assets</h2>
+
+<p>When having a multi-asset portfolio there are not many levers we can pull to alter the portfolio’s return and variance. The average return, the risk (standard deviation) of a financial asset as well as the correlation between the two assets is fixed. The only thing we have influence over is how much weight we put on each asset. That means we have to ask ourselves how we should split our capital on the acquisition of both assets, how much of each asset we should buy.</p>
+
+<p>As an example we take the stocks, Apple Inc. (abbreviated as A) and Bank of America (abbreviated as B). Furthermore we denote w as the weight of a respective stock and r and σ as the return and standard deviation respectively. The return of the portfolio containing these two stocks is then calculated as the simple weighted average of theses stocks</p>
+
+<p><img src="/assets/post_images/portfolio/picture2_01.png" alt="" /></p>
+
+<p>The portfolio variance is denoted as sum of the covariance matrix of these two stocks. This becomes clear when looking at the formula below in addition to the covariance matrix.</p>
+
+<p><img src="/assets/post_images/portfolio/picture2_1.png" alt="" />
+<img src="/assets/post_images/portfolio/picture2_11.png" alt="" /></p>
+
+<p>Note that the variances are not multiplied by their weight as is, but by their quadratic weight. This happens because the variance is simply the covariance with itself.</p>
+
+<p>Now we would like to see what kind of risk and returns are attainable for different weights. For that start by loading in the time-series returns for both stocks. We do that by using the powerful pandas_datareader package and the yahoo finance API.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">starting_date</span> <span class="o">=</span> <span class="s">"1/1/2010"</span>
+<span class="n">ending_date</span> <span class="o">=</span> <span class="s">"1/1/2020"</span>
+<span class="n">stock_tickers</span> <span class="o">=</span> <span class="p">[</span><span class="s">"AAPL"</span><span class="p">,</span> <span class="s">"BAC"</span><span class="p">]</span>
+<span class="c1"># Pull the chosen tickers
+</span><span class="n">df_prices</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">stock_tickers</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">web</span><span class="p">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="s">"yahoo"</span><span class="p">,</span>
+                             <span class="n">starting_date</span><span class="p">,</span>
+                             <span class="n">ending_date</span><span class="p">)</span>
+        <span class="n">df_prices</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s">'Adj Close'</span><span class="p">]</span>
+    <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">except</span> <span class="n">RemoteDataError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Returns for these dates not available"</span><span class="p">)</span>
+        <span class="k">pass</span>
+<span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_prices</span> <span class="o">/</span> <span class="n">df_prices</span><span class="p">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="mi">252</span>
+<span class="c1"># Renaming columns
+</span><span class="n">ticker_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">returns</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">actual_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Apple"</span><span class="p">,</span> <span class="s">"Bank of America"</span><span class="p">]</span>
+<span class="n">renaming_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ticker_names</span><span class="p">,</span> <span class="n">actual_names</span><span class="p">)}</span>
+<span class="n">returns</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>From the code above we see that we cannot simply use the original company names “Apple” and “Bank of America”, but something called a stock ticker. A stock-ticker is a three to four letter abbreviation of a company’s name. Furthermore, we have to define for which time-frame we would like to load the data. In our example we arbitrarily pick the beginning of 2010 and 2020 as the starting and end date respectively.</p>
+
+<p>In order to show annualized returns, we multiply the returns by the number of trading days per year. The next step is now to simulate the return and risk of our two stock portfolio for all kind of weighting possibilities. For that we define a function which returns us the portfolio return and risk for a given level of granularity and, as will be explained a bit later, the correlation between the two assets.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">two_stock_portfolio</span><span class="p">(</span><span class="n">reshaped_returns</span><span class="p">,</span> <span class="n">granularity</span><span class="p">,</span> <span class="n">rho</span><span class="p">):</span>
+    <span class="s">"""
+    This function calculates all the risk and expected return for
+    all possible weight combinations for two stocks. It returns
+    two lists which contain the risk level and expected return
+    for all portfolio combination. The granularity adjusts
+    how many portfolios are calculated.
+Parameters
+    ----------
+    reshaped_returns : dataframe
+        DataFrame which contains exactly two time series with
+        the two stocks returns
+    granularity : int
+        Determines for how many portfolios we calculate the
+        risk and return
+    rho : float
+        Depicts the correlation which is important for calculating
+        the portfolios risk
+Returns
+    -------
+    list_return : list
+        List with all portfolio returns
+    list_std : list
+        List with all portfolio standard deviations
+"""</span>
+<span class="n">share_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">reshaped_returns</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">granularity</span><span class="p">)</span>
+<span class="n">exp_returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">reshaped_returns</span><span class="p">)</span>
+    <span class="n">std_returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">reshaped_returns</span><span class="p">)</span>
+<span class="n">list_return</span><span class="p">,</span> <span class="n">list_std</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">:</span>
+        <span class="n">portfolio_return</span> <span class="o">=</span> <span class="p">(</span><span class="n">weight</span>
+                            <span class="o">*</span> <span class="n">exp_returns</span><span class="p">[</span><span class="n">share_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                            <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">weight</span><span class="p">)</span>
+                            <span class="o">*</span> <span class="n">exp_returns</span><span class="p">[</span><span class="n">share_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">portfolio_var</span> <span class="o">=</span> <span class="p">(</span><span class="n">weight</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">std_returns</span><span class="p">[</span><span class="n">share_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">**</span><span class="mi">2</span>
+                         <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">weight</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+                         <span class="o">*</span> <span class="n">std_returns</span><span class="p">[</span><span class="n">share_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">**</span><span class="mi">2</span>
+                         <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">weight</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">weight</span><span class="p">)</span> <span class="o">*</span>
+                            <span class="n">std_returns</span><span class="p">[</span><span class="n">share_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                            <span class="o">*</span> <span class="n">std_returns</span><span class="p">[</span><span class="n">share_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+                            <span class="o">*</span> <span class="n">rho</span><span class="p">))</span>
+        <span class="n">portfolio_std</span> <span class="o">=</span> <span class="n">portfolio_var</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">list_return</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">portfolio_return</span><span class="p">)</span>
+        <span class="n">list_std</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">portfolio_std</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">list_return</span><span class="p">,</span> <span class="n">list_std</span>
+</code></pre></div></div>
+
+<p>The granularity depicts how many portfolios we would like to simulate, that means how many different weights should be used to calculate return and risk of a portfolio.</p>
+
+<p>The long formulas for the variables portfolio_return and portfolio_var are nothing other than the two formulas shown earlier in this post. After initializing the function we call it and plot the results through the following snippet of code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">exp_returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+<span class="n">risk_level</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">returns</span><span class="p">.</span><span class="n">corr</span><span class="p">().</span><span class="n">loc</span><span class="p">[</span><span class="n">actual_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">actual_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">granularity</span> <span class="o">=</span> <span class="mi">1_000</span>
+<span class="n">list_returns</span><span class="p">,</span> <span class="n">list_std</span> <span class="o">=</span> <span class="n">two_stock_portfolio</span><span class="p">(</span><span class="n">returns</span><span class="p">,</span>
+                                             <span class="n">granularity</span><span class="p">,</span> <span class="n">rho</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">list_std</span><span class="p">,</span> <span class="n">list_returns</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Possible Portfolios"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">risk_level</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exp_returns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">actual_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">"turquoise"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">risk_level</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">exp_returns</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">actual_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">"blueviolet"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Annualized Expected Return"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Annualized Risk"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"All possible Portfolios"</span><span class="p">,</span> <span class="p">{</span><span class="s">"fontsize"</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">"{}/markowitz_basic.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">),</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/portfolio/picture2_2.png" alt="" /></p>
+
+<p>The resulting portfolio possibilities give us several interesting insights. Firstly, as expected, the two possible extreme portfolio weighting are a 100% allocation of one of the two assets. Secondly, we see that there are possible portfolios with which we can reduce the overall risk level compared to when holding only one of the two stocks. Thirdly, we find there are some portfolios which are superior to others. Considering the portfolio closer to the Apple stock, we see for the same level of risk we could have create a portfolio with more or less return.</p>
+
+<p>The second finding also explains the aforementioned importance of the correlation between the two assets. This is because the two company’s returns are driven by slightly different factors. Imagine a portfolio with two companies, one company producing swimming trunks and the other producing umbrellas. This portfolio is nicely hedged given that if the weather is sunny the returns of the swimming-trunks company are high while the umbrella company’s return are low. Exactly the reverse is true on a day with bad weather. Looking at the correlation of the returns of these two time-series we find a less-than-perfectly-positive correlation. This fact allows the investor to dampen negative returns of one company through higher returns of another company within their portfolio. How high this risk reduction is depends on the correlation of these two financial returns.</p>
+
+<p>The dependence on the correlation is also nicely visible when altering it. Let us see how the plot from above would look like if we alter the correlation to a perfectly negative correlation (-1) and a perfectly positive correlation (+1). This is done through the following code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">potential_correlation</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Perfect Negative Correlation"</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s">"Actual Correlation"</span><span class="p">:</span> <span class="n">rho</span><span class="p">,</span>
+    <span class="s">"Perfect Positive Correlation"</span><span class="p">:</span> <span class="o">+</span><span class="mi">1</span>
+    <span class="p">}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">rho</span> <span class="ow">in</span> <span class="n">potential_correlation</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">list_returns</span><span class="p">,</span> <span class="n">list_std</span> <span class="o">=</span> <span class="n">two_stock_portfolio</span><span class="p">(</span><span class="n">returns</span><span class="p">,</span>
+                                                 <span class="n">granularity</span><span class="p">,</span> <span class="n">rho</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">list_std</span><span class="p">,</span> <span class="n">list_returns</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">risk_level</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exp_returns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">actual_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">"turquoise"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">risk_level</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">exp_returns</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">actual_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">"blueviolet"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Annualized Expected Return"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Annualized Risk"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"The influence of correlation on the portfolio possibilities"</span><span class="p">,</span>
+              <span class="p">{</span><span class="s">"fontsize"</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">"{}/markowitz_correlation.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">),</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/portfolio/picture2_3.png" alt="" /></p>
+
+<p>Very interestingly, we can see that in case we have a perfect positive correlation, we do not have any risk reduction effect, whereas we are able to create a completely risk-less portfolio when having a perfectly negative correlation.</p>
+
+<h2 id="multiple-assetcase">Multiple Asset Case</h2>
+
+<p>After gaining some intuition as to how a portfolio return and risk is calculated, we are now ready to take a look what happens to multi-asset portfolio.</p>
+
+<p>In general it can be said that not much changes. The return of a multi-asset portfolio is still denoted as the weighted average of the individual stock returns. Also, the risk of a multi-asset stock portfolio is calculated by summing up the weighted covariance matrix. The two formulas from above change therefore into the more general form of:</p>
+
+<p><img src="/assets/post_images/portfolio/picture2_4.png" alt="" /></p>
+
+<p>In order to show what happens empirically, we select five arbitrary stocks (Apple, Bank of America, Amazon, AT&amp;T and Google) and plot their return and risk level by using the following code snippet</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">starting_date</span> <span class="o">=</span> <span class="s">"1/1/2010"</span>
+<span class="n">ending_date</span> <span class="o">=</span> <span class="s">"1/1/2020"</span>
+<span class="n">stock_tickers</span> <span class="o">=</span> <span class="p">[</span><span class="s">"AAPL"</span><span class="p">,</span> <span class="s">"BAC"</span><span class="p">,</span> <span class="s">"AMZN"</span><span class="p">,</span> <span class="s">"T"</span><span class="p">,</span> <span class="s">"GOOG"</span><span class="p">]</span>
+<span class="c1"># Pull the chosen tickers
+</span><span class="n">df_prices</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">stock_tickers</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">web</span><span class="p">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="s">"yahoo"</span><span class="p">,</span>
+                             <span class="n">starting_date</span><span class="p">,</span>
+                             <span class="n">ending_date</span><span class="p">)</span>
+        <span class="n">df_prices</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s">'Adj Close'</span><span class="p">]</span>
+    <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">except</span> <span class="n">RemoteDataError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Returns for these dates not available"</span><span class="p">)</span>
+        <span class="k">pass</span>
+<span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_prices</span> <span class="o">/</span> <span class="n">df_prices</span><span class="p">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="mi">252</span>
+<span class="n">exp_return</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+<span class="n">risk_level</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">risk_level</span><span class="p">,</span> <span class="n">exp_return</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">"+"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Stocks"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Annualized Expected Return"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Annualized Risk"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Expected Return and Risk Scatter for 5 stocks"</span><span class="p">,</span>
+              <span class="p">{</span><span class="s">"fontsize"</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">"{}/unrestricted_markowitz.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">),</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/portfolio/picture2_5.png" alt="" /></p>
+
+<p>As done before we will now simulated possible portfolios. This is done by creating 1,000,000 randomly generated n-column long weight vectors which are then used to simulate many potentially possible portfolios.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vector_returns</span> <span class="o">=</span> <span class="n">returns</span><span class="p">.</span><span class="n">mean</span><span class="p">().</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">covariance_matrix</span> <span class="o">=</span> <span class="n">returns</span><span class="p">.</span><span class="n">cov</span><span class="p">().</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">num_of_companies</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">returns</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">number_of_weights</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">random_weights</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">dirichlet</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_of_companies</span><span class="p">),</span>
+                                     <span class="n">size</span><span class="o">=</span><span class="n">number_of_weights</span><span class="p">)</span>
+<span class="n">weight_times_covariance</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">random_weights</span><span class="p">,</span> <span class="n">covariance_matrix</span><span class="p">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">weights_transpose</span> <span class="o">=</span> <span class="n">random_weights</span><span class="p">.</span><span class="n">T</span>
+<span class="n">portfolio_returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">random_weights</span><span class="p">,</span> <span class="n">vector_returns</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">portfolio_std</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">number_of_weights</span><span class="p">)):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">weight_times_covariance</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">weights_transpose</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">diagonal_element</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
+    <span class="n">element_std</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">diagonal_element</span><span class="p">)</span>
+    <span class="n">portfolio_std</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element_std</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">portfolio_std</span><span class="p">,</span> <span class="n">portfolio_returns</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"dodgerblue"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Possible Portfolios"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">)),</span> <span class="n">vector_returns</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Stocks"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">"+"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Annualized Expected Return"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Annualized Risk"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Markowitz Mu-Sigma Diagram"</span><span class="p">,</span> <span class="p">{</span><span class="s">"fontsize"</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">"{}/n_asset_portfolios.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">),</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We see that this result looks significantly different to the two-asset case before. Firstly, instead of being all on one line, we now have some sort of an area of possible portfolios. Furthermore, when looking at the left side of these portfolios, it looks like there is some sort of a boundary as we already found in the two-asset case. This boundary is denoted as the asset frontier. It depicts all portfolios which have the minimal risk possible for every given level of return, while not allocating more than 100% of the capital available. This minimization problem has the following formal mathematical notation.</p>
+
+<p><img src="/assets/post_images/portfolio/picture2_7.png" alt="" /></p>
+
+<p>As an investor, we are, of course, interested in finding the lowest possible risk for a given return. Therefore finding the portfolio weights which solve the equation above, are of great interest to us. Through the scipy package in Python it is possible to calculate this minimization problem. A nice tutorial on how to use the scipy.minimize is found here.</p>
+
+<p>Through the following code we calculate the desired frontier line and plot it additional to our simulated portfolios.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">multi_dot</span><span class="p">([</span><span class="n">w</span><span class="p">,</span> <span class="n">covariance_matrix</span><span class="p">,</span> <span class="n">w</span><span class="p">.</span><span class="n">T</span><span class="p">]))</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_of_companies</span><span class="p">))</span>
+<span class="n">initial_weights</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">dirichlet</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_of_companies</span><span class="p">),</span>
+                                      <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">min_return</span><span class="p">,</span> <span class="n">max_return</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">portfolio_returns</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">portfolio_returns</span><span class="p">)</span>
+<span class="n">given_return</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_return</span><span class="p">,</span> <span class="n">max_return</span><span class="p">,</span> <span class="p">.</span><span class="mi">001</span><span class="p">)</span>
+<span class="n">minimum_risk_given_return</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">given_return</span><span class="p">:</span>
+    <span class="n">constraints</span> <span class="o">=</span> <span class="p">[{</span><span class="s">"type"</span><span class="p">:</span> <span class="s">"eq"</span><span class="p">,</span>
+                    <span class="s">"fun"</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">},</span>
+                   <span class="p">{</span><span class="s">"type"</span><span class="p">:</span> <span class="s">"eq"</span><span class="p">,</span>
+                    <span class="s">"fun"</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">vector_returns</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span><span class="p">)}]</span>
+    <span class="n">outcome</span> <span class="o">=</span> <span class="n">solver</span><span class="p">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">objective_function</span><span class="p">,</span>
+                              <span class="n">x0</span><span class="o">=</span><span class="n">initial_weights</span><span class="p">,</span>
+                              <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+                              <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+    <span class="n">minimum_risk_given_return</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">outcome</span><span class="p">.</span><span class="n">fun</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">portfolio_std</span><span class="p">,</span> <span class="n">portfolio_returns</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">"dodgerblue"</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Possible Portfolios"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">)),</span> <span class="n">vector_returns</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Stocks"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">"+"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">minimum_risk_given_return</span><span class="p">,</span> <span class="n">given_return</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">"salmon"</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Frontier"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Annualized Expected Return"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Annualized Risk"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Markowitz Mu-Sigma Diagram"</span><span class="p">,</span> <span class="p">{</span><span class="s">"fontsize"</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">"{}/minimization_problem.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">),</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/portfolio/picture2_8.png" alt="" /></p>
+
+<p>After depicting the frontier portfolios, it is to be noted that not all of those carry importance to an investor. This is because we find portfolio which have for a given risk level two levels of return. Given that we, as an investor are interested to obtain the maximum return given every risk level, only one out of two portfolios is therefore of interest to us.</p>
+
+<p>Put differently, we are only interested in efficient portfolio. Efficiency is denoted here as having the highest return for every given risk level, or the lowest risk for every given return level.</p>
+
+<p>When cutting off the inefficient portfolios from the frontier line, we end up with something called the efficient frontier.</p>
+
+<p>Another portfolio of interest is the Minimum Variance Portfolio (MVP) which denotes the portfolio which has the lowest variance possible, out of all portfolios.</p>
+
+<p>The following code snippet implements the concepts of efficient frontier and MVP.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_var</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">minimum_risk_given_return</span><span class="p">)</span>
+<span class="n">mvp_bool</span> <span class="o">=</span> <span class="n">min_var</span> <span class="o">==</span> <span class="n">minimum_risk_given_return</span>
+<span class="n">mvp_risk</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">minimum_risk_given_return</span><span class="p">)[</span><span class="n">mvp_bool</span><span class="p">]</span>
+<span class="n">mvp_return</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">given_return</span><span class="p">)[</span><span class="n">mvp_bool</span><span class="p">]</span>
+<span class="n">ef_bool</span> <span class="o">=</span> <span class="n">given_return</span> <span class="o">&gt;=</span> <span class="n">mvp_return</span>
+<span class="n">ef_risk</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">minimum_risk_given_return</span><span class="p">)[</span><span class="n">ef_bool</span><span class="p">]</span>
+<span class="n">ef_return</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">given_return</span><span class="p">)[</span><span class="n">ef_bool</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">portfolio_std</span><span class="p">,</span> <span class="n">portfolio_returns</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"dodgerblue"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Possible Portfolios"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">)),</span> <span class="n">vector_returns</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Stocks"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">"+"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ef_risk</span><span class="p">,</span> <span class="n">ef_return</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"springgreen"</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Efficient Frontier"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mvp_risk</span><span class="p">,</span> <span class="n">mvp_return</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"orange"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">"D"</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">"Minimum Variance Portfolio"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Annualized Expected Return"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Annualized Risk"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"Markowitz Mu-Sigma Diagram"</span><span class="p">,</span> <span class="p">{</span><span class="s">"fontsize"</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">"{}/efficient_frontier.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">),</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The image above shows nicely the MVP as well as the efficient portfolios out of all frontier portfolios.</p>
+<h2 id="multiple-asset-r-shinyapp">Multiple Asset R Shiny App</h2>
+
+<p>Last but not least, we put all of our findings in one application which can be accessed here:</p>
+
+<p><a href="https://medium.com/r/?url=https%3A%2F%2Fdata4help.shinyapps.io%2Fmarkowitz_app%2F">Link to App</a></p>
+
+<p>This app is a hybrid between Python and R. Python was used to calculate all portfolio information, whereas R Shiny was used to build the web-application. Finally, the app was deployed using shinyapps.io. All code is put on github and can be accessed here.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#finance" class="page__taxonomy-item" rel="tag">Finance</a><span class="sep">, </span>
+    
+      <a href="/categories/#portfolio" class="page__taxonomy-item" rel="tag">Portfolio</a><span class="sep">, </span>
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-08-27T00:00:00+02:00">August 27, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Markowitz+Portfolio+Theory+-+An+empirical+explanation%20http%3A%2F%2Flocalhost%3A4000%2Fportfolio%2Ffinance%2Fpython%2FMarkowitz-Portfolio-Theory-An-Empirical-Explanation%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fportfolio%2Ffinance%2Fpython%2FMarkowitz-Portfolio-Theory-An-Empirical-Explanation%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fportfolio%2Ffinance%2Fpython%2FMarkowitz-Portfolio-Theory-An-Empirical-Explanation%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/portfolio/finance/python/Empirical-Evidence-to-common-Stock-Portfolio-Questions/" class="pagination--pager" title="Empirical Evidence to common Stock Portfolio Questions
+">Previous</a>
+    
+    
+      <a href="/data%20journalism/web%20scraping/r/How-Polarized-Is-America-Really/" class="pagination--pager" title="How Polarized Is America Really?
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

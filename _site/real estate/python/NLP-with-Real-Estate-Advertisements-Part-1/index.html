@@ -1,0 +1,861 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>NLP with Real Estate Advertisements - Part 1 - Econometrics &amp; Data Science</title>
+<meta name="description" content="Analyzing and exploring real estate advertisement descriptions using NLP pre-processing and visualization techniques.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="NLP with Real Estate Advertisements - Part 1">
+<meta property="og:url" content="http://localhost:4000/real%20estate/python/NLP-with-Real-Estate-Advertisements-Part-1/">
+
+
+  <meta property="og:description" content="Analyzing and exploring real estate advertisement descriptions using NLP pre-processing and visualization techniques.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/real_estate/cover7.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-11T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/real%20estate/python/NLP-with-Real-Estate-Advertisements-Part-1/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/real_estate/cover7.png" alt="NLP with Real Estate Advertisements - Part 1" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="NLP with Real Estate Advertisements - Part 1">
+    <meta itemprop="description" content="Analyzing and exploring real estate advertisement descriptions using NLP pre-processing and visualization techniques.">
+    <meta itemprop="datePublished" content="2020-05-11T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">NLP with Real Estate Advertisements - Part 1
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Analyzing and exploring real estate advertisement descriptions using NLP pre-processing and visualization techniques.</p>
+
+<h2 id="pre-processing-and-exploring-the-textdata">Pre-processing and exploring the text data</h2>
+
+<p>Each real estate listing scraped contains a text component, the ad description. The descriptions are actually previews of the full descriptions, scraped from the listing page.</p>
+
+<p><img src="/assets/post_images/real_estate/picture7_1.png" alt="" /></p>
+
+<p>This description text helps to explain what the numbers alone cannot.</p>
+
+<p>Take for example the following two advertisements, both for houses in the Murcia region of Spain:</p>
+
+<p>House 1: 2 Bedrooms, 2 Bathrooms, Pool, 97m2. Price: €99,800.</p>
+
+<p>House 2: 2 Bedrooms, 2 Bathrooms, Pool, 101m2. Price: €170,000.</p>
+
+<p>How is it possible that House 2 is almost 70% more expensive than House 1? Surely the additional 4 square meters of living space cannot explain that difference. Price differences of such a magnitude with identical feature values make it very difficult for the model to learn.</p>
+
+<p>Looking at the description of each house explains the price difference: House 2 is located directly on the beach. This is important information that will help our model learn to better predict these prices.</p>
+
+<p><img src="/assets/post_images/real_estate/picture7_2.png" alt="" /></p>
+
+<p>After scraping the description preview for all real estate listings, we were left with text samples that looked like this:</p>
+<ol>
+  <li>“Amazing villa with incredible views in a very attractive area!\n\nThe view takes you down over the valley, you’ll be able to see Fuengirola and the Mediterranean sea. The house is located on the way from Fuengirola going up to Mijas. \nIt i…”</li>
+  <li>‘This stunning Villa is located on the edge of Almunecar on Mount El Montanes.\n\xa0The location is absolutely stunning with panoramic views of the water / beach, city, mountains. Yes you can look at Salobrena, Motril and Torrenueva.\nThe 2-st…’</li>
+  <li>‘A rare opportunity - a brand new modern villa in a sought after area of lower torreblanca near the beach!\n\nVilla Alexandra is a new modern villa centrally located close to the beach in Torreblanca, Fuengirola. The villa is recently compl…’</li>
+  <li>‘Price Reduction ! Price Reduction ! Now 495.000 euro\n\nThis stunning wooden country house sits on an elevated plot overlooking the village of Alhaurín el Grande with views down the valley and to the Mijas Mountains. The property benefit…’</li>
+</ol>
+
+<p>Our goal is to use the information from this text to help our model predict real estate prices.</p>
+<h2 id="preparing-the-data-for-nlp-analysis-andmodeling">Preparing the data for NLP Analysis and Modeling</h2>
+
+<p>Before we can extract insights from the text data, we have to prepare the data- getting it into a form that algorithms can ingest and understand.</p>
+
+<p>As we go through these steps, it’s important to keep our goal in mind: what do we want our model to understand from the text? In our case, our goal was to use the description of the real estate advertisement to predict price. At every step of the NLP process, we asked ourselves: will this help our model understand which words have the biggest impact on the price of a house?</p>
+
+<p>The steps taken for analyzing the text data are as follows:</p>
+
+<ol>
+  <li>Tokenize the data</li>
+  <li>Lemmatize the data</li>
+  <li>Get n-grams</li>
+  <li>Visualize</li>
+  <li>Repeat</li>
+</ol>
+
+<p>All NLP models and algorithms require the text data to be prepared - usually in a very specific format - before it can be ingested by the model.</p>
+
+<p>Here, we define some NLP terms we’ll be referencing a lot in this section: tokens, documents, and the corpus.</p>
+<h2 id="01-tokenization">01 Tokenization</h2>
+
+<p>Tokenization involves splitting text into its smallest components, called tokens. Tokens are generally words, though they can also be numbers or punctuation marks. The ‘\n’ symbol appearing commonly in the descriptions represents a line break and would also be classified as a token. Tokens are the building blocks that, when combined, give text its meaning.</p>
+
+<p>A document is the entire text for each record, or observation, in our dataset. Each advertisement represents one observation, so each advertisement’s description text is a unique document.</p>
+
+<p>The corpus is the collection of all documents in our dataset.</p>
+
+<p>Nearly every modern NLP library today contains a tokenizer. We used the spaCy package to tokenize the text. In this step, we also removed any tokens representing punctuation or known English stop words.</p>
+<h2 id="02-lemmatization">02 Lemmatization</h2>
+
+<p>Once we have the text split into its component tokens, the next step is to make sure these tokens contain as much information as possible for the model to learn from. There are 2 common ways to do this: lemmatization, and stemming. Both lemmatization and stemming are used to reduce words to their root. The idea behind using both of these methods is that the root of the word contains most of the word’s meaning, and that the model learns associations better when explicitly told that words with the same root are essentially the same.</p>
+
+<p><img src="/assets/post_images/real_estate/picture7_3.png" alt="" /></p>
+
+<p>We used lemmatization because it has the advantage of always returning a word that belongs to the language. This makes it easier to read and understand than stem words, especially when the roots are used in visualizations. We also were not concerned about lemmatization taking longer and being more computationally intensive, as our corpus is not extremely large. Lemmatizing the entire corpus took about 10 minutes on a local machine.</p>
+<h2 id="03-creatingn-grams">03 Creating n-grams</h2>
+
+<p>After stemming and lemmatizing the words, we can extract n-grams. N-grams are token groups of n words that commonly appear together in a document or corpus. A unigram is just one single word, a bigram contains 2-word groupings, and so on. N-grams help us quickly identify the most important words and terms in our corpus.</p>
+
+<p>We wanted to see which uni-, bi- and tri-grams were most important in the entire corpus. This is also a great way to quickly visualize our text data and assess how well we’re preparing our description text for our goal of helping the model predict price.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">nltk.util</span> <span class="kn">import</span> <span class="n">ngrams</span>
+<span class="k">def</span> <span class="nf">get_n_grams</span><span class="p">(</span><span class="n">processed_docs</span><span class="p">):</span>
+    <span class="s">"""
+    Getting uni- bi-, and tri-grams from text.
+    By default creates grams for entire corpus of text.
+    Returns dictionary with {gram_name: gram}
+    """</span>
+    <span class="c1"># initializing list for tokens from entire corpus- all docs
+</span>    <span class="n">total_doc</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">processed_docs</span><span class="p">:</span>
+        <span class="n">total_doc</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="c1"># extracting n-grams
+</span>    <span class="n">unigrams</span> <span class="o">=</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">total_doc</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">bigrams</span> <span class="o">=</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">total_doc</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">trigrams</span> <span class="o">=</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">total_doc</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># getting dictionary of all n-grams for corpus
+</span>    <span class="n">gram_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"Unigram"</span><span class="p">:</span> <span class="n">unigrams</span><span class="p">,</span>
+        <span class="s">"Bigram"</span><span class="p">:</span> <span class="n">bigrams</span><span class="p">,</span>
+        <span class="s">"Trigram"</span><span class="p">:</span><span class="n">trigrams</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">gram_dict</span>
+</code></pre></div></div>
+
+<h2 id="04-visualizations">04 Visualizations</h2>
+
+<p>Once we extracted our n-grams, we visualized which words were the most important. We looked at these visualizations through a critical lens and asked, “are these words helping our model learn to estimate price? How can they better support our model’s understanding?”</p>
+
+<p>Below are the initial n-gram plots, plotted with words from the entire corpus of advertisement descriptions.</p>
+
+<p><img src="/assets/post_images/real_estate/picture7_4.png" alt="" />
+<img src="/assets/post_images/real_estate/picture7_5.png" alt="" />
+<img src="/assets/post_images/real_estate/picture7_6.png" alt="" /></p>
+
+<p>The most common uni-, bi- and tri-grams are “apartment”, “living room” and “bedroom 2 bathroom”. These are all typical real estate-focused words, and many of them are likely not helping our model’s prediction of price. For example, the most common trigram “bedroom 2 bathroom” is likely arriving from all X bedroom 2 bathroom listings. This information is already captured by our explicit bedroom and bathroom features, so it’s not giving our model any new information and should be excluded.</p>
+
+<p>Other terms like “living room” should also be excluded- it’s likely that virtually all homes listed have a living room, and it’s unlikely that the inclusion of this word in a listing has much impact on the target variable of price.</p>
+
+<h2 id="05-repeat">05 Repeat</h2>
+<p>After looking at our initial visualisations, we decided to add the following steps in our text pre-processing pipeline:</p>
+
+<h3 id="01-removing-additional-real-estate-specific-stop-words-like-those-listedhere">01 Removing additional real estate-specific stop words, like those listed here:</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">real_estate_stopwords</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">"area"</span><span class="p">,</span>
+    <span class="s">"province"</span><span class="p">,</span>
+    <span class="s">"location"</span><span class="p">,</span>
+    <span class="s">"plot"</span><span class="p">,</span>
+    <span class="s">"hectare"</span><span class="p">,</span>
+    <span class="s">"m²"</span><span class="p">,</span>
+    <span class="s">"m2"</span><span class="p">,</span>
+    <span class="s">"sq"</span><span class="p">,</span>
+    <span class="s">"sale"</span><span class="p">,</span>
+    <span class="s">"square"</span><span class="p">,</span>
+    <span class="s">"meter"</span><span class="p">,</span>
+    <span class="s">"bedroom"</span><span class="p">,</span>
+    <span class="s">"bathroom"</span><span class="p">,</span>
+    <span class="s">"room"</span><span class="p">,</span>
+    <span class="s">"living"</span><span class="p">,</span>
+    <span class="s">"kitchen"</span><span class="p">,</span>
+    <span class="s">"hallway"</span><span class="p">,</span>
+    <span class="s">"corridor"</span><span class="p">,</span>
+    <span class="s">"dining"</span><span class="p">,</span>
+    <span class="s">"pool"</span><span class="p">,</span>
+    <span class="s">"apartment"</span><span class="p">,</span>
+    <span class="s">"flat"</span>
+    <span class="p">]</span>
+</code></pre></div></div>
+
+<p>For words like “bathroom” and “pool”, it was easy to justify their removal with the argument that they’re already explicitly included in the numeric features. However, with other words like “apartment”, “flat”, and “house”, it wasn’t so easy to know if we should remove them. It’s easy to imagine that whether the property is a flat or a house could have an impact on the price.</p>
+
+<h3 id="02-remove-all-numerictokens">02 Remove all numeric tokens</h3>
+
+<p>We removed numeric tokens to avoid adding redundant information, and to assure we weren’t accidentally including our dependent variable (price) in our features.</p>
+
+<p>After adding these steps to our pre-processing pipeline, the n-grams became much more interesting:
+<img src="/assets/post_images/real_estate/picture7_7.png" alt="" />
+<img src="/assets/post_images/real_estate/picture7_8.png" alt="" />
+<img src="/assets/post_images/real_estate/picture7_9.png" alt="" /></p>
+
+<p>The bigrams and trigrams are no longer dominated by words like bedroom and bathroom. They now contain price-relevant terms like “sea view”, “enjoy leisure time”, and “golf course”.</p>
+
+<h2 id="further-visualizations-wordclouds">Further Visualizations: Word Clouds</h2>
+
+<p>Word clouds are a great way to further understand text data. Our next step was to use word clouds to visualize two subsets of our corpus: the most and least expensive 5% of all observations. Our hypothesis is that the words included in these word clouds should be different: words used to describe inexpensive houses might include things like “fixer-upper” or “cozy”, whereas we might expect to see words like “dream home” or “extravagent” used to describe the most expensive homes.</p>
+
+<p>We started by visualizing the word cloud for the entire corpus of text. This is the same data used to create the n-gram visuals above.</p>
+
+<p><img src="/assets/post_images/real_estate/picture7_10.png" alt="Total corpus wordcloud" /></p>
+
+<p>Next we created a wordcloud for the cheapest 5% of listings, which worked out to be listings under €75,000. Since our dataset contains about 32,000 listings, the top and bottom 5% each contain roughly 1,570 listings.</p>
+
+<p><img src="/assets/post_images/real_estate/picture7_11.png" alt="Cheapest 5% wordcloud" /></p>
+
+<p>The words “villiage” and “town” appear much more commonly in the inexpensive houses- which makes sense as real estate in rural areas generally costs less than in cities. There are also many words about contacting the real estate agent or requesting information. This could signal that these cheaper homes are priced to move and the seller and real estate agent are motivated to sell.</p>
+
+<p>For the word cloud of the most expensive 5% of properties, the cutoff price was €1.7 million.</p>
+
+<p><img src="/assets/post_images/real_estate/picture7_12.png" alt="Most expensive 5% wordcloud" /></p>
+
+<p>Here we can clearly see a stark difference in the most common words. Sea views are more common, as are adjectives like “luxury”, “exclusive” and “high quality”.</p>
+
+<p>Now that we have our text prepared and are confident that there is a difference in the description tokens of inexpensive and expensive properties, we can turn to applying our text data to the model in the form of a TF-IDF feature vector.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#real-estate" class="page__taxonomy-item" rel="tag">Real Estate</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-11T00:00:00+02:00">May 11, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=NLP+with+Real+Estate+Advertisements+-+Part+1%20http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FNLP-with-Real-Estate-Advertisements-Part-1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FNLP-with-Real-Estate-Advertisements-Part-1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FNLP-with-Real-Estate-Advertisements-Part-1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/real%20estate/python/Predicting-Real-Estate-Prices/" class="pagination--pager" title="Predicting Real Estate Prices
+">Previous</a>
+    
+    
+      <a href="/real%20estate/python/NLP-with-Real-Estate-Advertisements-Part-2/" class="pagination--pager" title="NLP with Real Estate Advertisements - Part 2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

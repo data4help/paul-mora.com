@@ -1,0 +1,804 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>And the Oscar goes to… - Econometrics &amp; Data Science</title>
+<meta name="description" content="As an economist it is pretty frustrating to hear the news anchor saying that the cast of the new James Bond movies did it again. “The highest gross revenue ever…” Of course, we are more than convinced that Daniel Craig gave his everything, but the inflation rate helps as well.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="And the Oscar goes to…">
+<meta property="og:url" content="http://localhost:4000/data%20journalism/python/And-the-Oscar-goes-to-/">
+
+
+  <meta property="og:description" content="As an economist it is pretty frustrating to hear the news anchor saying that the cast of the new James Bond movies did it again. “The highest gross revenue ever…” Of course, we are more than convinced that Daniel Craig gave his everything, but the inflation rate helps as well.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/movies/cover1.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-14T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/data%20journalism/python/And-the-Oscar-goes-to-/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/movies/cover1.png" alt="And the Oscar goes to…" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="And the Oscar goes to…">
+    <meta itemprop="description" content="As an economist it is pretty frustrating to hear the news anchor saying that the cast of the new James Bond movies did it again. “The highest gross revenue ever…” Of course, we are more than convinced that Daniel Craig gave his everything, but the inflation rate helps as well.">
+    <meta itemprop="datePublished" content="2020-05-14T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">And the Oscar goes to…
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>As an economist it is pretty frustrating to hear the news anchor saying that the cast of the new James Bond movies did it again. “The highest gross revenue ever…” Of course, we are more than convinced that Daniel Craig gave his everything, but the inflation rate helps as well.</p>
+
+<p>Surprisingly many of monetary statistics which can be found online do not account for the phenomena of inflation. This leads to the dominance of movies produced since the 2000s, as can be seen for example here. In order to give a bit clearer view on monetary success of the different movie genres, actors and directors, this blog-post scraped data on over 300k movies from ImdB and analysed the monetary performance, while adjusting for inflation.</p>
+
+<p>The blog-post is structured as follows: We start with an explanation of which deflator was used and how it was applied. Afterwards we look into the highest inflation-adjusted gross revenue by genre, stars in the movies, directors and movie titles. We conclude the post with showing the development of inflation-adjusted revenue over the years.</p>
+<h2 id="01-inflation-factor">01 Inflation Factor</h2>
+<h3 id="011-basic-understanding">01.1 Basic understanding</h3>
+
+<p>There are two main terms when talking about monetary units, namely the nominal and real value of money. Nominal monetary units are the prices as they are reported at the time. When we go to the cinema today and ask for a ticket, we get told the nominal price of the ticket. If we would like to compare how much we paid for that ticket to the ticket our grandparents bought back in the day, the nominal amount they paid is not of big interest to us. It does not convey any comparable information without knowing what the price level was at that time. That is where the real value comes in - in the inflation-adjusted version of the nominal value.</p>
+
+<p>In order to go from the nominal value to the real value, we need an adjustment factor for inflation. For this purpose, a price index is used. A price index gives an insight on how expensive the world is in a given time period. This is approximated by noting how expensive an extensive basket of products is for every time period. For better understanding, one could imagine going to the grocery store once every year and buying the exact same items. Afterwards, one notes what was paid for the total amount. Since the basket contains many items, it represents some sort of a diversified sample. Some things got more expensive, some things got cheaper. Overall it gives an indication what an average person has to pay to live at a certain point in time. Over the years one would observe price changes which are then said to be, on average, due to increase or decrease of the value of money. If things got more expensive, we are talking about inflation. If things got cheaper, we talk about deflation.</p>
+
+<p>In reality, nobody goes to the grocery store to buy that basket. This is done on a big scale, including many more items than only the ones you can buy at a grocery store, like for example energy, transportation and water. Furthermore, effects like the substitution and quality bias also have to be considered.</p>
+
+<p>The correct measures to be taken are quite complex and also not in the scope of this article and are not needed to know for the further understanding of this article.</p>
+
+<p>01.2 Deflator used</p>
+
+<p>Nowadays price indexes are made tailored for certain industries, in order to have a better understanding how the much cheaper/ expensive certain industries are on their own. In our case, where we are interested in comparing gross revenue of movies over the years, we used a price index for all goods instead of using one tailored to the entertainment industry. This is done to ensure a more extensive time series. Given that many movies go quite far back in time, not having a deflator for those years would make it impossible to calculate the inflation-adjusted gross revenue for those movies. We would then have had to drop all of these older movies. Since a longer time series was more important to us then a perfectly matching deflator. The time series is taken from <a href="https://medium.com/r/?url=https%3A%2F%2Ffred.stlouisfed.org%2Fseries%2FUSACPIALLMINMEI%230">here</a> and plotted below.</p>
+
+<p><img src="/assets/post_images/movies/picture1_1.png" alt="" /></p>
+
+<p>As seen above, the price index rises monotonically over the years. This means that the average price of living went up over the years, meaning we experienced inflation over the years.</p>
+
+<p>Lastly we briefly elaborate of how to go from a nominal value over to a real value. As can been seen from the chart above, the base year, to which all future years are going to be compared to, is 1960. For that starting year, we see the value of 100 was assigned. This number gains meaning when comparing to the number 300 in approximately 1980. It means that the prices are 300% as high as they were in 1960. In order now to compare prices, we take the prices of 1980 and divide them by 300%, or 3. This methodology is then applied to all movie’s gross revenue.</p>
+
+<h2 id="02-revenue-figuresby">02 Revenue figures by…</h2>
+
+<p>After introducing the workings of inflation and how we adjust for its effects, we now look into the more interesting results of inflation-adjusted gross revenue. This is done by splitting the results into the different variables we average by, namely Genre, Actor/Actresses (Stars) and Movie-Directors.</p>
+
+<p>Before diving into the numbers, it is to be said that all number rely on the information that was provided on the ImdB website on the beginning of May 2020. That means that it could happen that newly released movies in 2020 do not have any information about the gross revenue or that some movies in especially very early years do not have any information listed regarding their gross revenue.</p>
+
+<h3 id="021genre">02.1 …Genre</h3>
+
+<p>Below we can see the average inflation-adjusted gross revenue of the different genres. From today’s viewpoint, it was probably to be expected to find Adventure and Action genres on top of the list. Surprisingly, the mode (category which appeared the most often), Drama did not make it onto the top ten list. This could be potentially due to the fact that basically everything could be labelled as a Drama movie, since it does not require many special effects like for example in Adventure or Sci-Fi movies. Many of these Drama-titled movies then apparently were a financial disappointment, dragging down the average of this category.</p>
+
+<p><img src="/assets/post_images/movies/picture1_2.png" alt="" /></p>
+
+<h3 id="022stars">02.2 … Stars</h3>
+
+<p>Before talking about the graphs below, some methodology of how the numbers are calculated is necessary. When encountering a movie with multiple actors (most movies), the gross revenue the movie received is then assigned to each actor with the full amount. This means that if Tom Hanks and Tom Cruise acted in a movie that brought in 100 Euro of gross revenue, the data is split in a way that both actors got assigned 100 Euro for that movie. Afterwards, the average gross revenue over all movies is calculated for each actor.</p>
+
+<p>It is important to stress that this number is not the same as what the actor got paid shooting that movie. The numbers below serve as an indication to show how high the average gross revenue of a movie is when certain actors have a role in the movie.</p>
+
+<p>In order to adjust for one-hit wonders, we implemented the rule that only actors which starred in at least three movies were taken into consideration.</p>
+
+<p>Below we can see the surprising results of that averaging:</p>
+
+<p><img src="/assets/post_images/movies/picture1_3.png" alt="" /></p>
+
+<p>Not many people would have thought that Taylor Lautner would rank as number one on that list. Rightfully so. This statistic is a bit problematic in that it favors certain actors more than others. This theory can be explained by transferring the idea to a casino.</p>
+
+<p>When asking which gambler earned on average the most money in the casino, we will not end up finding the people who go there every single day for thirty years. We will find the person who maybe went to the casino twice and won, due to luck, a considerable amount. This is because, being in the industry for a long time allows for a inevitable bad financially performing movie. Many movies of Tom Hanks at the beginning of his career for example, were not the biggest success story, even though his later movies were.</p>
+
+<p>Taylor Lautner starred in exactly four movies in our dataset. He probably acted in more, but there are four movies under the ImdB link given above, for which Taylor Lautner was listed as an actor. These movies are:</p>
+
+<p><img src="/assets/post_images/movies/picture1_4.png" alt="" /></p>
+
+<p>The question may arise why Robert Pattinson or Kristan Stewart are not listed in the average top ten list, even though their co-star Taylor Lautner is. The answer is the number of movies shoot for the former two actors. Robert P. and Kristan S. both starred in many more movies than only these four and therefore have a lower average. This example shows how this graph above gives a biased view.</p>
+
+<p>If, on the other hand, we would like to see which actor/actress ranks highest when using cumulative gross revenue over all movies they starred in, we find a more expect-able result, with Tom Hanks as number one.</p>
+
+<p><img src="/assets/post_images/movies/picture1_5.png" alt="" /></p>
+
+<h2 id="023-directors">02.3 … Directors</h2>
+
+<p>The same problem we encountered with the actors/actresses above rears its head again when ranking movie directors by average revenue. Looking at the graph below, one might wonder why the household name Steven Spielberg only ranks so low on this results table.</p>
+
+<p><img src="/assets/post_images/movies/picture1_6.png" alt="" /></p>
+
+<p>The answer is again the lucky observations which did not encounter a flop during their career, but also did not shoot as many movies as some of the others. When looking again at the cumulative statistics, it becomes clear who rules this business.</p>
+
+<p><img src="/assets/post_images/movies/picture1_7.png" alt="" /></p>
+
+<p>The cumulative inflation-adjusted gross revenue for Steven Spielberg is now twice as high as the one for George Lucas.</p>
+
+<h2 id="024bymovie">02.4 …by movie</h2>
+
+<p>Maybe the most interesting graph of this post is the one below. Here we show the inflation-adjusted gross revenue of all movies since 1960. The winner is Star Wars IV - A New Hope released in 1977. Even though Avengers: Endgame got a lot of publicity lately given its massive gross revenue, it’s still smaller than One Hundred and One Dalmatians. We are aware that the ranking shown below differs somewhat to other rankings shown on the web, even to ones which adjust for inflation. This could have many reasons, ranging from different sources for the gross revenue over to using a different price index.</p>
+
+<p><img src="/assets/post_images/movies/picture1_8.png" alt="" /></p>
+
+<h2 id="03-development-bygenre">03 Development by Genre</h2>
+
+<p>Lastly it would be interesting to see how the inflation-adjusted gross revenue changed over the years. For this purpose two graphs are shown below, one for all years in the data and another one which has a focus on the 2000s.</p>
+
+<h3 id="031-overall">03.1 Overall</h3>
+
+<p>In order for the statistic not to be completely distorted by stark outliers, only years are considered which have more than one movie in a certain year.</p>
+
+<p>Especially interesting is the performance of the Family genre, which spiked around the 1960s and continued strong until this day. From a financial perspective the strong performance of family movies is not surprising, targeting a market which pure action movies cannot take.</p>
+
+<p>It is also visible that the inflation-adjusted gross revenue average was considerably higher in the early years of the data compared to the more recent years. That fact can also explained by the fact that there are considerably more movies produced in the last twenty years in contrast to the years between 1960–1980. The increase of movies produced is, according to the data, not completely aligned with people going to watch these movies. This fact leads to a lower average of gross revenue nowadays.
+<img src="/assets/post_images/movies/picture1_9.png" alt="Average adjusted revenue over the years by genre" /></p>
+
+<p>To prove this theory outlined above is proven below. The two graphs below show the cumulative inflation-adjusted revenue over the years as well as the number of movies in every year since 1960.</p>
+
+<p><img src="/assets/post_images/movies/picture1_10.png" alt="Summation of adjusted revenue over the years by genre" /></p>
+
+<p>It is clearly visible that nowadays there are massively more movies produced and the industry as a whole got consistently larger over the years. On average, though, each movie had a smaller gross revenue given the sheer amount of movies and competition.
+<img src="/assets/post_images/movies/picture1_11.png" alt="Count of movies over the years by genre" /></p>
+
+<p>The increasing number of feature films made in a year is not the only thing impacting declining revenue per film. The number of other entertainment options available to people have also increased substantially, with streaming services today, and movie rentals available from about the 1980s onwards. These factors all likely influence the much higher adjusted revenue per movie for movies made in the 1960s and ’70s.</p>
+
+<h3 id="032-focus-on2000s">03.2 Focus on 2000s</h3>
+
+<p>As a last step, we thought it would be interesting to zoom in to the average inflation-adjusted gross revenue since 2000. When comparing the average inflation-adjusted gross revenue in last years, we find a very volatile line for the Sci-Fi and Adventure category. This is likely do be due to the blockbuster releases in these years.</p>
+
+<p>We would like to end up on the nice note that the graph below shows that the exploding-cars-showing Action genre is still behind the more thoughtful and happier Family genre.</p>
+
+<p><img src="/assets/post_images/movies/picture1_12.png" alt="" /></p>
+
+<h3 id="04-nextup">04 Next up</h3>
+
+<p>The next blog post looks more into the movie description and makes an attempt to predict the movie category using only the description text of a movie.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#data-journalism" class="page__taxonomy-item" rel="tag">Data Journalism</a><span class="sep">, </span>
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-14T00:00:00+02:00">May 14, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=And+the+Oscar+goes+to...%20http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fpython%2FAnd-the-Oscar-goes-to-%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fpython%2FAnd-the-Oscar-goes-to-%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fpython%2FAnd-the-Oscar-goes-to-%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/real%20estate/python/Conclusion-Predicting-Real-Estate-Prices-with-Features-Scraped-from-the-Web/" class="pagination--pager" title="Conclusion - Predicting Real Estate Prices with Features Scraped from the Web
+">Previous</a>
+    
+    
+      <a href="/data%20journalism/python/dash/Multilabel-Genre-Predictor-with-Interactive-Dashboard/" class="pagination--pager" title="Multi-label Genre Predictor with Interactive Dashboard
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

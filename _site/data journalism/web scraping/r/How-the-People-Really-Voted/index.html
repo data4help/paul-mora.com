@@ -1,0 +1,750 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How the People Really Voted - Econometrics &amp; Data Science</title>
+<meta name="description" content="Why geographically correct maps show elections results inaccurately &lt;/em">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="How the People Really Voted">
+<meta property="og:url" content="http://localhost:4000/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/">
+
+
+  <meta property="og:description" content="Why geographically correct maps show elections results inaccurately &lt;/em">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/polarization/cover3.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-11-13T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/polarization/cover3.png" alt="How the People Really Voted" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How the People Really Voted">
+    <meta itemprop="description" content=" Why geographically correct maps show elections results inaccurately &lt;/em">
+    <meta itemprop="datePublished" content="2020-11-13T00:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How the People Really Voted
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em> Why geographically correct maps show elections results inaccurately &lt;/em</em></p>
+
+<p><a href="https://github.com/data4help/cartogram_usa">Github Repository</a></p>
+
+<p>The presidential election of 2020 was said by many to be the most important election ever held. The voting turnout was higher than ever before, and the arguably most controversial president in history, Donald Trump, lost to his democratic opponent Joe Biden.</p>
+
+<p>The unprecedented amount of mail-in ballots took its toll on the patience of the nation and the world. On election day, the 3rd of November, it was anything but clear who won the election. The polls before election turned out not to be very representative of true sentiments, a similar flaw as was seen in 2016. Donald Trump’s performance and his backing were grossly underestimated.</p>
+
+<p>On Saturday the 7th of November, the United States of America finally had a new president-elect, assuming of course that the Trump campaign is not able to successfully prove voter fraud in multiple states; a claim which at this point in time seems unfounded and not backed by hard evidence.</p>
+
+<p><img src="/assets/post_images/polarization/picture3_1.png" alt="https://edition.cnn.com/election/2020/results/president" /></p>
+
+<p>Throughout the long wait before the announcement of the president-elect, all major news sources showed a map of the United States in which every states was colored either in blue for the Democrats or red for the Republicans. This blogpost elaborates on why this map is a misleading representation of the relative importance of each state in determining who wins the presidency, and might convey the wrong feeling as to which candidate had the strength of numbers behind him in this election.</p>
+
+<h2 id="the-problems-of-the-actual-map">The problems of the actual map</h2>
+
+<p>The question might arise why in the United States each state is colored in the first place. The reason for that the different states are coloured in the first place is because of the Electoral College, which is a group of presidential electors whose sole purpose it is to elect the president. Every state is assigned a certain number of electors proportional to their population. Therefore, whichever candidate gets the majority within a state, gets all electors from one state (with the exception of Nebraska and Maine, where electors can be split between different candidates).</p>
+
+<p><img src="/assets/post_images/polarization/picture3_2.png" alt="" /></p>
+
+<p>Below we can see the map of the United States already coloured by the party which won in the 2020 election. Even though the map is geographically correct, the large amount of red might convey the feeling that the Republican party was the predominant force. Considering the system of the electoral college, which was briefly discussed above, tells us that the number of electoral votes and not the size of the state is the decisive factor.</p>
+
+<p>In order to give a better feeling how the people voted, or which state’s decision carried bigger importance, a geographically correct map is not the right tool to use. A significantly better method would be to use a cartogram.</p>
+
+<h2 id="what-is-a-cartogram">What is a Cartogram</h2>
+
+<p>During the long period of waiting for results, all major news-sources used a country map of the United States, with states colored either in blue, red, or grey to indicate whether a state was called for the Democratic Party, the Republican Party or was not called yet, respectively. This map, despite being geographically accurate, does not really reflect the vote of the people.</p>
+
+<p>That is because in the US there are many small states with a relatively large population, like New York or Massachussets. At the same time we also have large states which are home to only a few residents like Wyoming or North Dakota. All of this information remains hidden when looking on the map of the United States.</p>
+
+<p>In order to give a better idea of how the people of the United States really voted in this election, the better choice would be to use a cartogram. A cartogram is a visualization based on maps, where features of the map like land mass size are distorted based on values of a variable.</p>
+
+<p>To better explain the workings of such a map, we use the example from the R Graph gallery. Herein, the countries within the African continent are distorted based on their respective population size. Since Nigeria has the largest population of any country in Africa, it appears much larger than normal, as does Egypt. Other countries like Libya with very small populations appear smaller than their normal size.</p>
+
+<p><img src="/assets/post_images/polarization/picture3_3.png" alt="Cartogram from the R graph gallery: https://www.r-graph-gallery.com/331-basic-cartogram.html" /></p>
+
+<p>Looking at this map gives us a much better idea of the relative population by country. The same concept is now applied to better visualize how the people in each state voted.</p>
+
+<h2 id="a-cartogram-for-the-united-states-election">A cartogram for the United States election</h2>
+
+<p>When applying the methodology of the cartograms outlined above now to the map of the United States we get the following image.</p>
+
+<p><img src="/assets/post_images/polarization/picture3_4.png" alt="" /></p>
+
+<p>Even the map looks very different from the geographically correct map we are accustomed to seeing, it is still possible to identify the states. Especially remarkable are the changes in size of the states on the East and West Coasts. California, an already larger state, has here more than doubled in size. This result may have been expected for those who know that California is home to about 40 million Americans. Even more drastic are the changes in the East Coast states, where relatively small states like New Jersey and Massachusetts now represent one of the biggest states there are in the US.</p>
+
+<p>The cartogram above results in a graphical representation of the United States as we have not seen it before</p>
+
+<p>Using electoral votes instead of actual population</p>
+
+<p>It is important to note though that because of the electoral college, the cartogram which is based on the actual population by state might not be the optimal visualization to use. That is because electoral college delegates are not only distributed amongst the states entirely based on how many people live in each state — even the states with the smallest populations still get the same minimum number of 3 electors. This means that they receive relatively more electors per person in their state than states with larger populations.</p>
+
+<p>The cartogram below shows, in contrast to the cartograms before, how the cartogram would look like if not the population but the number of electoral votes is used to determine the distortion of each state. We can see that states like California and basically the entire east coast still looks much bigger than the original map, even though the distortion magnitude decreased.</p>
+
+<p><img src="/assets/post_images/polarization/picture3_5.png" alt="" /></p>
+
+<p>Whether it be by population, or by electoral votes, when looking at the colored map of the United States during election time, it is important to note that a purely geographical representation underestimates the importance of high-population, small-land-mass states.</p>
+
+<p>The electoral system of the United States is drastically different to that of other countries. Therefore, a simple glance at a geographically correct map should always be taken with a grain of salt. To see the truth, one has to dig a bit deeper.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#data-journalism" class="page__taxonomy-item" rel="tag">Data Journalism</a><span class="sep">, </span>
+    
+      <a href="/categories/#r" class="page__taxonomy-item" rel="tag">R</a><span class="sep">, </span>
+    
+      <a href="/categories/#web-scraping" class="page__taxonomy-item" rel="tag">Web Scraping</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-11-13T00:00:00+01:00">November 13, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=How+the+People+Really+Voted%20http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fweb%2520scraping%2Fr%2FHow-the-People-Really-Voted%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fweb%2520scraping%2Fr%2FHow-the-People-Really-Voted%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520journalism%2Fweb%2520scraping%2Fr%2FHow-the-People-Really-Voted%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" class="pagination--pager" title="Human vs. Machine — Reinforcement Learning in the Context of Snake
+">Previous</a>
+    
+    
+      <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" class="pagination--pager" title="Classifier Evaluation Methods - A Hands-On Explanation
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/time%20series/python/DengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins/" rel="permalink">DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

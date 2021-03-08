@@ -1,0 +1,898 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Predicting Real Estate Prices - Econometrics &amp; Data Science</title>
+<meta name="description" content="Machine Learning for predicting Spanish real estate prices.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Predicting Real Estate Prices">
+<meta property="og:url" content="http://localhost:4000/real%20estate/python/Predicting-Real-Estate-Prices/">
+
+
+  <meta property="og:description" content="Machine Learning for predicting Spanish real estate prices.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/real_estate/cover6.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-10T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/real%20estate/python/Predicting-Real-Estate-Prices/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/real_estate/cover6.png" alt="Predicting Real Estate Prices" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Predicting Real Estate Prices">
+    <meta itemprop="description" content="Machine Learning for predicting Spanish real estate prices.">
+    <meta itemprop="datePublished" content="2020-05-10T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Predicting Real Estate Prices
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Machine Learning for predicting Spanish real estate prices.</p>
+
+<p>This post is discusses machine learning model selection and performance assessment for prediction Spanish real estate prices. More specifically, in this post we compare different models based on their prediction performance on our real estate data. This post also elaborates on the workings of the Gradient Boosting model.</p>
+
+<p>This post then concludes with an explanation of the best model’s performance, and the hyperparameters that led to the best model.</p>
+
+<p>This post proceeds as follows:</p>
+<ol>
+  <li>Feature Pre-Processing</li>
+  <li>Model selection and specification</li>
+  <li>Model Results</li>
+  <li>Conclusion</li>
+</ol>
+
+<h2 id="01-feature-pre-processing">01 Feature Pre-Processing</h2>
+<p>Before proceeding with any kind of prediction model, it is important to spend some time with pre-processing the features. This helps the model get as much information as possible from the data. In earlier posts we explored and explained all of our basic features and more advanced features.</p>
+
+<p>While extracting these features, we saw that there were quite a few outliers which could be potentially problematic for the model. This is important to note because the decision tree models used here, in contrast to what is commonly believed, are not immune to the effects of outliers. After thorough inspection of the data and exclusion of the observations deemed outliers, the number of observations was reduced from 40,733 to 40,243 - a drop of roughly 500 observations.</p>
+
+<p>The features used for training these prediction models are the following:</p>
+<ul>
+  <li>No. of Bedrooms</li>
+  <li>No. of Bathrooms</li>
+  <li>Dummy variable for whether property has a pool</li>
+  <li>No. of Square Meters</li>
+  <li>Longitude of the City</li>
+  <li>Latitude of the City</li>
+  <li>Cluster Grouping variable</li>
+  <li>How many Metropolis cities within 30km radius</li>
+  <li>How many Large cities within 30km radius</li>
+  <li>How many Medium cities within 30km radius
+-Dummy for whether cities is listed as “quality” city from a leading tourist website</li>
+  <li>How far away a city with more than 100k habitats is (in km)</li>
+  <li>Average temperature over the last 30 years</li>
+  <li>Average total precipitation over the last 30 years</li>
+  <li>Average wind speed over the last 30 years</li>
+  <li>Average air pressure of the last 30 years
+In order to get a feeling for these variables, we take a deeper look into the continuous variables of the features listed above.</li>
+</ul>
+
+<p><img src="/assets/post_images/real_estate/picture6_1.png" alt="" /></p>
+
+<p>Looking at the plots, we see that many of them (especially the dependent variable: Price) exhibits a large amount of skewness. In order to work around this unfavorable distribution, we apply logs on all continuous variables. The goal of using logs is to “squish” more extreme values closer to the rest of the data. This step within the pre-processing is favored by nearly all statistical model in case of very high or low skewness.</p>
+
+<p>The figure below shows nicely the effect of the natural logarithm. Especially the Price variable (which exhibited the most extreme skewness before) shows a significantly improved shape. Other variables like the average air pressure may still show a skewed distribution, but the relative difference in the more extreme values is not as daunting as before applying logs.</p>
+
+<p>For the upcoming prediction models, we are proceeding with the log version of the continuous variables.</p>
+
+<p><img src="/assets/post_images/real_estate/picture6_2.png" alt="" /></p>
+
+<h2 id="02-model-selection-and-specification">02 Model selection and specification</h2>
+
+<p>For the task of predicting real estate prices, we rely on tree based models. We also implemented a multiple linear regression, but only as a baseline. The main reasons for applying tree-based models for this tasks are the following:</p>
+<ol>
+  <li>Ability to capture non-linear effects. This is important since it is fair to assume that the marginal effects of another bath-/bedroom within a property are not constant. Consider, for example, the benefit to a family of going from one bedroom to two bedrooms compared with the added benefit of going from nine to ten bedrooms.</li>
+  <li>Ability to handle sparse data. This benefit is especially noticeable when the natural language processing features are added later on, since word-vectorization results in a sparse feature matrix.</li>
+  <li>Tree-based models, and especially Gradient Boosting are famous for their superior prediction power. This is nicely described and explained here.</li>
+</ol>
+
+<h2 id="021-inner-workings-of-gradientboosting">02.1 Inner Workings of Gradient Boosting</h2>
+<p>Since Gradient Boosting is our main model within this project (its superior performance is shown later), we here briefly walk through how this model works.</p>
+
+<p>We begin with discussing what the Gradient Boosting model takes as an input. As with every boosting model, Gradient Boosting needs (next to data of course), a differentiable loss function. The necessity of this will be outlined later on.</p>
+
+<p>Boosting is an iterative process in contrast to bagging (the category under which the Random Forest falls). That means that we start with an initial “naive” model (also called a weak learner) and then iteratively increase performance by adding further weak learners.</p>
+
+<p>In the beginning, the model makes a prediction on the entire dataset. This is done by minimizing the loss function. In case of a regression problem (in contrast to a clustering problem) the loss function is most commonly the mean squared error (MSE). It is important to stress that we get only one prediction for every single observation. As expected, this first prediction will likely not do a good job. The magic happens in the next steps. In contrast to Adaptive Boosting, which in the following steps focuses on the observations the model predicted relatively badly, Gradient Boosting is rather interested in the residuals of the first step. Namely, it takes the residuals from the first step and fits a tree model on them.</p>
+
+<p>The tree model algorithm then splits the residuals into different leafs. The last leaf of a tree model is called its terminal leaves. The Gradient Boosting algorithm then forms a prediction for all terminal leaves. This is done by, again, minimizing the loss function. This leaves us with a prediction of the residual (also called pseudo residuals in this application) for every terminal leaf.</p>
+
+<p>The last step is to go back to our initial prediction made in the first step. This time we make a more educated guess about our prediction of the actual value. As a baseline for our new prediction we use the initial “naive” prediction we estimated at the very beginning for all observations. We then add our terminal leaf-specific residual prediction to it.</p>
+
+<p>Lastly, since we do not want to overstate our result of the residual prediction we add to the baseline, we multiply that residual prediction by a factor called the learning rate. This learning rate, which is hyper-parameter we can tune, allows us to tell the model how much emphasis it should put on the residual prediction we did.</p>
+<h3 id="0211-the-learningrate">0.2.1.1 The Learning rate</h3>
+
+<p>When adjusting the learning rate, it is important to be aware of the trade-off that comes along with it. A learning rate that is too high leads to jumpy or scattered predictions can cause the algorithm to be unable to find the actual minimum of the loss function. On the other hand, if the learning rate is too low, the model is not adjusting enough and has a hard time to jump away from the “naive” first guess. This could lead to the model getting stuck within a local minimum and not being able to find the desired global minimum.</p>
+<h3 id="0212-number-oftrees">0.2.1.2 Number of trees</h3>
+
+<p>Another important hyperparameter which interacts with the learning rate is the number of trees fitted. How often the algorithm of the Gradient Boosting model should run is also a hyperparameter we can set for the model. The higher number of trees, the more time the algorithm has to improve its prediction. When the learning rate is fairly low, we need to give the model enough iterations to make improve its initial estimate. Conversely, when we set the learning rate very high, less trees are needed.</p>
+
+<p>The following mathematical explanation summarizes how the Gradient Boosting model works. Here we have n observations, built M trees with J terminal leaves. Gamma denotes the prediction of the residual and F the prediction of the actual observation (not the residual). y denotes the true value of the observation. R describes the terminal region of of a tree.</p>
+
+<p><img src="/assets/post_images/real_estate/picture6_3.png" alt="" /></p>
+
+<h2 id="022-code-implementation">02.2 Code implementation</h2>
+
+<p>Having understood the theory behind Gradient Boosting, we will now take a look into the implementation of the algorithm. The library used in this example is scikit-learn. As discussed above, two important hyperparameters of the boosting model are the learning rate and the number of trees (also called estimators). Since these hyperparameters are critical for the overall model performance, it is wise to test out several values for them. This is done through the GridSearchCV command shown below. The results of the GridSearchCV are elaborated on in the next section.</p>
+
+<p>The differentiable loss function used is negative mean squared error, which is the most commonly used loss function for the regression application of Gradient Boosting.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gb_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="c1"># Model assignment
+</span>    <span class="n">model</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span>
+    <span class="c1"># Perform Grid-Search
+</span>    <span class="n">gsc</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="n">model</span><span class="p">(),</span>
+        <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span>
+            <span class="s">'learning_rate'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+            <span class="s">'n_estimators'</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+        <span class="p">},</span>
+        <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">scoring</span><span class="o">=</span><span class="s">'neg_mean_squared_error'</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Finding the best parameter
+</span>    <span class="n">grid_result</span> <span class="o">=</span> <span class="n">gsc</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">best_params</span> <span class="o">=</span> <span class="n">grid_result</span><span class="p">.</span><span class="n">best_params_</span>
+    <span class="c1"># Random forest regressor with specification
+</span>    <span class="n">gb</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">best_params</span><span class="p">[</span><span class="s">"learning_rate"</span><span class="p">],</span>
+               <span class="n">n_estimators</span><span class="o">=</span><span class="n">best_params</span><span class="p">[</span><span class="s">"n_estimators"</span><span class="p">],</span>
+               <span class="n">random_state</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+               <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="c1"># Apply cross validiation on the model
+</span>    <span class="n">gb</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">cv_score</span><span class="p">(</span><span class="n">gb</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># Return information
+</span>    <span class="k">return</span> <span class="n">score</span><span class="p">,</span> <span class="n">best_params</span><span class="p">,</span> <span class="n">gb</span>
+</code></pre></div></div>
+
+<p>After finding the optimal hyperparameters using GridSearchCV, we use these hyperparameter values to initialize the final model. In order to assess model performance, and to compare different algorithms to each other, we use the fitted model in 5-fold cross validation.</p>
+
+<p>Next, we take the square root of the negative values of the loss-function. This is done in order to get the so-called root mean squared error (RMSE) which is easier to interpret than the MSE, which is in squared units. The reason we take the negative of the loss function values is to remove the negative sign. This step is necessary in order to apply the square root, given that the negative mean squared error results in a negative loss.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cv_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="c1"># Perform the cross validation
+</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                             <span class="n">cv</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span>
+                             <span class="n">scoring</span><span class="o">=</span><span class="s">'neg_mean_squared_error'</span><span class="p">)</span>
+    <span class="c1"># Taking the expe
+</span>    <span class="c1"># of the numbers we are getting
+</span>    <span class="n">corrected_score</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">corrected_score</span>
+</code></pre></div></div>
+
+<h3 id="023-hyperparameter-tuning">02.3 Hyperparameter tuning</h3>
+
+<p>As mentioned in the prior section, hyperparameter tuning represents an essential part of the model choosing process. For this process GridSearchCV is applied, which tries several values for each pre-defined hyperparameter. This is done through Cross-Validation in order to prevent overfitting. The table below shows which hyper-parameters are chosen to be tested and which values ended up chosen, given superior model performance.
+<img src="/assets/post_images/real_estate/picture6_4.png" alt="" /></p>
+
+<p>As seen above, Multiple Linear Regression only tests whether to use an intercept. This is done because there are simply no other hyper-parameters to tune for this model.</p>
+
+<p>The Random Forest ends up choosing relatively few (50), but deep (depth of 6) trees. Especially the number of trees is in stark contrast to the number of trees chosen by the Gradient Boosting model, which chose 1,000 trees. Next to that, we also find the learning rate to be relatively high, with a value of 0.3.</p>
+
+<p>It has to be said that performance of Gradient Boosting machines are generally worse for smaller learning rates. Furthermore, fitting more trees allows the model to make more granular predictions and allows the algorithm to fit the data better. Hence, even though both hyper-parameters seem large, they are likely well be justified.</p>
+
+<h2 id="03-modelresults">03 Model results</h2>
+<h3 id="031-model-selection">03.1 Model selection</h3>
+
+<p>After all three model are initialized with the best-fitting hyper-parameters, their performance is evaluated. This is done through the Cross-Validation scoring code shown in section 02.1.</p>
+
+<p><img src="/assets/post_images/real_estate/picture6_5.png" alt="" /></p>
+
+<p>It is clearly visible that the benchmark of the Multiple Linear Regression performed the worst across of all 5 validation sets. The Random Forest performs better than the benchmark, but still nowhere close to the performance of the Gradient Boosting algorithm. Given the out-performance of the Gradient Boosting model, we will continue our analysis with the hyperparameter-tuned Gradient Boosting model.</p>
+
+<h2 id="032-feature-importance">03.2 Feature Importance</h2>
+
+<p>The Gradient Boosting model is next applied to the test data, which was separated at the beginning of the model selection through the following code:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">final_x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We set a random state and kept it the same for reproducability across different models. Now let’s take a look at the variable importance to assess which of the created features were most helpful to the model in predicting Real Estate price.</p>
+
+<p><img src="/assets/post_images/real_estate/picture6_6.png" alt="" /></p>
+
+<p>From the chart above we can see that the most important variables are those which came already with the scraping - namely the basic features of how many bathrooms the estate has and how many square meters. Furthermore, the location (longitude and latitude information) of the city of the location also plays an important role in explaining the price.</p>
+
+<p>Interestingly, the cluster variable turns out to be the second most important variable. This confirms our initial belief that condensing the information of several variables to one number in the form of a cluster gives the model an easier time in allocating a property to its correct price group.</p>
+
+<p>The results of the variable importance chart above should be interpreted carefully. The finding that the number of bathrooms turns out to be so much more important than the number of bedrooms, for example, could be simply explainable by the fact that these two variables are highly correlated with one another. In this case, the model is not able to separate the explanatory power of the two variables. Looking at the correlation matrix below, our believe of the positive correlation between number of bedrooms and bathrooms is confirmed - they have a correlation of 0.8.
+<img src="/assets/post_images/real_estate/picture6_7.png" alt="" /></p>
+
+<p>It is important to remember that our goal was never to pin down the causal effect of propery prices, but to build a model which results in a low prediction error. The difference between these two goals is important. When interested in quantifying the effect of certain features on the dependent variable (e.g. important in policy making), it is essential to also assess the multicollinearity of the independent variables. Given our more straightforward task of building a low prediction error model the econometrical correctness of our features, is of lesser importance.</p>
+
+<h3 id="033-model-assessment-for-price-quintiles">03.3 Model Assessment for Price Quintiles</h3>
+
+<p>Since the dependent variable in our model (Price of the property) was log-transformed in the beginning for better distributional behavior, we have to take the exponential of the predicted log-price values. Afterwards we use the mean absolute percentage error (MAPE) in order to assess the model’s performance. The reason for choosing the MAPE is the large absolute value difference between the price quintiles. For example, if our MAE (Mean Absolute Error) was €100,000, this would be over 100% MAPE for a house costing €50,000, but only a 10% MAPE for houses costing €1 million.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Getting the predictions
+</span><span class="n">gb_predictions</span> <span class="o">=</span> <span class="n">gb_model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Bringing them back to normal scale and calculation of MAPE
+</span><span class="n">scale_pred</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gb_predictions</span><span class="p">)</span>
+<span class="n">scale_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">mape</span> <span class="o">=</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">scale_pred</span> <span class="o">-</span> <span class="n">scale_y</span><span class="p">)</span><span class="o">/</span><span class="n">scale_y</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</code></pre></div></div>
+
+<p>In order to see whether the model predicted low- and high-priced houses equally well, we split the predicted data into ten price buckets, using the actual price of the property. That means that we calculate separate MAPEs for each price quintile.</p>
+
+<p>The graph below offers us interesting insights into the model performance. Namely, it shows that the model performance is relatively consistent for all price quintiles except the for the first quintile. This quintile contains the least expensive ten percent of houses.</p>
+
+<p><img src="/assets/post_images/real_estate/picture6_8.png" alt="" /></p>
+
+<p>One potential reason that the model under-performs on the inexpensive houses could be the amount of variation of the features within the different price quintiles. The chart below tries to shed some more light on this. The graph on the left shows the accumulated standard deviation of all 16 features of the model. The right side shows the variation of the dependent variable, namely the log-price.</p>
+
+<p>The graph shows nicely one potential reason for the struggle of the model to explain the price variation for the cheapest quintile. Namely, the amount of variation is the lowest, as visible in the right graph. Additional to that, we find that the amount of variation in the dependent variable for that price group is relatively high. This combination is dooming for any prediction model, facing a high amount of variation in the variable it wants to explain, but nothing to explain it with.</p>
+
+<p><img src="/assets/post_images/real_estate/picture6_9.png" alt="" /></p>
+
+<p>One might rightly ask why we chose MAPE as an accuracy assessment. An alternative could be, for example the root mean squared error (RMSE). The graph below sheds some light why the MAPE seems like the better fit.</p>
+
+<p>On the left side of the chart below, we see that the RMSE of the lowest price group might seem superior when compared to the RMSE of higher price groups. That superior performance disappears when considering the average price of the quintile.</p>
+
+<p>The reason for the weakness of RMSE as a performance assessment for this prediction task is its absolute nature. For property prices, it makes a difference whether the predicted price is off by €50,000 when the property costs multiple million or only €100,000.</p>
+
+<p>Given that we are more interested in the relative error and not in the absolute one, the mean absolute percentage error seems like the superior accuracy assessment.
+<img src="/assets/post_images/real_estate/picture6_10.png" alt="" /></p>
+
+<p>04 Conclusion</p>
+
+<p>In the next post we show several examples where the model under-performs and explain why that is the case. Furthermore, we apply natural language processing to use text features next to the quantitative features to explain the price of properties.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#real-estate" class="page__taxonomy-item" rel="tag">Real Estate</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-10T00:00:00+02:00">May 10, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Predicting+Real+Estate+Prices%20http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FPredicting-Real-Estate-Prices%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FPredicting-Real-Estate-Prices%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FPredicting-Real-Estate-Prices%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/real%20estate/python/Feature-Creation-for-Real-Estate-Prices/" class="pagination--pager" title="Feature Creation for Real Estate Prices
+">Previous</a>
+    
+    
+      <a href="/real%20estate/python/NLP-with-Real-Estate-Advertisements-Part-1/" class="pagination--pager" title="NLP with Real Estate Advertisements - Part 1
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

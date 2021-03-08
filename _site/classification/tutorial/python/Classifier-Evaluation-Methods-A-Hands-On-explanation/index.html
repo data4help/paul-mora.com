@@ -1,0 +1,1062 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Classifier Evaluation Methods - A Hands-On Explanation - Econometrics &amp; Data Science</title>
+<meta name="description" content="Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Classifier Evaluation Methods - A Hands-On Explanation">
+<meta property="og:url" content="http://localhost:4000/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/">
+
+
+  <meta property="og:description" content="Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/classifier/cover.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-11-16T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/classifier/cover.png" alt="Classifier Evaluation Methods - A Hands-On Explanation" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Classifier Evaluation Methods - A Hands-On Explanation">
+    <meta itemprop="description" content=" Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC ">
+    <meta itemprop="datePublished" content="2020-11-16T00:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Classifier Evaluation Methods - A Hands-On Explanation
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          18 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC </em></p>
+
+<p><a href="https://github.com/data4help/roc_curve">Github Repository</a></p>
+
+<p>In pretty much 50% of all Data Science interviews around the world, the interviewee is asked to build and assess a binary classification model. This means classifying a certain observation to be either positive (normally denoted as the number 1) or negative (denoted as 0), given a bunch of features. A common mistake that interviewees make is to spend too much time building and tuning an overly-sophisticated model and not enough time elaborating on which classification evaluation metric is appropriate for the problem. That habit is even enforced through Kaggle, or Kaggle-like Data Challenges, in which the classifier evaluation metric is not carefully chosen by the participant, but is already set by the host.</p>
+
+<p>This blogpost will therefore shed more light on the different classification evaluation methods commonly used, how they are derived, when to use them, and, arguably most importantly, how to implement them in Python.</p>
+
+<p>The toy dataset we use for this post is obtained from the DrivenData challenge called: <a href="https://www.drivendata.org/competitions/57/nepal-earthquake/">Richter’s Predictor: Modeling Earthquake Damage</a>. WE are already familiar with the dataset for this project, given that we participated in this challenge which can be read up on here. As the name of the project suggests, this challenge involves predicting earthquake damages, specifically damage from the Gorkha earthquake which occurred in April 2015 and killed over 9,000 people. It represents the worst natural disaster to strike Nepal since the 1934 Nepal-Bihar earthquake.</p>
+
+<p>The prediction task for this project is to forecast how badly an individual house is damaged, given the information about its location, secondary usage, and the materials used to build the house in the first place. The damage grade of each house is stated as an integer variable between one and three.</p>
+
+<h2 id="preliminaries-importing-the-data-feature-engineering">Preliminaries/ Importing the data/ Feature engineering</h2>
+
+<p>We begin by importing the relevant packages and setting all the path variables in order to better access the data. Afterwards we import the features and the label which can be downloaded from the DrivenData website. All of that is done by the following lines of code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Packages
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">SGDClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span><span class="n">accuracy_score</span><span class="p">,</span>
+                             <span class="n">confusion_matrix</span><span class="p">,</span>
+                             <span class="n">plot_confusion_matrix</span><span class="p">,</span>
+                             <span class="n">recall_score</span><span class="p">,</span>
+                             <span class="n">precision_score</span><span class="p">,</span>
+                             <span class="n">auc</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">)</span>
+
+<span class="c1"># Paths
+</span><span class="n">MAIN_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"/Users/paulmora/Documents/projects/roc_curve"</span>
+<span class="n">RAW_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/00 Raw"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">MAIN_PATH</span><span class="p">)</span>
+<span class="n">CODE_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/01 Code"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">MAIN_PATH</span><span class="p">)</span>
+<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/02 Data"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">MAIN_PATH</span><span class="p">)</span>
+<span class="n">OUTPUT_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"{}/03 Output"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">MAIN_PATH</span><span class="p">)</span>
+
+<span class="c1"># Loading the data
+</span><span class="n">total_labels</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/train_labels.csv"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">RAW_PATH</span><span class="p">))</span>
+<span class="n">total_values</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s">"{}/train_values.csv"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">RAW_PATH</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>In contrast to an usual data challenge, we do not need to import any test values, since this blogpost is elaborating on the evaluation of classification model and not on the classification model itself.
+Next up is some initial data cleaning and feature engineering. Given that we are not interested in this post in explaining optimizing the actual model-performance, we will keep the data-processing work to a minimum.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">total_values</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The above mentioned line of code shows us what kind of work needs to be done, as it is showing us all column names and the information what datatype the information is stored as.</p>
+
+<p><img src="/assets/post_images/classifier/picture1.png" alt="" /></p>
+
+<p>We can see that most variables are already specified in integer-form and therefore do not need any form of altering. The exception of that rule is the column building_id which is an identifier of the particular building and represent non-informative information and can therefore be dropped.</p>
+
+<p>All columns which are represented as a categorical variable (dtype: “object”) will be transformed to dummy variables via one-hot-encoding. This could potentially result in a dangerously sparse dataset, but again, the model performance is not our focus.</p>
+
+<p>It is now time to briefly look at the target variable before merging it with the features and to build our classification models. For that we consider the following line of code as well as the result given beneath it.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">total_labels</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"damage_grade"</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/classifier/picture2.png" alt="" /></p>
+
+<p>Given that we would like to focus on binary classification, we see from the output above that some changes in the target variable are necessary since we see that we have more than two outcomes. We therefore drop the damage category 3 from the data. Afterwards we subtract 1 from the target variable in order to create a target variable which is either 0 or 1. This step will also alter the meaning of the problem. Whereas before the target variable was telling us how badly a house was damaged, now the target variable can be regarded as an indication whether a house experienced high damage or whether it did not.</p>
+
+<p>The following lines of code handle the feature engineering and the altering of the target variable. Furthermore, we create a countplot using the seaborn visualization package in order to see the balance of the target variable.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">total_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">total_labels</span><span class="p">,</span> <span class="n">total_values</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">not_3_bool</span> <span class="o">=</span> <span class="n">total_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"damage_grade"</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">3</span>
+<span class="n">subset_df</span> <span class="o">=</span> <span class="n">total_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">not_3_bool</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">subset_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"damage_grade"</span><span class="p">]</span> <span class="o">=</span> <span class="n">subset_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"damage_grade"</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">subset_df</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">"damage_grade"</span><span class="p">:</span> <span class="s">"high_damage"</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">subset_df</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"building_id"</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">subset_dummy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">subset_df</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"font.size"</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">subset_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"high_damage"</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">"major"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"High Grade"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Count"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}/int.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">OUTPUT_PATH</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/classifier/picture3.png" alt="" /></p>
+
+<p>From the chart above we can see that the majority of cases show a highly damaged house and that the data is therefore imbalanced. An imbalanced dataset describes a situation where we have a significantly inequality in the number of appearances of one or multiple classes with the target variable. For the moment we will leave this imbalance as it is, but remember it for later when talking about the model performance.</p>
+<h2 id="model-training">Model Training</h2>
+
+<p>The three models chosen for our prediction model are a Logistic Regression, Gradient Boosting Classifier and Stochastic Gradient Descent Classifier. There is no particular reason to choose these three models and any other would do as well.</p>
+
+<p>We then split the data into train and test in order to avoid data-leakage which would result in artificial superior performance of the model given that it was trained partly with test data. Afterwards the three models are initiated and a random state is set in order to be able to reproduce our results later. The following lines code cover the aforementioned as well as fit the three models on the data.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">subset_dummy_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                               <span class="n">random_state</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">train</span><span class="p">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s">"{}/train.pickle"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">))</span>
+<span class="n">test</span><span class="p">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s">"{}/test.pickle"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">))</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s">"high_damage"</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"high_damage"</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s">"high_damage"</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"high_damage"</span><span class="p">]</span>
+
+<span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">logreg</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">gbt</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">gbt</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">sgdreg</span> <span class="o">=</span> <span class="n">SGDClassifier</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">sgdreg</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="confusion-matrix">Confusion Matrix</h2>
+
+<p>So far we cleaned the data, created some basic features and trained three models. It is now time to finally create some predictions and evaluate these. In the case of a binary prediction we can end up with four different possibilities between the true label and our prediction, namely:</p>
+
+<ol>
+  <li>The true value is 1 and the prediction is 1 (True Positive)</li>
+  <li>The true value is 1 and the prediction is 0 (False Negative)</li>
+  <li>The true value is 0 and the prediction is 1 (False Positive)</li>
+  <li>The true value is 0 and the prediction is 0 (True Negative)</li>
+</ol>
+
+<p>As it can be already seen from the description in brackets behind each case, there also exist a name for each of these cases. In order to have all of that information in one big picture, we look at something called the confusion matrix, which is implemented through the following code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Predictions
+</span><span class="n">logreg_pred</span> <span class="o">=</span> <span class="n">logreg</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">gbt_pred</span> <span class="o">=</span> <span class="n">gbt</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">sgdreg_pred</span> <span class="o">=</span> <span class="n">sgdreg</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Confusion matrix
+</span><span class="n">raw_conf_logreg</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">logreg_pred</span><span class="p">)</span>
+<span class="n">raw_conf_gbt</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">gbt_pred</span><span class="p">)</span>
+<span class="n">raw_conf_sgd</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">gbt_pred</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="p">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="s">"Logistic Model"</span><span class="p">,</span>
+                                        <span class="s">"GradientBoosting Model"</span><span class="p">,</span>
+                                        <span class="s">"Stochastic Gradient Descent"</span><span class="p">],</span>
+                                       <span class="p">[</span><span class="n">logreg</span><span class="p">,</span> <span class="n">gbt</span><span class="p">,</span> <span class="n">sgdreg</span><span class="p">])):</span>
+    <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"True Label"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Predicted Label"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}/confusion_matrices.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">OUTPUT_PATH</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/classifier/picture4.png" alt="" /></p>
+
+<p>The confusion matrices above tell us how many of each of the four aforementioned cases we have for each prediction model. In the upper left corner of each graph we see number of cases of True Negatives, i.e. where the true label and the predicted label is zero. The bottom right shows the True Positives, meaning all cases where the True and Predicted value is equal to one. The other two, False Positives (upper right) and False Negatives (bottom left) are misclassification of the model.</p>
+
+<p>When comparing the Gradient Boosting’s and Logistic Model’s confusion matricies, we see that the number of True Positives and the number of True Negatives are higher for the Gradient Boosting Model. This finding makes it clear that the Gradient Boosting model is much better than the Logistic Regression Model.</p>
+
+<p>Figuring out whether the Gradient Boosting or the Stochastic Gradient Descent Model is better, on the other hand, is not so straightforward. That is because the number of True Negatives might be lower for the Stochastic Gradient Descent Model, but it has a higher amount of True Positives when compared to the Gradient Boosting Model.</p>
+
+<p>Through the confusion matrix we could tell that we always would prefer the Gradient Boosting model over the Logistic Model, but we cannot infer which model to use when comparing the Stochastic Gradient Descent Model against the Gradient Boosting Model. For that we need to know more about our underlying problem by looking at further evaluation methods.</p>
+
+<h2 id="the-flaws-of-using-accuracy">The Flaws of using Accuracy</h2>
+
+<p>The most common evaluation method used for classification models is arguably the Accuracy score. This score tells us out how often we were right out of all predictions. Accuracy is a very intuitive approach, but it can result in misleading results on imbalanced datasets.</p>
+
+<p><img src="/assets/post_images/classifier/picture5.png" alt="" /></p>
+
+<p>The misleading nature of accuracy as an evaluation method becomes evident when considering an example of a classification model which detects every second whether a house is on fire. We then consider a stupid classifier which always says the house is not on fire. Given that a house is most of the time not in a burning state, the classifier’s prediction will be correct basically all the time.</p>
+
+<p>However, that one night when someone forgot to blow out the candle, the classification model will have False Negative errors — with deadly consequences. Fatal mistakes like this one are not reflected in the Accuracy score, given that in every moment where the house was not burning, it predicted the label correctly.</p>
+
+<p>This great performance of this stupid classifier shows the danger of evaluating a model only by its Accuracy score, when the overall dataset is imbalanced or when we are more concerned with a certain type or errors.</p>
+
+<h2 id="precision-and-recall">Precision and Recall</h2>
+
+<p>Two other popular classification evaluation methods are called Precision and Recall. When to use which method depends on the use case and specifically to which error we are more prone to. To illustrate that, we consider two cases:</p>
+
+<ol>
+  <li>
+    <p>Breast Cancer Classification: Within this scenario, it is preferable to predict that a woman has breast cancer even though she does not have any (False Positive). That is because predicting the other way around (False Negative) would leave a woman in the believe she is safe when she is not.</p>
+  </li>
+  <li>
+    <p>Spam Mail Classification: Here, it would be okay for us if our spam detector classifies a fishy email as non-spam (False Negative), but it would be annoying to find out that an important business email/bill was hiding in the spam folder for the last two weeks because it was incorrectly classified as spam (False Positive).</p>
+  </li>
+</ol>
+
+<p>The two cases above show us that the choice of the evaluation metric depends crucially on what is important to us. In the first case we are much more concerned about False Negatives, meaning that leaving a woman with cancer believing she is well is much worse than telling a woman to undergo further checks even if she does not have to. When the cost of of False Negatives are high, we use Recall, which has the following definition:</p>
+
+<p><img src="/assets/post_images/classifier/picture6.png" alt="" /></p>
+
+<p>In the second example we are more concerned about False Positive errors, namely saying an email is spam even though it was a harmless email from your work. Not seeing this email is much more damaging to the user than seeing one additional spam email. When er are concerned about False Positives, we use Precision, which is defined the following way:</p>
+
+<p><img src="/assets/post_images/classifier/picture6_1.png" alt="" /></p>
+
+<p>In our example, we are predicting whether a house is highly damaged. We furthermore assume that in the case the classifcation model says that the house is not damaged, the house-owner rents the house out to others. In this case we are much more concerned about False Negative errors. This is because a False Negative mistake would lead the house owner to believe that the house has low damage even though it is highly damaged, endangering the lives of the people living in it. In the case of a False Positive, the house owner would falsely think that the house is severly damaged and order reparations of the house when none are needed — aconsiderably better outcome compared to death.
+Below we can see the different values of all aforementioned evaluation methods for all three models plus the generating code. From the highest bar within the Recall category, we can see that for our purposes the Stochastic Gradient Boosting model is the model of choice.</p>
+
+<p><img src="/assets/post_images/classifier/picture7.png" alt="" /></p>
+
+<p>True Positive Rate/ False Positive Rate
+Closely related to Precision and Recall is the concept of True Positive Rate (TPR) and False Positive Rate (FPR), which are defined in the following way:</p>
+
+<p><img src="/assets/post_images/classifier/picture8.png" alt="" /></p>
+
+<p>The observant reader might have the feeling that they have seen the formula for the TPR already. That potential feeling is correct, given that the True Positive Rate is a synonym for the Recall evaluation method we encountered before. Given that we already covered the concept of Recall/ TPR, we only elaborate on the intuition of the False Positive Rate.</p>
+
+<p>Also known as the probability of False Alarm, the False Positive Rate is defined as the probability of rejecting a null-hypothesis which is in fact true. In the area of inferential statistics, this type of error is also referred to as a Type I error (in contrast to a Type II error which describes accepting a null-hypothesis when it is in fact incorrect).</p>
+
+<p>Below we can see a matrix of how TPR and FPR fit in the bigger picture. It is obvious that in a perfect world we would like to have a high TPR but a low FPR. That is because we would like to classify everything that is positive as positive as well as nothing that is negative as positive.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eval_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"Method"</span><span class="p">,</span> <span class="s">"Model"</span><span class="p">,</span> <span class="s">"Score"</span><span class="p">])</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s">"Logistic Model"</span><span class="p">,</span>
+                        <span class="s">"GradientBoosting Model"</span><span class="p">,</span>
+                        <span class="s">"Stochastic Gradient Descent"</span><span class="p">],</span>
+                       <span class="p">[</span><span class="n">logreg_pred</span><span class="p">,</span> <span class="n">gbt_pred</span><span class="p">,</span> <span class="n">sgdreg_pred</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">meth</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s">"Accuracy"</span><span class="p">,</span> <span class="s">"Precision"</span><span class="p">,</span> <span class="s">"Recall"</span><span class="p">],</span>
+                           <span class="p">[</span><span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">]):</span>
+
+        <span class="n">eval_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s">"Method"</span><span class="p">]</span> <span class="o">=</span> <span class="n">meth</span>
+        <span class="n">eval_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s">"Model"</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="n">eval_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s">"Score"</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"Method"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"Score"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">"Model"</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">eval_df</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"lower center"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}/acc_prec_rec.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">OUTPUT_PATH</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/classifier/picture9.png" alt="" /></p>
+
+<p>We also notice that there is some sort of trade-off between these two rates. Consider an example where we have seven true values and three negative values. If our algorithm classifies all ten as true we would get a TPR and FPR of 1. If on the other hand we classify all ten observations as false we would get a value of zero for both rates.</p>
+
+<p>Thinking back to the example of spam-mails and breast cancer, we know that there are cases where we are prone towards False Positive mistakes than towards False Negatives. Combining that desire with the mentioned trade-off between TPR and FPR above leads us to the next topic: specific targeting for certain error types.</p>
+
+<h2 id="targeting-for-error-types">Targeting for Error Types</h2>
+
+<p>If we are particularly concerned about a certain error type, many classification models allow us to increase the sensitivity towards one or the other error. In order to explain how that works, it is important to note that probabilistic classification algorithms do not assign each observation directly to either 0 or 1, but rather tocalculate a probability with which an observation belongs to either class. The default rule is then if the probability that an observation belongs to class 1 is above 50%, then the observation is assigned to class 1. It is exactly this threshold value of 50%, which we will denote as c, that we will tweak.</p>
+
+<p>If, for example, the probability of an observation belonging to class one is 60%, or 0.6, it is assigned to class one, since this is above the threshold of 0.5. This decision rule, even though simple, is also illustrated in the graphic below.</p>
+
+<p><img src="/assets/post_images/classifier/picture10.png" alt="" /></p>
+
+<p>If we now tweak parameter c to be either higher or lower than 0.5, we would also alter the TPR and FPR.</p>
+
+<p><img src="/assets/post_images/classifier/picture11.png" alt="" /></p>
+
+<p>This is easiest explained and understood when considering an example. Below we find the probability to belong to class one for five observation, as well as their true label. We can see that when the cutoff level is at its default level of 0.5. With that level of c, we find one False Negative and 0 False Positives.</p>
+
+<p><img src="/assets/post_images/classifier/picture12.png" alt="" /></p>
+
+<p>If we now alter the cutoff threshold to 0.2 we can see from the graphic below that we find one False Positive and zero False Negative.</p>
+
+<p><img src="/assets/post_images/classifier/picture13.png" alt="" /></p>
+
+<p>We notice: When changing the threshold value c, it is possible to obtain a different TPR and FPR, which therefore allows us to target for a certain error type.</p>
+<h2 id="concept-of-roc-curve-and-auc">Concept of ROC Curve and AUC</h2>
+
+<p>Now that we’ve seen how we can target and tweak our model towards a certain type of error through adjusting the parameter c, the question might arise how we would know what the optimal value of c is for our problem. This is where the Receiver Operating Characteristc (or short ROC curve) comes into play. The ROC curve plots all combinatins of TPR and FPR at every meaningful threshold level c, as shown in the GIF below.</p>
+
+<p><img src="/assets/post_images/classifier/picture14.gif" alt="" /></p>
+
+<p>The off-the-shelf ROC curve implementation from sklearn does not take a random amount of different cutoffs, but loops over the probabilities of every observation for efficiency reasons. This will become clearer later when we implement the code for deriving the ROC curve ourselves.</p>
+
+<p>Related to the concept of the ROC curve is the corresponding value under the curve, called simply area under the curve (or in short: AUC). This metric attempts to summarize the goodness-of-fit of the ROC curve in a single number. As the name implies, this is done by measuring the area under the ROC curve.</p>
+
+<p>Given that the ideal curve hugs the upper lefthand corner as closely as possible — since that would mean that our classifier is able to identify all true positives while avoiding false positives — we know that the ideal model would have an AUC of 1. On the flipside, if your model was no better at predicting than a random guess, your TPR and FPR would increase in parallel to one another, corresponding with an AUC of 0.5.</p>
+
+<p>When applying this concept to our house damage data, we note that not all classification methods provide the option to obtain a probability estimate. The Stochastic Gradient Descent (SGD) classification for example does not allow for probability score when using its default loss function (“hinge”). The reason for that is, that this loss function turns the SGD classifier into a Support Vector Machine, which is a non-probabilistic model.</p>
+
+<p>The following code is therefore showing how to calculate and plot the ROC curve for the Gradient Boosting and Logistic Regression.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pred_proba_reg</span> <span class="o">=</span> <span class="n">logreg</span><span class="p">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">pred_proba_gbt</span> <span class="o">=</span> <span class="n">gbt</span><span class="p">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s">"Logistic Model"</span><span class="p">,</span>
+                        <span class="s">"GradientBoosting Model"</span><span class="p">],</span>
+                       <span class="p">[</span><span class="n">pred_proba_reg</span><span class="p">,</span>
+                        <span class="n">pred_proba_gbt</span><span class="p">]):</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">auc_reg</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"{} AUC:{:.2f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">auc_reg</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"False Positive Rate"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"True Positive Rate"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}/automatic_auc_roc_curve.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">OUTPUT_PATH</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/classifier/picture15.png" alt="" /></p>
+
+<p>Given that we already know that the GradientBoosting model was superior to the Logistic Regression in terms of the number of True Positives and True Negatives, it was predictable that the GradientBoosting model will also dominate in the ROC curve space. This can be seen by noticing that the red line (GradientBoosting Model) is above the blue line (Logistic Regression) for every single threshold value c.</p>
+
+<h2 id="manual-implementation-of-the-roc-curve">Manual Implementation of the ROC Curve</h2>
+
+<p>Lastly, it might be interesting to see how the ROC curve is implemented when doing it by hand. The code below does not intend to be the most efficient code for implement the ROC curve (the source code from sklearn is the place to look for that), but to be very easy to understand.</p>
+
+<p>As can be seen in line 11, we sort the data-frame, which consists of the true labels and the probability that an observation is equal to one, by their probability value. This is done in order to afterwards loop over these probabilities and use them as the cutoff value. Afterwards, we simply have to count how many True Positive and False Positives we find for all observations which have a higher probability than the cutoff level c and divide them respectively by the total number of positives and negative labels.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">roc_manual</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">pred_prob</span><span class="p">):</span>
+
+    <span class="c1"># Get the data ready
+</span>    <span class="n">pred_prob_series</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pred_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">pred_prob_series</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"pred"</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_true</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+                                 <span class="n">pred_prob_series</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Sorting probabilities in order to loop in an ascending manner
+</span>    <span class="n">sorted_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s">"pred"</span><span class="p">)</span>
+
+    <span class="c1"># Calculate denominators
+</span>    <span class="n">true_num_pos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">true_num_neg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Create list container for results
+</span>    <span class="n">list_tpr</span><span class="p">,</span> <span class="n">list_fpr</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"pred"</span><span class="p">]):</span>
+
+        <span class="c1"># Create a boolean to mask only the values which qualify to be positive
+</span>        <span class="n">bool_classified_pos</span> <span class="o">=</span> <span class="n">sorted_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"pred"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">prob</span>
+
+        <span class="c1"># Total number of positives and negative values
+</span>        <span class="n">tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bool_classified_pos</span><span class="p">,</span> <span class="s">"high_damage"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bool_classified_pos</span><span class="p">,</span> <span class="s">"high_damage"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the TPR and FPR
+</span>        <span class="n">tpr</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="n">true_num_pos</span>
+        <span class="n">fpr</span> <span class="o">=</span> <span class="n">fp</span> <span class="o">/</span> <span class="n">true_num_neg</span>
+
+        <span class="n">list_tpr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tpr</span><span class="p">)</span>
+        <span class="n">list_fpr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">fpr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">list_tpr</span><span class="p">,</span> <span class="n">list_fpr</span>
+
+
+<span class="n">gbt_list_tpr</span><span class="p">,</span> <span class="n">gbt_list_fpr</span> <span class="o">=</span> <span class="n">roc_manual</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_proba_gbt</span><span class="p">)</span>
+<span class="n">lgt_list_tpr</span><span class="p">,</span> <span class="n">lgt_list_fpr</span> <span class="o">=</span> <span class="n">roc_manual</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_proba_reg</span><span class="p">)</span>
+
+<span class="c1"># Manual AUC and plotting
+</span><span class="n">manual_auc_reg</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">lgt_list_tpr</span><span class="p">,</span> <span class="n">lgt_list_fpr</span><span class="p">))</span>
+<span class="n">manual_auc_gbt</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">gbt_list_tpr</span><span class="p">,</span> <span class="n">gbt_list_fpr</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lgt_list_fpr</span><span class="p">,</span> <span class="n">lgt_list_tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"orange"</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s">"Logistic Regression AUC:{:.2f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">manual_auc_reg</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gbt_list_fpr</span><span class="p">,</span> <span class="n">gbt_list_tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"purple"</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s">"GradientBoosting AUC:{:.2f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">manual_auc_gbt</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"False Positive Rate"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"True Positive Rate"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}/manual_auc_roc_curve.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">OUTPUT_PATH</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/classifier/picture16.png" alt="" /></p>
+
+<p>From the chart above we see that our manual implementation went correctly and that it perfectly matches the result of the sklearn-algorithm.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In this post, we’ve seen how the go-to evaluation metric for classificaiton models, accuracy, can fail to show goodness-of-fit for certain cases, such as cases of imbalanced classes. We then explored additional metrics that give more insight into model perfomance on imbalanced data, such as precision and recall. Finally, we dervied our own ROC curve and showed how it can be used to determine which model is best for the prediction task. These additional metrics extend your toolkit for understanding your models — helping you ultimately choose the right model for the job.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#classification" class="page__taxonomy-item" rel="tag">Classification</a><span class="sep">, </span>
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#tutorial" class="page__taxonomy-item" rel="tag">Tutorial</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-11-16T00:00:00+01:00">November 16, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Classifier+Evaluation+Methods+-+A+Hands-On+Explanation%20http%3A%2F%2Flocalhost%3A4000%2Fclassification%2Ftutorial%2Fpython%2FClassifier-Evaluation-Methods-A-Hands-On-explanation%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fclassification%2Ftutorial%2Fpython%2FClassifier-Evaluation-Methods-A-Hands-On-explanation%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fclassification%2Ftutorial%2Fpython%2FClassifier-Evaluation-Methods-A-Hands-On-explanation%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" class="pagination--pager" title="How the People Really Voted
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/time%20series/python/DengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins/" rel="permalink">DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Using the STL Forecasting Method with an ARIMA model, which is parameterized through the Box-Jenkins Method.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

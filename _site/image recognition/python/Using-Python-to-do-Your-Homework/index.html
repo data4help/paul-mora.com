@@ -1,0 +1,821 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Using Python to do Your Homework - Econometrics &amp; Data Science</title>
+<meta name="description" content="Applying OpenCV and Tesseract to do your math-homework">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Using Python to do Your Homework">
+<meta property="og:url" content="http://localhost:4000/image%20recognition/python/Using-Python-to-do-Your-Homework/">
+
+
+  <meta property="og:description" content="Applying OpenCV and Tesseract to do your math-homework">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/homework/cover1.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-03T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/image%20recognition/python/Using-Python-to-do-Your-Homework/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/homework/cover1.png" alt="Using Python to do Your Homework" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Using Python to do Your Homework">
+    <meta itemprop="description" content="Applying OpenCV and Tesseract to do your math-homework">
+    <meta itemprop="datePublished" content="2020-08-03T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Using Python to do Your Homework
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Applying OpenCV and Tesseract to do your math-homework</em></p>
+
+<p>The possibilities to use Python are almost endless - repetitive tasks especially can be solved easily using Python. Here we show how Python can be used to automatically answer problems on a math worksheet.</p>
+
+<p>First we take a look at the math questions:</p>
+
+<p><img src="/assets/post_images/homework/picture1.png" alt="" /></p>
+
+<p>Nothing too difficult, but the amount of questions could make it very tiring to solve and fill in every single one. Instead, let us try it in Python!</p>
+
+<p>We start by importing the relevant packages. In fact, we need exactly three packages. The first package enables us to read the questions, meaning it transforms image to text. The package we are talking about is called pytesseract. It is important to note that a bit more work than only pip install … is required to get it running. <a href="https://medium.com/r/?url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F50951955%2Fpytesseract-tesseractnotfound-error-tesseract-is-not-installed-or-its-not-i">Here</a> is a link to a good tutorial regarding this problem.</p>
+
+<p>The second package is necessary for finding where exactly the solution should be written. This means we have to tell the machine that the answer of every equation should be written in the black squares next to the equation. In order to find and identify these squares, OpenCV is needed.</p>
+
+<p>Last but not least we import a package which is able to handle strings or regular expression operations, called “re” for short.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytesseract</span> <span class="k">as</span> <span class="n">tess</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"C:\Users\PaulM\AppData\Local\Tesseract-OCR\tesseract.exe"</span><span class="p">)</span>
+<span class="n">tess</span><span class="p">.</span><span class="n">pytesseract</span><span class="p">.</span><span class="n">tesseract_cmd</span> <span class="o">=</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">re</span>
+</code></pre></div></div>
+
+<h2 id="01-reading-the-questions">01 Reading the questions</h2>
+
+<p>We start by importing the picture and apply the image_to_string function from tesseract</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">png</span> <span class="o">=</span> <span class="s">"{}\questions.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">raw_path</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">tess</span><span class="p">.</span><span class="n">image_to_string</span><span class="p">(</span><span class="n">png</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Looking at the results below, it seems at first glance that everything worked succesfully. Our result is one big string where each equation is delimited by a line break, which is denoted as a \n symbol.
+<img src="/assets/post_images/homework/picture2.png" alt="" /></p>
+
+<p>However, a bit more cleaning is still necessary before doing the calculations. First we have to remove all spaces between numbers and then figure out which part of this string represent actual questions. This is done with the following three lines of code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">"[0-9]+x[0-9]+"</span><span class="p">)</span>
+<span class="n">equations</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">parsed_text</span> <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">x</span><span class="p">))]</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/homework/picture3.png" alt="" /></p>
+
+<p>The last line of the code above is filtering the long string shown above and only extracts a certain string pattern. Specifically, it extracts an undefined amount of numbers (denoted as [0–9]+) then the letter x and then again an undefined amount of numbers. The result of that code is a list which contains all equations.</p>
+
+<p>The last step is probably the easiest, namely to calculate the solutions of all the equations. For this we build a small function, which is then used within a list comprehension to solve the equations.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">multiplication</span> <span class="p">(</span><span class="n">equation</span><span class="p">):</span>
+    <span class="n">split_equation</span> <span class="o">=</span> <span class="n">equation</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"x"</span><span class="p">)</span>
+    <span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">split_equation</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">split_equation</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span><span class="p">)</span>
+
+<span class="n">solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">multiplication</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">equations</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/homework/picture4.png" alt="" /></p>
+
+<p>The result of this function is the solutions of all questions. In total we end up with a list with the length of 40, which is the exact number of questions on the sheet.</p>
+
+<h2 id="02-processing-theimage">02 Processing the image</h2>
+
+<p>The next step is now to fill in the solutions back on the questionnaire. This sounds easier then it actually is. To fill in the answers on the sheet, we have to find a specific location on the png where we want the solution to be written. In our example, we would like to find the coordinates of the black answer box which is next to every equation.</p>
+
+<p>We start by reading in the image using OpenCV. Next, we transform the picture into a gray-scale format. This is done in order to compress information. Since we would like to identify a certain shape on an image, colors are not important to us and we can move from a tensor to a matrix.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">png</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">png</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Let’s take a look on how the output of the gray-scale looks like. The Gif below nicely shows that we now have a large matrix containing all the pixels of the picture. We can see that most of the picture is covered with white pixels (white encodes to the integer 255). Furthermore, we can even read the equation, the equal sign, as well as the answer box ny looking at where the pixel number and color changes.</p>
+
+<p><img src="/assets/post_images/homework/picture5.gif" alt="" /></p>
+
+<p>The pixels representing the answer box are of particular interest to us, since we would like the answer to be placed within it. Before continuing to identify the box, some pre-processing is necessary - namely to enhance the contrast between the box and the white background for better identification of the shapes, a process called thresholding. An example which exemplifies the need to do that, is shown below. On the left side we have the number three shown from the initial image, whereas on the right side we have the same number after applying the thresholding.</p>
+
+<p>As can be seen below, a written number is not entirely black. Especially on the sides the strength of the ink fades out. In order to make it easier for the computer to identify clear shapes, like a square for example, we turn every pixel below a certain threshold black and the rest white.</p>
+
+<p><img src="/assets/post_images/homework/picture6.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">png</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The code above shows how this step was implemented. The first line reads in the png we imported at the beginning and directly transforms it into a gray-scaled picture. The second line then applies the thresholding to the gray-scaled image. This is done by specifying the image, the threshold value (in our case 170, which is obtained by trial and error), the maximum value (in our case we would like the pixels to turn white if the exceed the threshold), and the way OpenCV should apply the thresholding. Binary thresholding means that there will be a clear cut - every pixel with a value below the thresholding will be set to zero, every pixel above the threshold will be set to the maximum value, in our case 255.</p>
+
+<p>The next step is then to identify the squares within our image. This is done by the handy function called findContours</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">contours</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">RETR_TREE</span><span class="p">,</span>
+                               <span class="n">cv2</span><span class="p">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We see that the function takes three inputs (it thas more arguments than that, but these three are relevant for our problem). The first input represents our thresholded image. The second input is not of great importance to us, since it states which kind of hierarchy should be used when storing the contours. The third output defines how a shape should be saved.</p>
+
+<p>The image below shows this last point visually. Even though we have two white squares, there are two different in which we could save the relevant information needed to replicate these squares: we could either save every single pixel, as it is done in the left picture, or we save only the corner coordinates. Needless to say, the right one would use significantly less memory. Exactly this method is specified when the cv2.CHAIN_APPROX_SIMPLE in the command above was called.</p>
+
+<p><img src="/assets/post_images/homework/picture7.png" alt="" /></p>
+
+<h2 id="03-inserting-the-solutions">03 Inserting the solutions</h2>
+
+<p>After storing all the information of all kind of shapes from the picture, we would like to restrict the shapes we are looking for to the squares. As outlined above, we stored the information of every shape by storing the coordinates of the corner points of every contour. Since we are interested in squares, only contours which have exactly four corner points are relevant for our problem.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rectangles</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">contours</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">==</span><span class="mi">4</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/homework/picture8.png" alt="" /></p>
+
+<p>One not very intuitive feature of the OpenCV function findCountours is that it detects contours from right to left and from bottom to top. This created a bit of a problem, given that we our solutions are stored in a different way, namely from top to bottom and left to right. In order to align these two lists, we alter the rectangles list we created in the code above through the following code</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">right_side</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">rectangles</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">left_side</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">rectangles</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">sorted_list</span> <span class="o">=</span> <span class="n">left_side</span> <span class="o">+</span> <span class="n">right_side</span>
+</code></pre></div></div>
+
+<p>Now the solutions as well as the rectangle information are both in same order. Last but not least we then have to write the solutions into the rectangle. This is done by extracting the bottom left x and y coordinate, which is shown in the image below as the red circle.</p>
+
+<p><img src="/assets/post_images/homework/picture9.png" alt="" /></p>
+
+<p>The actual writing of the solution for each question is done by a function called putText. The input of the function are relatively straight forward. Namely, we insert the image as well as some coordinates and a font.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">font</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_COMPLEX</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">sorted_list</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">font</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"Threshold"</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Finally we then can display our results, which look very promising. It might be that solving these question by hand instead of using Python could have been quicker, but it would have been considerably less fun!</p>
+
+<p><img src="/assets/post_images/homework/picture10.png" alt="" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#image-recognition" class="page__taxonomy-item" rel="tag">Image Recognition</a><span class="sep">, </span>
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-08-03T00:00:00+02:00">August 3, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Using+Python+to+do+Your+Homework%20http%3A%2F%2Flocalhost%3A4000%2Fimage%2520recognition%2Fpython%2FUsing-Python-to-do-Your-Homework%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fimage%2520recognition%2Fpython%2FUsing-Python-to-do-Your-Homework%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fimage%2520recognition%2Fpython%2FUsing-Python-to-do-Your-Homework%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/data%20challenge/python/Richter's-Predictor-Data-Challenge-from-DrivenData/" class="pagination--pager" title="Richter’s Predictor- Data Challenge from DrivenData
+">Previous</a>
+    
+    
+      <a href="/signal%20processing/python/Signal-Processing-Engine-Sound-Detection/" class="pagination--pager" title="Signal Processing - Engine Sound Detection
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

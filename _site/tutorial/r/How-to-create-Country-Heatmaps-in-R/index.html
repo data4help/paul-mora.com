@@ -1,0 +1,886 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to create Country Heatmaps in R - Econometrics &amp; Data Science</title>
+<meta name="description" content="One of the most powerful visualization tools for regional Panel data there is.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="How to create Country Heatmaps in R">
+<meta property="og:url" content="http://localhost:4000/tutorial/r/How-to-create-Country-Heatmaps-in-R/">
+
+
+  <meta property="og:description" content="One of the most powerful visualization tools for regional Panel data there is.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-29T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/tutorial/r/How-to-create-Country-Heatmaps-in-R/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to create Country Heatmaps in R">
+    <meta itemprop="description" content=" One of the most powerful visualization tools for regional Panel data there is. ">
+    <meta itemprop="datePublished" content="2020-10-29T00:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to create Country Heatmaps in R
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em> One of the most powerful visualization tools for regional Panel data there is. </em></p>
+
+<p>Much of the data that we interact with in our daily lives has a geographical component. Google maps records our favorite places, we calculate how many customers frequent each location for a given brand shop, and we compare eachother by regional difference. Next to bar-charts and line-charts, are there better ways that we can visualize geospatial data? A geographical heatmap can be a powerful tool for displaying temporal changes over geographies.</p>
+
+<p>The question is how to build such a visualization. This tutorial explains how to build a usable GIF from panel data- time series for multiple entities, in this case German states. The visualization problem to which we apply this heatmap GIF is displaying data about the economic development (change in GDP per Capita) of Germany between 1991 and 2019. The data for this example can be found here on our GitHub.</p>
+
+<h2 id="data-import-and-basic-cleaning">Data Import and Basic Cleaning</h2>
+
+<p>To begin with, we import the relevant packages, define the relevant paths and import the needed data. Note that next to the GDP (referred to as BIP in german) per state, we also import the annual inflation rate for Germany using Quandl. The Quandl API provides freely usable financial and economic datasets. In order to use the API we have to create an Account and generate an API-Key, which then has to be specified in the data-generating command.</p>
+
+<p>The reason we need the inflation rate of Germany over the years is that the GDP per Capita is currently in nominal terms, which means that it is not adjusted for inflation and therefore non-comparable between years.</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Packages</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"readxl"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">Quandl</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Paths</span><span class="w">
+</span><span class="n">main_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/Users/paulmora/Documents/projects/germany_bip_state"</span><span class="w">
+</span><span class="n">raw_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">main_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/00 Raw"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span><span class="n">code_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">main_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/01 Code"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span><span class="n">data_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">main_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/02 Data"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span><span class="n">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">main_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/03 Output"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Importing data</span><span class="w">
+</span><span class="n">bip_per_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_excel</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">raw_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/bip_states.xlsx"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">),</span><span class="w">
+                           </span><span class="n">skip</span><span class="o">=</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span><span class="n">german_inflation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"RATEINF/CPI_DEU"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="s2">"XXXXXXXX"</span><span class="p">,</span><span class="w"> </span><span class="c1"># Insert API-Key here</span><span class="w">
+                          </span><span class="n">collapse</span><span class="o">=</span><span class="s2">"annual"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>After importing our data, it is now time for some basic data cleaning. This involves reshaping the data, creating the inflation adjusted GDP per Capita figures and creating an unique identifier for each state.</p>
+
+<p>Why exactly reshaping the data is required can be better explained by looking at the raw dataframe, which contains the currently nominal GDP per Capita figures.</p>
+
+<p><img src="/assets/post_images/tutorial/picture1_1.png" alt="" /></p>
+
+<p>The data representation we face is referred to as a wide-format. A wide-format means that one variable (in that case the year information) is used as columns. Therefore, the entire dataset is much wider than if the variable year would be represented by only one column. This would then lead to a much longer dataset, which is why this format is referred to as the long-format. The change from a wide-format to a long-format is necessary because of our plotting tool ggplot, which could be seen as R’s equivalent to Python’s Seaborn.</p>
+
+<h2 id="inflation">Inflation</h2>
+
+<p><img src="/assets/post_images/tutorial/picture1_2.png" alt="" /></p>
+
+<p>After knowing why and how we have to reshape the GDP per Capita dataset, it is now time to elaborate on how to process the inflation data. For that we briefly cover what Inflation is and why it is needed.</p>
+
+<p>Inflation describes the measure of the rate by which the average price level increases over time. A positive inflation rate would imply that the average cost of a certain basked of goods increased over time and that we can buy fewer things with the same amount of money. That implies that 100 Euros in 2019 can buy us less than the same amount in 1991. To make these number comparable nevertheless, we have to adjust them for inflation.</p>
+
+<p>The way we measure inflation is through something which is referred to as the Consumer-Price-Index (CPI). This index represents the price of a certain basket of goods at different points in time. From the data-frame on the left side we can see that this basket cost 67.2 in 1991 and 105.8 in 2020. Given that our GDP per Capita data only ranges until 2019, and that a CPI index is normalized to a certain year, we divide all values of this data-frame by the CPI value in 2019.</p>
+
+<p><img src="/assets/post_images/tutorial/picture1_3.png" alt="" /></p>
+
+<p>The result of dividing all CPI values by the index-level of 2019 can be seen in the data-frame on the left. Now these values are easier to interpret. An average product in 1991 cost 63.5% of what it cost in 2019.</p>
+
+<p>We can use these values now to adjust the GDP per Capita values over time in order to make them comparable over the years. This is done by simply dividing all GDP values by the respective inflation value of a given year.</p>
+
+<p>Additionally we extract the year information from the Date column in order to match with the year information from the GDP per Capita sheet.</p>
+
+<p>All of the described steps of reshaping and handling inflation are done through the code snippet below.</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bip_per_state</span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">bip_per_state</span><span class="p">))</span><span class="w">
+</span><span class="n">reshaped_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gather</span><span class="p">(</span><span class="n">bip_per_state</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">gdp</span><span class="p">,</span><span class="w"> </span><span class="s2">"1991"</span><span class="o">:</span><span class="s2">"2019"</span><span class="p">,</span><span class="w">
+                       </span><span class="n">factor_key</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">german_inflation</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="n">german_inflation</span><span class="o">$</span><span class="n">Date</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+</span><span class="n">german_inflation</span><span class="o">$</span><span class="n">benchmarked_inflation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">german_inflation</span><span class="o">$</span><span class="n">Value</span><span class="w">
+                                          </span><span class="o">/</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">german_inflation</span><span class="o">$</span><span class="n">Value</span><span class="p">))</span><span class="w">
+</span><span class="n">subset_inflation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">german_inflation</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">benchmarked_inflation</span><span class="p">)</span><span class="w">
+</span><span class="n">gdp_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">reshaped_data</span><span class="p">,</span><span class="w">
+                 </span><span class="n">subset_inflation</span><span class="p">,</span><span class="w">
+                 </span><span class="n">by</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"year"</span><span class="p">))</span><span class="w">
+</span><span class="n">gdp_data</span><span class="o">$</span><span class="n">real_gdp_per_capita</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gdp_data</span><span class="o">$</span><span class="n">gdp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">gdp_data</span><span class="o">$</span><span class="n">benchmarked_inflation</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="importing-geospatial-data-for-germany">Importing Geospatial data for Germany</h2>
+
+<p>After cleaning our data and bringing it into a ggplot-friendly long-format, it is now time to import geospatial data of Germany. Geospatial or spatial data contains information needed to build a map of a location, in this case Germany.</p>
+
+<p>Importing that information is done through the handy getData function. This function takes, amongst other things, the country name and the level of granularity as an input. In our case we specify “Germany” as the country and because we are interested not only in the country as a whole, but rather in the different states we specify a granularity level which also gives State information. The API gives us a so called Large SpatialPolygonsDataFrame. When opened this object looks like this:</p>
+
+<p><img src="/assets/post_images/tutorial/picture1_4.png" alt="" /></p>
+
+<p>We can see that we find 16 polygons. This makes sense given that we have 16 states in Germany. Each state is therefore represented by one Polygon.</p>
+
+<p>It is important to note that the order of these 16 Polygons does not necessarily align with the alphabetical order of the German states. Therefore, we have to make sure that the information of GDP per Capita is matched up with the right Polygon. Otherwise it could be that we plot the information for e.g. Berlin in Hamburg or vice versa.</p>
+
+<p>Lastly, we have to bring the information into a data frame into the long-format that ggplot prefers. This is done through the broom package, which includes the tidy function. This function, like the entire package, is for tidying up messy datatypes and bring them into a workable format.</p>
+
+<p>The code for the aforementioned steps looks the following:</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">map_germany</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getData</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="s2">"Germany"</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">from_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">()</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">bip_per_state</span><span class="p">)</span><span class="m">-1</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">id_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map_germany</span><span class="o">@</span><span class="n">polygons</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span><span class="o">@</span><span class="n">ID</span><span class="w">
+  </span><span class="n">from_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">append</span><span class="p">(</span><span class="n">from_list</span><span class="p">,</span><span class="w"> </span><span class="n">id_num</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">to_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">bip_per_state</span><span class="p">)</span><span class="m">-1</span><span class="p">))</span><span class="w">
+</span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setNames</span><span class="p">(</span><span class="n">to_list</span><span class="p">,</span><span class="w"> </span><span class="n">from_list</span><span class="p">)</span><span class="w">
+
+</span><span class="n">spatial_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">broom</span><span class="o">::</span><span class="n">tidy</span><span class="p">(</span><span class="n">map_germany</span><span class="p">)</span><span class="w">
+</span><span class="n">spatial_list</span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">[</span><span class="n">spatial_list</span><span class="o">$</span><span class="n">id</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The resulting data frame below now shows us all the desired information. The longitude and latitude information (long and lat) is needed for ggplot to know the boundaries of a state and the id column tells us which state we are looking at.</p>
+
+<p><img src="/assets/post_images/tutorial/picture1_5.png" alt="" /></p>
+
+<p>The only remaining steps are to merge the GDP per Capita onto the mapping information and plotting it all.</p>
+
+<h2 id="plotting">Plotting</h2>
+
+<p>Our final plotting code has to be fine-tuned to fit the purpose of the visualization. In our case, we would like to have one heatmap for every year between 1991 and 2019. To achieve that one could run the plotting code in a loop, iterating over all years, which is also what we will do later on. For better readability though, we start by showing how to plot a single year.</p>
+
+<p>We start by subsetting the GDP per Capita data frame so that it only contains information for a certain year (e.g. 1991). Afterwards, we merge these 16 rows for this single year onto the mapping data frame we showed earlier. The merging variable is the id column we discussed earlier. Afterwards we can already call ggplot and fine-tune our plot.</p>
+
+<p>Germany has two states (Bremen and Berlin) which are fully embedded in other, bigger states. It could therefore happen that the bigger state around them is simply plotted over the smaller state. Therefore it is important to tell ggplot that the bigger states should be plotted before these smaller states, which is also shown in the upcoming code snippet (line 7–11).</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gdp_per_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gdp_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">year</span><span class="o">==</span><span class="m">1991</span><span class="p">)</span><span class="w">
+</span><span class="n">spatial_data_per_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">spatial_list</span><span class="p">,</span><span class="w"> </span><span class="n">gdp_per_year</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="s2">"id"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gdp_plotting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spatial_data_per_year</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">real_gdp_per_capita</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+               </span><span class="n">data</span><span class="o">=</span><span class="n">filter</span><span class="p">(</span><span class="n">spatial_data_per_year</span><span class="p">,</span><span class="w">
+                           </span><span class="o">!</span><span class="n">Bundesland</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bremen"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">real_gdp_per_capita</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+               </span><span class="n">data</span><span class="o">=</span><span class="n">filter</span><span class="p">(</span><span class="n">spatial_data_per_year</span><span class="p">,</span><span class="w">
+                           </span><span class="n">Bundesland</span><span class="w"> </span><span class="o">%in%</span><span class="w">  </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bremen"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_tufte</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_fixed</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_gradient</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Real Euros per Capita"</span><span class="p">,</span><span class="w">
+                      </span><span class="n">limits</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">overall_min</span><span class="p">,</span><span class="w"> </span><span class="n">overall_max</span><span class="p">),</span><span class="w">
+                      </span><span class="n">guide</span><span class="o">=</span><span class="n">guide_colourbar</span><span class="p">(</span><span class="n">barheight</span><span class="o">=</span><span class="n">unit</span><span class="p">(</span><span class="m">80</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="s2">"mm"</span><span class="p">),</span><span class="w">
+                                            </span><span class="n">barwidth</span><span class="o">=</span><span class="n">unit</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="s2">"mm"</span><span class="p">),</span><span class="w">
+                                            </span><span class="n">draw.ulim</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="w">
+                                            </span><span class="n">title.hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w">
+                                            </span><span class="n">label.hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w">
+                                            </span><span class="n">title.position</span><span class="o">=</span><span class="s2">"top"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_map</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"GDP Per Capita -"</span><span class="p">,</span><span class="w"> </span><span class="n">year_num</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.title.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.ticks.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.title.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.text.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.ticks.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">legend.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">25</span><span class="p">),</span><span class="w">
+        </span><span class="n">legend.text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">),</span><span class="w">
+        </span><span class="n">legend.position</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span><span class="w">
+        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">lineheight</span><span class="o">=</span><span class="m">.8</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">45</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggsave</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/maps/"</span><span class="p">,</span><span class="w"> </span><span class="n">year_num</span><span class="p">,</span><span class="w"> </span><span class="s2">".png"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The code above will now generate and save the following image:</p>
+
+<p><img src="/assets/post_images/tutorial/picture1_6.png" alt="" /></p>
+
+<h2 id="putting-all-together-into-a-gif">Putting all together into a GIF</h2>
+
+<p>If we would now even like to include a time component we could also create multiple heatmaps, one for every year, and play them one after another through a GIF. For that we make use of the beautiful ImageMick package which simply takes all available images in a specified folder and converts them into a GIF.</p>
+
+<p>The following snippet of code shows the procedure to first create heatmaps for all years before turning them into a GIF like it can be seen below.</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">year_num</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">gdp_data</span><span class="o">$</span><span class="n">year</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+  </span><span class="n">gdp_per_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gdp_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">year</span><span class="o">==</span><span class="n">year_num</span><span class="p">)</span><span class="w">
+  </span><span class="n">spatial_data_per_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">spatial_list</span><span class="p">,</span><span class="w"> </span><span class="n">gdp_per_year</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="s2">"id"</span><span class="p">)</span><span class="w">
+
+  </span><span class="n">gdp_plotting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spatial_data_per_year</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">real_gdp_per_capita</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="o">=</span><span class="n">filter</span><span class="p">(</span><span class="n">spatial_data_per_year</span><span class="p">,</span><span class="w">
+                             </span><span class="o">!</span><span class="n">Bundesland</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bremen"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">real_gdp_per_capita</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="o">=</span><span class="n">filter</span><span class="p">(</span><span class="n">spatial_data_per_year</span><span class="p">,</span><span class="w">
+                             </span><span class="n">Bundesland</span><span class="w"> </span><span class="o">%in%</span><span class="w">  </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bremen"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tufte</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_fixed</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_gradient</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Real Euros per Capita"</span><span class="p">,</span><span class="w">
+                        </span><span class="n">limits</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">overall_min</span><span class="p">,</span><span class="w"> </span><span class="n">overall_max</span><span class="p">),</span><span class="w">
+                        </span><span class="n">guide</span><span class="o">=</span><span class="n">guide_colourbar</span><span class="p">(</span><span class="n">barheight</span><span class="o">=</span><span class="n">unit</span><span class="p">(</span><span class="m">80</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="s2">"mm"</span><span class="p">),</span><span class="w">
+                                              </span><span class="n">barwidth</span><span class="o">=</span><span class="n">unit</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="s2">"mm"</span><span class="p">),</span><span class="w">
+                                              </span><span class="n">draw.ulim</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="w">
+                                              </span><span class="n">title.hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w">
+                                              </span><span class="n">label.hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w">
+                                              </span><span class="n">title.position</span><span class="o">=</span><span class="s2">"top"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_map</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ggtitle</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"GDP Per Capita -"</span><span class="p">,</span><span class="w"> </span><span class="n">year_num</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.title.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.text.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.ticks.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.title.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.text.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.ticks.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">legend.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">25</span><span class="p">),</span><span class="w">
+          </span><span class="n">legend.text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">),</span><span class="w">
+          </span><span class="n">legend.position</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span><span class="w">
+          </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">lineheight</span><span class="o">=</span><span class="m">.8</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">45</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ggsave</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/maps/"</span><span class="p">,</span><span class="w"> </span><span class="n">year_num</span><span class="p">,</span><span class="w"> </span><span class="s2">".png"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">))</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">setwd</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span><span class="w"> </span><span class="s2">"/maps/"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">))</span><span class="w">
+</span><span class="n">system</span><span class="p">(</span><span class="s2">"convert -delay 80 *.png maps_over_time.gif"</span><span class="p">)</span><span class="w">
+</span><span class="n">file.remove</span><span class="p">(</span><span class="n">list.files</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s2">".png"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/post_images/tutorial/picture1_7.gif" alt="" /></p>
+
+<p>By tweaking these code snippets, you can create your own geographical heatmaps for other visualization challenges.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#r" class="page__taxonomy-item" rel="tag">R</a><span class="sep">, </span>
+    
+      <a href="/categories/#tutorial" class="page__taxonomy-item" rel="tag">Tutorial</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-29T00:00:00+01:00">October 29, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=How+to+create+Country+Heatmaps+in+R%20http%3A%2F%2Flocalhost%3A4000%2Ftutorial%2Fr%2FHow-to-create-Country-Heatmaps-in-R%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftutorial%2Fr%2FHow-to-create-Country-Heatmaps-in-R%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftutorial%2Fr%2FHow-to-create-Country-Heatmaps-in-R%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/time%20series/python/DengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems/" class="pagination--pager" title="DengAI: Predicting Disease Spread - Imputation and Stationarity Problems
+">Previous</a>
+    
+    
+      <a href="/time%20series/python/DengAI-Predicting-Disease-Spread-STL-Forecasting-ARIMA-Box-Jenkins/" class="pagination--pager" title="DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkins
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

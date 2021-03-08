@@ -1,0 +1,830 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Feature Creation for Real Estate Prices - Econometrics &amp; Data Science</title>
+<meta name="description" content="Feature Creation for Real Estate Price Prediction This post elaborates on feature engineering for Spanish real estate price prediction.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Feature Creation for Real Estate Prices">
+<meta property="og:url" content="http://localhost:4000/real%20estate/python/Feature-Creation-for-Real-Estate-Prices/">
+
+
+  <meta property="og:description" content="Feature Creation for Real Estate Price Prediction This post elaborates on feature engineering for Spanish real estate price prediction.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/real_estate/cover5.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-09T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/real%20estate/python/Feature-Creation-for-Real-Estate-Prices/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/real_estate/cover5.png" alt="Feature Creation for Real Estate Prices" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Feature Creation for Real Estate Prices">
+    <meta itemprop="description" content="Feature Creation for Real Estate Price PredictionThis post elaborates on feature engineering for Spanish real estate price prediction.">
+    <meta itemprop="datePublished" content="2020-05-09T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Feature Creation for Real Estate Prices
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Feature Creation for Real Estate Price Prediction
+This post elaborates on feature engineering for Spanish real estate price prediction.</p>
+
+<p>This post is structured as follows.</p>
+<ol>
+  <li>Importance of feature engineering</li>
+  <li>Proximity of larger cities</li>
+  <li>Hyped cities</li>
+  <li>Temperature Data</li>
+  <li>Conclusion</li>
+</ol>
+
+<h2 id="01-importance-of-feature-engineering">01 Importance of feature engineering</h2>
+<p>Within Machine Learning, the big hype is normally centered around fancy prediction models and opportunities for incremental improvements through hyperparameter tuning. Equally important, if not even more important, are the features which are fed into the model. Feature creation and selection are the true heroes of Machine Learning- and often times responsible for much higher gains in performance than hyperparameter tuning. Finding relevant and well-defined input variables can boost the accuracy of any model significantly.</p>
+
+<p>Creativity and data availability are the “only “ limits when it comes to feature creation. Deciding which features to implement depends on the particular prediction task. Our task is to build a prediction model for real estate prices. The question is then: “what factors influence are most likely to influence the price of real estate, and how can we help our model to better understand these?” We ended up with three implementable ideas.</p>
+
+<p>The first one is the proximity of a property to a larger city. Living closer to a denser populated city comes with the perks of being able to take advantage of everything a city has to offer and should therefore also impact the price of an property.</p>
+
+<p>The second variable is an indication of whether the property’s location is one of the hotspots within Spain. This feature tries to capture the superior attractiveness and lifestyle of these cities.</p>
+
+<p>The last variable is the climate in the property’s area. Spain is espcially attractive as a retirement destination because of its Mediterranean climate and endless sunshine. The variation of climate within the country is also likely to explain some variation within price.</p>
+
+<p>This post elaborates on all these variables and shows how they were implemented. For each variable, we start by motivating the theoretical significance of the variable. We then show the methodology and implementation of the code.</p>
+<h2 id="02-proximity-to-largercities">02 Proximity to larger cities</h2>
+<h3 id="021-motivation">02.1 Motivation</h3>
+<p>The idea for this variable came when thinking about small apartments in large cities like London or New York. The price tag of small apartments in New York is mind boggling compared to what you get. You end up paying multiple thousands per month for a small bedroom and an even smaller bathroom. The amount of money paid in rent (or purchase) of such an apartment can buy significantly more property somewhere else.</p>
+
+<p>The reason why these prices are justifiable in New York or London is the location in the midst of a major global city. This characteristic of a property, namely being in a reasonable range of such a city (and how many such cities are close by) is what we try to capture for our Spanish real estate data.</p>
+<h3 id="022-methodology">02.2 Methodology</h3>
+<p>Two different kinds of feature variables are created. The first one is a count of how many cities are in a certain radius of a property. The second one is how close the nearest city with more than 100,000 habitats is. The latter should give an indication how rural the estate is and corrects for a potentially incorrectly chosen radius when constructing the first variable.</p>
+
+<p>Furthermore, we distinguish between the kind of city. Living close to New York may be better (or worse) than living close to a 50,000-inhabitant city. Regardless of the effect on price of these different cities, meaning regardless of whether one has a stronger or weaker effect, we assume that the effect is different in magnitude. In order to allow for a different effect on price, we distinguish between different city sizes. Our definitions are in line with the commonly applied settlement hierarchy. Hence we define:</p>
+
+<p><img src="/assets/post_images/real_estate/picture5_1.png" alt="" /></p>
+
+<p>This variable creation requires knowing the city names, as well as the location of every city with more than 100,000 inhabitants. This information is taken from here. The data looks like this:</p>
+
+<p><img src="/assets/post_images/real_estate/picture5_2.png" alt="" /></p>
+
+<p>According to our source, we find two cities with more than one million inhabitants, ten cities between 300k and 1m habitats and 76 cities with a population between 100k and 300k. In order to keep the type of city groups to a minimum (medium, large and metropolis) we assigned Madrid to the metropolis definition as well (even though it has 200k more habitats than the formal definition of a Metropolis city).</p>
+
+<p>The next step now is to count how many of these cities shown above are within a certain radius of each property. To do that we need two things: a radius definition, and a function to calculate the distance between the two locations.</p>
+
+<p>We use a radius of 30 kilometers euclidean distance (the way the crow flies). This number seems sensible given that distance on the road would then be probably around 50 kilometers, which represents approximately a one-hour drive with a car. As this radius was chosen arbitratily, we tested several different radius lengths in order to conduct sensitivity checks. We found only a negligible variation in the results with these checks.</p>
+
+<p>The code for calculating distances between two locations given their longitude and latitude information is the following:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dist_bool</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span> <span class="n">list2</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+<span class="c1"># Separation of the longitude and latitude data
+</span>    <span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">list1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span> <span class="o">=</span> <span class="n">list2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">list2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Earth radius in km
+</span>    <span class="n">R</span> <span class="o">=</span> <span class="mi">6371</span>
+<span class="c1">#conversion to radians
+</span>    <span class="n">d_lat</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">radians</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">lat1</span><span class="p">))</span>
+    <span class="n">d_lon</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">radians</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lon2</span><span class="p">)</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">lon1</span><span class="p">))</span>
+    <span class="n">r_lat1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">radians</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lat1</span><span class="p">))</span>
+    <span class="n">r_lat2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">radians</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lat2</span><span class="p">))</span>
+<span class="c1">#haversine formula
+</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">d_lat</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span> <span class="o">**</span><span class="mi">2</span> <span class="o">+</span> \
+        <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">r_lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">r_lat2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">d_lon</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="c1"># Calculate distance between two points
+</span>    <span class="n">haversine</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">R</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="c1"># Checking whether it is still within the radius
+</span>    <span class="n">within</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">&gt;=</span> <span class="n">haversine</span>
+<span class="c1"># Returning the results
+</span>    <span class="k">return</span> <span class="n">within</span>
+</code></pre></div></div>
+
+<h2 id="023-results">02.3 Results</h2>
+
+<p>The summary statistics of these two features are visible below. We see that 8% of all properties are within a 30 kilometer range of a metropolis. That is sensible given the high amount of smaller cities that are essentially suburbs of either Madrid or Barcelona. We find furthermore that the average amount of medium cities within a 30 kilometres radius for all properties is around two on average.</p>
+
+<p>One should be cautious with the interpretation of that result, given that one observation had around 26 medium sized cities within its radius. This is likely to be the case of cities which are located within the Madrid Provence, where all smaller suburbs around Madrid are counted as an independent city. This fact can alter the statistic.</p>
+
+<p><img src="/assets/post_images/real_estate/picture5_3.png" alt="" /></p>
+
+<p>The second variable is the measure of how many kilometres away (euclidean distance) from the property is the closest city with more than 100k habitats.</p>
+
+<p>The summary statistics as well as the distribution plot below show us that a considerable amount of estates within our data are well connected, with more than half of our observations being less than 50 kilometers away from a larger city.
+<img src="/assets/post_images/real_estate/picture5_4.png" alt="" /></p>
+
+<h2 id="03-hypedcities">03 Hyped cities</h2>
+<h3 id="031-motivation">03.1 Motivation</h3>
+
+<p>Real Estate is an interesting mixture of art and science. Nobody can truly explain why one area of the city is so much more popular than another by just looking at a map. Often times certain districts or even entire cities are hyped. This subjectivity in attractiveness is difficult to encapsulate in a measurement. One approximation would be to see what well known magazines report as hyped cities is districts, as we’ve done here.</p>
+
+<p>03.2 Methodology</p>
+
+<p>In order to understand what cities are currently the best places to live, we use this website which ranks as one of the best expatriate publications online. We again use webscraping to obtain all the locations which, according to the website, are the best places to live. The code below shows how exactly this is done.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># The link where to find all the real estate
+</span><span class="n">url</span> <span class="o">=</span> <span class="s">"https://expatra.com/guides/spain/best-places-to-live-in-spain/"</span>
+<span class="c1"># Requesting the sites content
+</span><span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="p">.</span><span class="n">content</span><span class="p">,</span> <span class="s">"html.parser"</span><span class="p">)</span>
+<span class="c1"># Getting the table with all places in spain
+</span><span class="n">table_html</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'li'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">'ez-toc-page-1'</span><span class="p">)</span>
+<span class="c1"># Getting all the cities
+</span><span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">table_html</span><span class="p">]</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="n">cities</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Changing all city names to lower case
+</span><span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cities</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="033-results">03.3 Results</h3>
+
+<p>After scraping we have a list of cities. As the last step we then create a dummy variable which indicates whether a property is located in any of these hyped cities.</p>
+
+<h2 id="04-temperature-data">04 Temperature data</h2>
+<h3 id="041-motivation">04.1 Motivation</h3>
+
+<p>One of the main reason to obtain a Spanish property for many foreigners is probably the weather. Spain, given its location, is one of the warmest places within Europe. It is therefore likely to be of high interest for a buyer how often it rains, what the average temperature is and potentially how windy it is.</p>
+
+<p>Furthermore, given that the air pressure is higher for areas closer to sea level (explanation below), this variable may kill two birds with one stone, serving also as a proxy for distance to the sea. Including this variable also assumes that a buyer is more likely to pay a premium to live closer to the sea.</p>
+
+<p><img src="/assets/post_images/real_estate/picture5_5.png" alt="" /></p>
+
+<h3 id="042-methodology">04.2 Methodology</h3>
+<p>Since it was not possible to find good average climate data for each city in Spain, we had to change strategy. Instead, we found climate data for different weather stations in Spain, namely information of 114 weather stations scattered around the country. Using their longitude and latitude information we plotted the different weather stations below in a scatter plot. The graph shows nicely that we have weather stations all around Spain, even with several on in Gran Canaria.</p>
+
+<p><img src="/assets/post_images/real_estate/picture5_6.png" alt="" /></p>
+
+<p>The task is now to calculate the average climate information and then find the weather stations closest to every property. This is done by using the distance calculator shown earlier in this post.</p>
+
+<p>The question arises how many years should be used to average the climate data. The accepted convention to calculate the average climate is 30 years, according to scientific sources. Our data starts as early as 2012. We then use 30 years of observations from 2012 backwards. Below we can see the results of these calculations for some example weather stations.</p>
+
+<p><img src="/assets/post_images/real_estate/picture5_7.png" alt="" /></p>
+
+<h2 id="05-conclusion">05 Conclusion</h2>
+<p>Feature creation is one of the most important steps when building prediction models. Feature engineering also often proves much more important for model performance than hyperparameter tuning.</p>
+
+<p>However, feature engineering also has plenty of drawbacks. From our perspective, there are three main challenges that arise during the process of feature creation.</p>
+
+<p>It begins with having an idea what kind of feature could be potentially useful. Next and even more critical is the availability of data. In our example we could not find climate data for every city in Spain and therefore had to use weather stations instead. This alternative source is nevertheless better than not including any weather data and represents a good compromise.</p>
+
+<p>The last difficulty is data handling. Oftentimes scraped data or csv imports come in inconvenient formats and always have to be cleaned and prepared before being useful in modeling.</p>
+
+<p>The potential unrewarding moment comes when the model shows insignificant importance of the feature you engineered. Unfortunately, this problem is not possible to mitigate beforehand - it’s hard to predict how important a feature will be for a model.</p>
+
+<p>In the next post, we feed the features created here and the original features from the real estate advertisements into several prediction models to assess the importance of all features in predicting price.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#real-estate" class="page__taxonomy-item" rel="tag">Real Estate</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-09T00:00:00+02:00">May 9, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Feature+Creation+for+Real+Estate+Prices%20http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FFeature-Creation-for-Real-Estate-Prices%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FFeature-Creation-for-Real-Estate-Prices%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FFeature-Creation-for-Real-Estate-Prices%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/real%20estate/python/Clustering-Real-Estate-Data/" class="pagination--pager" title="Clustering Real Estate Data
+">Previous</a>
+    
+    
+      <a href="/real%20estate/python/Predicting-Real-Estate-Prices/" class="pagination--pager" title="Predicting Real Estate Prices
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

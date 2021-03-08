@@ -1,0 +1,887 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Richter’s Predictor- Data Challenge from DrivenData - Econometrics &amp; Data Science</title>
+<meta name="description" content="Scoring in the top one percent in the Richter’s Predictor: Modeling Earthquake Damage on DrivenData.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="Richter’s Predictor- Data Challenge from DrivenData">
+<meta property="og:url" content="http://localhost:4000/data%20challenge/python/Richter's-Predictor-Data-Challenge-from-DrivenData/">
+
+
+  <meta property="og:description" content="Scoring in the top one percent in the Richter’s Predictor: Modeling Earthquake Damage on DrivenData.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/richter/cover1.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-06-30T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/data%20challenge/python/Richter's-Predictor-Data-Challenge-from-DrivenData/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/richter/cover1.png" alt="Richter’s Predictor- Data Challenge from DrivenData" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Richter’s Predictor- Data Challenge from DrivenData">
+    <meta itemprop="description" content="Scoring in the top one percent in the Richter’s Predictor: Modeling Earthquake Damage on DrivenData.">
+    <meta itemprop="datePublished" content="2020-06-30T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Richter’s Predictor- Data Challenge from DrivenData
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          13 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Scoring in the top one percent in the Richter’s Predictor: Modeling Earthquake Damage on DrivenData.</em></p>
+
+<p>Next to Kaggle there are many other websites which host highly relevant and competitive data science competitions. DrivenData is one of these websites. The main difference between the renowned Kaggle and DrivenData is probably the topics of the challenges. Wheras Kaggle hosts more commercially driven competitions, DrivenData focuses more on philanthropic topics.</p>
+
+<p>We, data4help, took part in one of their competitions and scored out of around 3000 competitors in the top one percent. This blogpost explains our approach to the problem and our key learnings.</p>
+<h2 id="01-introduction-problem-description">01 Introduction - Problem Description</h2>
+
+<p>The project we chose is called Richter’s Predictor: Modeling Earthquake Damage. As the name suggests, the project involves predicting earthquake damages, specifically damage from the Gorkha earthquake which occurred in April 2015 and killed over 9,000 people. It represents the worst natural disaster to strike Nepal since the 1934 Nepal-Bihar earthquake.
+<img src="/assets/post_images/richter/picture1.png" alt="Source: https://www.britannica.com/topic/Nepal-earthquake-of-2015" /></p>
+
+<p>Our task in this project to forecast how badly an individual house is damaged, given the information about its location, secondary usage, and the materials used to build the house in the first place. The damage grade of each house is stated as an integer variable between one and three.</p>
+
+<h2 id="02-how-to-tackle-the-project-plan-ofattack">02 How to tackle the project - Plan of attack</h2>
+
+<p>The key to success in a Kaggle/ DrivenData challenge, just like in a data challenge for a job application, is a solid plan of attack. It is important that this plan is drafted as early as possible, since otherwise the project is likely to become headless and unstructured. This is especially problematic for data challenges for a job application, which generally serve to gauge whether a candidate can draft a solid strategy of the problem and execute it in short amount of time.</p>
+
+<p>Therefore, one of the first things to do is to get a pen and paper and sketch out the problem. Afterwards, the toolkit for the prediction should be evaluated. That means we should investigate what kind of training data we have to solve the problem. A thorough analysis of the features is key for a high performance.</p>
+
+<p>Do we have any missing values in the data? Do we have categorical variables and if so, what level of cardinality to we face? How sparse are the binary variables? Are the float/integer variables highly skewed? How is the location of a house defined? All these questions came up when we went through the data for the first time. It is important that all aspects are noted somewhere at this stage in order to prepare a structured approach.</p>
+
+<p>After noting all the initial questions we have, the next step is to lay out a plan and define the order in which the problem is to be evaluated and solved. It is worth noting here that it is not expected to have a perfect solution for all the problems we can think off right at the beginning, but rather to consider potential problem areas that could arise.</p>
+<h2 id="03-preliminaries--basemodel">03 Preliminaries &amp; Base model</h2>
+
+<p>One of the first steps in any data challenge should be to train a benchmark model. This model should be as simple as possible and only minor feature engineering should be required. The importance of that model is that it gives us an indication of where our journey starts and what a sensible result is.</p>
+
+<p>Given that DrivenData already set a benchmark using a Random Forest model, we will also use that model as a baseline. Before the data can be fed into the model, we have to take care of all categorical variables in the data, through the handy get_dummies command from Pandas. Secondly, we remove the variable building_id which is a randomly assigned variable for each building and hence does not carry any meaning.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train_values</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"building_id"</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">dummy_train</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_values</span><span class="p">)</span>
+<span class="n">y_df</span> <span class="o">=</span> <span class="n">train_labels</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s">"damage_grade"</span><span class="p">]]</span>
+<span class="n">X_df</span> <span class="o">=</span> <span class="n">dummy_train</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model_dict</span><span class="p">[</span><span class="s">"lgt"</span><span class="p">]</span>
+<span class="n">baseline_model</span> <span class="o">=</span> <span class="n">calc_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_df</span><span class="p">,</span> <span class="n">y_df</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>From the model_dict we then import the basic random forest model. With just these couple of lines of code, we have a baseline model and baseline accuracy of 71.21%. This is now our number to beat!</p>
+
+<p>In the next sections, we show the steps taken to try to improve on this baseline.</p>
+
+<h2 id="04-skewness-of-the-integer-variables">04 Skewness of the integer variables</h2>
+
+<p>As one of the first steps in feature engineering for improving on this baseline, we will further investigate all float and integer variables of the dataset. To make all the numeric variables easier to access, we stored the names of all variables of each kind in a dictionary called variable_dict.</p>
+
+<p>In order to better understand the variables, we plot all integer variables using the package matplotlib:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">int_variables</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="s">"int_variables"</span><span class="p">]</span>
+<span class="n">int_var_df</span> <span class="o">=</span> <span class="n">dummy_train</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">int_variables</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">number</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axs</span><span class="p">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">int_var_df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">number</span><span class="p">],</span> <span class="n">bw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                <span class="n">shade</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="s">"GnBu_d"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">"major"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">"upper right"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}\int.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">"tight"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/richter/picture2.png" alt="Integer/ float variables of the dataset" /></p>
+
+<p>As we can see from the graph above, all the plots exhibit an excessive rightward skew. That means that there are a few observations for each variable which are much higher than the rest of the data. Another way to describe this phenomena would be to say that the mean of the distribution is higher than the median.</p>
+
+<p>As a refresher, skewness describes the symmetry of a distribution. A normal distribution has, as a reference, a skewness of zero, given its perfect symmetry. A high (or low) skewness results from having a few obscurely high (or low) observation in the data, which we sometimes also call outliers. The problem with outliers is manifold, but the most important problem for us is that it hurts the performance of nearly every prediction model, since it interferes with the loss function of the model.</p>
+
+<p>One effective measure to dampen the massive disparity between the observations is to apply the natural logarithm. This is allowed since the logarithmic function represents a strictly monotonic transformation, meaning that the order of the data is not changed when log is applied.</p>
+
+<p>Before being able to apply that measure, we have to deal with the zero values (the natural logarithm of zero is not defined). We do that by simply adding one to every observation before applying the logarithm. Lastly we standardize all variables to further improve our model performance.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Applying the logs and create new sensible column names
+</span><span class="n">logged_train</span> <span class="o">=</span> <span class="n">dummy_train</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">int_variables</span><span class="p">]</span>\
+    <span class="p">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">log_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"log_{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">int_variables</span><span class="p">]</span>
+<span class="n">stand_logs</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">().</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">logged_train</span><span class="p">)</span>
+<span class="n">stand_logs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stand_logs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">log_names</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">log_col</span><span class="p">,</span> <span class="n">int_col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">stand_logs_df</span><span class="p">,</span> <span class="n">int_variables</span><span class="p">):</span>
+    <span class="n">dummy_train</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">log_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">stand_logs_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">log_col</span><span class="p">]</span>
+    <span class="n">dummy_train</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">int_col</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1"># Plot the newly created plot log variables
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">number</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axs</span><span class="p">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">logged_train</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">number</span><span class="p">],</span> <span class="n">bw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                <span class="n">shade</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="s">"GnBu_d"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">"major"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">"upper right"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}\logs_int.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The graph below shows the result of these operations. All distributions look much less skewed and do not exhibit the unwanted obscurely high values which we had before.</p>
+
+<p><img src="/assets/post_images/richter/picture3.png" alt="" /></p>
+
+<p>Before moving on, it is important for us to validate that our step taken had a positive effect on the overall performance of the model. We do that by quickly running the new data in our baseline random forest model. Our accuracy is now 73.14, which represents a slight improvement from our baseline model!</p>
+
+<p>Our performance has increased. That tells us that we took a step in the right direction.</p>
+<h2 id="05-geo-variables-empirical-bayes-meanencoding">05 Geo Variables - Empirical Bayes Mean Encoding</h2>
+
+<p>Arguably the most important set of variables within this challenge is the information on where the house is located. This makes sense intuitively: if the house is located closer to the epicenter, than we would also expect a higher damage grade.</p>
+
+<p>The set of location variables provided within this challenge are threefold. Namely, we get three different geo-identifier with different kind of granularity. For simplicity, we tended to regard the three different identifier as describing a town, district and street (see below).</p>
+
+<p><img src="/assets/post_images/richter/picture4.png" alt="" /></p>
+
+<p>These geo-identifiers in their initial state are given in a simple numeric format, as can be seen below.</p>
+
+<p><img src="/assets/post_images/richter/picture5.png" alt="" /></p>
+
+<p>These integer do not prove to by very useful since even though in a numeric format, they do not exhibit any correlation with the target (see graphic below). Meaning that a higher number of the identifier is not associated with higher or lower damage. This fact makes it difficult for the model to learn from this variable.</p>
+
+<p><img src="/assets/post_images/richter/picture6.png" alt="" /></p>
+
+<p>In order to create a more meaningful variable for the model to learn from these variables, we apply a powerful tool, oftentimes used in data science challenges, called encoding. Encoding is normally used when transforming categorical variables into a numeric format. On first glance we might think that this does not apply to our case, since the geo-identifier is given as a numeric variable. However this understanding of encoders is shortsighted, since whether something represents a categorical variable does not depend on the format, but on the interpretation of the variable. Hence, the variable could gain greatly in importance when undergoing a transformation!</p>
+
+<p>There are a dozen different encoding methods, which are nicely summarized in <a href="https://medium.com/r/?url=https%3A%2F%2Ftowardsdatascience.com%2Fall-about-categorical-variable-encoding-305f3361fd02">this blogpost</a>. The most promising method for our case would be something called target encoding. Target encoding replaces the categorical feature with the average target variable of this group.</p>
+
+<p>Unfortunately, it is not that easy. This method may work fine for the first geo-identifier (town), but has some serious drawbacks for the more granular second and third geo-identifier (district and street). The reason is that there are multiple districts and streets which only occur in a very small frequency. In these cases, mean target variable of a group with a small sample size is not representative for the target distribution of the group as a whole and would therefore suffer from high variance as well as high bias. This problem is quite common when dealing with categorical variables with a high cardinality.</p>
+
+<p>One workaround for this problem is a mixture between Empirical Bayes and the shrinkage methodology, motivated by paper [1]. Here, the mean of a subgroup is the weighted average of the mean target variable of the subgroup and the mean of the prior.</p>
+
+<p><img src="/assets/post_images/richter/picture7.png" alt="" /></p>
+
+<p>In our example that would mean that the encoded value for a certain street is the weighted average between the mean target variable of the observations of this street and the mean of the district this street is in. (one varaiable level higher). This method shrinks the importance of the potentially few observations for one street and takes the bigger picture into account, thereby reducing the overfitting problem shown before when we had only a couple of observations for a given street.</p>
+
+<p>The question may now arise how we are determining the weighting factor lambda. Using the methodology of the paper in [1], lambda is defined as:</p>
+
+<p><img src="/assets/post_images/richter/picture8.png" alt="" /></p>
+
+<p>Where m is defined as the ratio of the variance within the group (street) divided by the variance of the main group (district). That formula makes intuitive sense when we consider a street with a few observations which differ massively in their damage grade. The mean damage grade of this street would therefore suffer from high bias and variance (high sigma). If this street is in a low variance district (low tau), it would be sensible to drag the mean of the street into the direction of the district. This is essentially what the m coefficient captures.</p>
+
+<p><img src="/assets/post_images/richter/picture9.png" alt="" /></p>
+
+<p>It is worth mentioning that the overall model performance in-sample will drop when applying the Empirical Bayes-shrinkage method compared to using a normal target encoder. This is not surprising since we were dealing with an overfitted model before.</p>
+
+<p>Lastly, we run our model again in order to see whether our actions improved the overall model performance. The resulting F1 score of 76.01% tells us that our changes results in an overall improvement.</p>
+
+<h2 id="06-feature-selection">06 Feature selection</h2>
+
+<p>At this point, it is fair to ask ourselves whether we need all the variables we currently use in our prediction model. If possible, we would like to work with as few features as possible (parsimonious property) without losing out too much in our scoring variable.</p>
+
+<p>One benefit of working with tree models is ability to display feature importance. This metrics indicates how important each feature is for our prediction making. The following code and graph displays the variables nicely.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fimportance</span> <span class="o">=</span> <span class="n">main_rmc_model</span><span class="p">[</span><span class="s">"model"</span><span class="p">].</span><span class="n">feature_importances_</span>
+<span class="n">fimportance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">fimportance_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"f_imp"</span><span class="p">]</span> <span class="o">=</span> <span class="n">fimportance</span>
+<span class="n">fimportance_df</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"col"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dummy_train</span><span class="p">.</span><span class="n">columns</span>
+<span class="n">fimportance_df</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s">"f_imp"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"f_imp"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"col"</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">fimportance_df</span><span class="p">,</span>
+                <span class="n">palette</span><span class="o">=</span><span class="s">"GnBu_d"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">"major"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Feature Importance in %"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Features"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}\feature_importance.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/richter/picture10.png" alt="" /></p>
+
+<p>As we can see from the graph above, the most important variables to predict the damage grade of a house is the average damage grade of the different geo-locations. This makes sense, since the level of destruction of one house is likely to be correlated with the average damage of the houses around.</p>
+
+<h2 id="061-low-importance-of-binary-variables">06.1 Low importance of binary variables</h2>
+<p>The feature importance also shows that nearly all binary variables have a low feature importance, meaning they are providing the model with little to no predictive information. In order to understand that better we take a look into the average of all binary variables, which is a number between zero and one.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">binary_variables</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="s">"binary_variables"</span><span class="p">]</span>
+<span class="n">mean_binary</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dummy_train</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">binary_variables</span><span class="p">].</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">mean_binary</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"type"</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_binary</span><span class="p">.</span><span class="n">index</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"type"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">mean_binary</span><span class="p">,</span>
+                <span class="n">palette</span><span class="o">=</span><span class="s">"GnBu_d"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">"both"</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">"major"</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">mean_binary</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s">"type"</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s">"{}\binaries_mean.png"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">output_path</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/post_images/richter/picture11.png" alt="" /></p>
+
+<p>As can be seen above, nearly all variables have a mean below ten percent. That implies that most rows are equal to zero, a phenomenon we normally describe as sparsity. Furthermore, it is visible that the binary variables with an average above ten percent have also a higher feature importance within our prediction model.</p>
+
+<p>This finding is in line with the fact that tree models, and especially bagging models like the currently used Random Forest, <a href="https://medium.com/r/?url=https%3A%2F%2Fpapers.nips.cc%2Fpaper%2F7562-when-do-random-forests-fail.pdf">do not work well with sparse data</a>. Furthermore, it can be said that a binary variable which is nearly always zero (e.g. has_secondary_usage_school), simply does not carry that much meaning given the low correlation with the target.</p>
+
+<p>Using cross-validation, we find that keeping features which have an importance of minimum 0.01%, leaves us with the same F1 score compared to using all features. This leaves us with 53 variables in total. This number, relative to the amount of rows we have (260k) seems reasonable and therefore appropriate for the task.</p>
+
+<h2 id="07-imbalance-of-damagegrades">07 Imbalance of damage grades</h2>
+<p>One of our key learnings in this challenge was how to handle the massive imbalance of the target variable. Namely, not to touch it at all!</p>
+
+<p>When looking at the chart below, we can see that the first damage grade does not nearly appear as often as the second damage grade. It may be tempting now to apply some over- or undersampling to the data in order to better balance the data and to show the model an equal amount of each damage grade. The main problem with this approach is that the test data comes from the same (imbalanced) distribution as the training data, meaning that improving the accuracy score for the lowest damage grade, through sampling methods, comes with the costs of a lower accuracy of the highest occurring, and therefore more important damage grade two.</p>
+
+<p><img src="/assets/post_images/richter/picture12.png" alt="" /></p>
+
+<h2 id="071-performance--concluding-remarks">07.1 Performance &amp; Concluding Remarks</h2>
+
+<p>Following all steps of this blogpost (with a few minor tweaks and hyperparameter tuning) led us to place 34 out of 2861 competitors.</p>
+
+<p><img src="/assets/post_images/richter/picture13.png" alt="" /></p>
+
+<p>We are overall quite happy with the placement, given the amount of work we put in. This challenge touched on many different aspects and taught us a lot. Data Science Challenges are a perfect learning opportunity since they are very close to real life problems.</p>
+
+<p>We are looking forward to our next one!</p>
+<h3 id="references">References</h3>
+<p>[1] Micci-Barreca, Daniele. (2001). A Preprocessing Scheme for High-Cardinality Categorical Attributes in Classification and Prediction Problems.. SIGKDD Explorations. 3. 27–32. 10.1145/507533.507538.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#data-challenge" class="page__taxonomy-item" rel="tag">Data Challenge</a><span class="sep">, </span>
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-06-30T00:00:00+02:00">June 30, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Richter%27s+Predictor-+Data+Challenge+from+DrivenData%20http%3A%2F%2Flocalhost%3A4000%2Fdata%2520challenge%2Fpython%2FRichter%27s-Predictor-Data-Challenge-from-DrivenData%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520challenge%2Fpython%2FRichter%27s-Predictor-Data-Challenge-from-DrivenData%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdata%2520challenge%2Fpython%2FRichter%27s-Predictor-Data-Challenge-from-DrivenData%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/data%20journalism/python/dash/Multilabel-Genre-Predictor-with-Interactive-Dashboard/" class="pagination--pager" title="Multi-label Genre Predictor with Interactive Dashboard
+">Previous</a>
+    
+    
+      <a href="/image%20recognition/python/Using-Python-to-do-Your-Homework/" class="pagination--pager" title="Using Python to do Your Homework
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

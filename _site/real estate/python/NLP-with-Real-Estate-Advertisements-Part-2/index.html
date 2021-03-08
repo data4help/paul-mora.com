@@ -1,0 +1,828 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>NLP with Real Estate Advertisements - Part 2 - Econometrics &amp; Data Science</title>
+<meta name="description" content="Applying our NLP feature vector to the Gradient Boosting model.">
+
+
+  <meta name="author" content="Paul Mora">
+  
+  <meta property="article:author" content="Paul Mora">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Econometrics & Data Science">
+<meta property="og:title" content="NLP with Real Estate Advertisements - Part 2">
+<meta property="og:url" content="http://localhost:4000/real%20estate/python/NLP-with-Real-Estate-Advertisements-Part-2/">
+
+
+  <meta property="og:description" content="Applying our NLP feature vector to the Gradient Boosting model.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/article_images/real_estate/cover8.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-12T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/real%20estate/python/NLP-with-Real-Estate-Advertisements-Part-2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Paul Mora",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Econometrics & Data Science Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Econometrics & Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/article_images/real_estate/cover8.png" alt="NLP with Real Estate Advertisements - Part 2" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/general_images/author.jpg" alt="Paul Mora" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Paul Mora</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Econometrician &amp; Data Scientist at STATWORX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:paul.michael.mora.sancho@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/paul-mora-53a727168/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="NLP with Real Estate Advertisements - Part 2">
+    <meta itemprop="description" content="Applying our NLP feature vector to the Gradient Boosting model.">
+    <meta itemprop="datePublished" content="2020-05-12T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">NLP with Real Estate Advertisements - Part 2
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Applying our NLP feature vector to the Gradient Boosting model.</p>
+
+<p>Recall from Part 1 of analyzing real estate advertisement descriptions that we prepared our data for modeling by splitting it into tokens and removing common real estate stop words. These initial steps made it easier to visualize our text data, but before we can use the text data in models, we need to put our words in some kind of numeric format. This is because ML models can only take numeric data as inputs.</p>
+
+<p>In this article, we show how we prepared the data for use in machine learning models using a TF-IDF vectorizer, and how these features impact the model.</p>
+
+<p>This article proceeds as follows:</p>
+<ol>
+  <li>TF-IDF vectorization of text features</li>
+  <li>Inclusion of TF-IDF features in XG-Boost model</li>
+  <li>PCA for dimensionality reduction of text features</li>
+  <li>Conclusion</li>
+</ol>
+
+<h2 id="01-tf-idf-vectorization-of-textfeatures">01 TF-IDF Vectorization of Text Features</h2>
+
+<p>TF-IDF stands for Text Frequency-Inverse Document Frequency. It is a ratio of how often a word appears in a given text, compared to how often that word appears in all texts.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_1.png" alt="Equation for TF-IDF t=term, d=Individual document, D=corpus of all documents" /></p>
+
+<p>To understand how TF-IDF vectorization works, we’ll look at a simplified example. In our example, we have 2 short real estate advertisement descriptions where stopwords have been removed.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_2.png" alt="" /></p>
+
+<p>Note that Advertisement 1 contains 6 words, whereas Advertisement 2 only contains 5 words. Both advertisements contain the term “for sale”, though these words are in a different position in each of the advertisements.</p>
+
+<p>To calculate the TF-IDF score for each advertisement, we first need to calculate the inverse document frequency, IDF, for each word. The first step in calculating IDF is to divide the total number of documents, N, by the number of documents containing the given word. Then, this inverse fraction is logarithmically scaled.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_3.png" alt="Formula for calculating IDF" /></p>
+
+<p>Note that only the words “for” and “sale” have a lower IDF score, since they are the only words that appear in both documents. All other words only appear in one document each, so they each receive the same score.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_4.png" alt="" /></p>
+
+<p>Next, for each document, the term frequency (Tf)is calculated. This is simply a count of how often each term appears in the document. Since each advertisement only has 5 or 6 words and each word only appears once, the term frequency is never higher than 1 for each document.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_5.png" alt="" /></p>
+
+<p>With term frequency for each document, a matrix multiplication is done with the term frequencies and inverse document frequencies to arrive at the final TF-IDF vector for each document.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_6.png" alt="" /></p>
+
+<p>TF-IDF scores for each advertisementNote that the scores for the words that appear in Advertisement 2 receive a are always a bit higher than the scores for the words in Advertisement 1. Since Advertisement 2 contains fewer words than Advertisement 1, each word is counted as relatively more important.</p>
+
+<p>To better understand how TF-IDF vectorizes our Spanish real estate data set, we’ll look at the same example we used in Part 1 of analyzing subsets of “cheap” and “expensive” homes in our data. Recall from Part 1 that we defined “cheap” homes as the most inexpensive 5% of our data, those under €75,000, and the “expensive” homes as the most expensive 5% of our data, those above €1.7 million.</p>
+
+<p>The TF-IDF scores for the cheapest and most expensive properties are shown below. The TF-IDF scores shown are the sum of all scores for the word for each advertisement that was included in the “cheap” or “expensive” category.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cheap_property_TF_IDF_scores</span> <span class="o">=</span>
+<span class="p">[(</span><span class="s">'town'</span><span class="p">,</span> <span class="mf">122.68691198513302</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'village'</span><span class="p">,</span> <span class="mf">85.8624409730794</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'like'</span><span class="p">,</span> <span class="mf">84.06423081796622</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'need'</span><span class="p">,</span> <span class="mf">72.47179535414357</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'terrace'</span><span class="p">,</span> <span class="mf">71.42720081950334</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'large'</span><span class="p">,</span> <span class="mf">68.99777093615201</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'townhouse'</span><span class="p">,</span> <span class="mf">68.9844994563653</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'family'</span><span class="p">,</span> <span class="mf">63.417517090288484</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'space'</span><span class="p">,</span> <span class="mf">62.07432797305012</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'build'</span><span class="p">,</span> <span class="mf">60.04214108962623</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'distribute'</span><span class="p">,</span> <span class="mf">58.4163261755536</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'street'</span><span class="p">,</span> <span class="mf">58.24476489238489</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'situate'</span><span class="p">,</span> <span class="mf">57.41386787457465</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'close'</span><span class="p">,</span> <span class="mf">54.99513021566562</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'child'</span><span class="p">,</span> <span class="mf">53.1243500223459</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'good'</span><span class="p">,</span> <span class="mf">50.895927008310515</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'ideal'</span><span class="p">,</span> <span class="mf">50.66644469452883</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'size'</span><span class="p">,</span> <span class="mf">47.013810045109445</span><span class="p">)]</span>
+
+<span class="n">expensive_propertytfidf_list</span> <span class="o">=</span>
+<span class="p">[(</span><span class="s">'villa'</span><span class="p">,</span> <span class="mf">217.80253394946453</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'view'</span><span class="p">,</span> <span class="mf">147.775603675447</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'sea'</span><span class="p">,</span> <span class="mf">124.69304169060362</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'build'</span><span class="p">,</span> <span class="mf">105.68834130627678</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'luxury'</span><span class="p">,</span> <span class="mf">98.60403119678404</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'exclusive'</span><span class="p">,</span> <span class="mf">93.06584872644288</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'modern'</span><span class="p">,</span> <span class="mf">85.62951731804527</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'beautiful'</span><span class="p">,</span> <span class="mf">85.62351304555642</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'design'</span><span class="p">,</span> <span class="mf">74.60755941148277</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'offer'</span><span class="p">,</span> <span class="mf">70.22014987779879</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'minute'</span><span class="p">,</span> <span class="mf">67.10389304885832</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'beach'</span><span class="p">,</span> <span class="mf">64.12585728939085</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'unique'</span><span class="p">,</span> <span class="mf">63.49425807437234</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'spectacular'</span><span class="p">,</span> <span class="mf">61.895439206382186</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'high'</span><span class="p">,</span> <span class="mf">58.92975340566454</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'town'</span><span class="p">,</span> <span class="mf">58.88803267728475</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'large'</span><span class="p">,</span> <span class="mf">57.488549315155126</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'stunning'</span><span class="p">,</span> <span class="mf">55.85328236142857</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'quality'</span><span class="p">,</span> <span class="mf">53.57454240044263</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">'style'</span><span class="p">,</span> <span class="mf">51.88205837353272</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>These words are many of the same words that were included in the “cheap” and “expensive” wordclouds.</p>
+
+<p>The TF-IDF vectorizer has a few hyperparameters that, when adjusted, change the vector they create. Perhaps the most important of these hyperparameters are <code class="language-plaintext highlighter-rouge">min_df</code> and <code class="language-plaintext highlighter-rouge">max_df</code>. Min_df defines the minimum number of documents in which a word must appear in order for it to be counted. Setting this value to 0.05, for example, means that words which appear in only 5% of the documents, or less, are not included. In the context of real estate listings, this would likely exclude words like a particular street name or seldom-used adjective that only occur in one advertisement and can prevent overfitting. Max_df, on the other hand, defines the maximum number of documents in which a word can appear. This prevents words which appear in almost every listing from being included in the feature vector. Terms like “for sale” would likely be excluded with this metric.</p>
+
+<p>Below is a list of some of the words which were excluded with the min_df=0.02 and max_df=.90 with our real estate dataset. This means we excluded words that don’t exist in at least 2% of all property advertisements, as well as words that exist in more than 90% of all advertisements.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">selected_exluded_words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'kennel'</span><span class="p">,</span> <span class="s">'ciencias'</span><span class="p">,</span> <span class="s">'mayores'</span><span class="p">,</span> <span class="s">'castiilo'</span><span class="p">,</span> <span class="s">'montroy'</span><span class="p">,</span> <span class="s">'worthy'</span><span class="p">,</span> <span class="s">'furniture'</span><span class="p">,</span> <span class="s">'ricardo'</span><span class="p">,</span> <span class="s">'fend'</span><span class="p">,</span> <span class="s">'españa'</span><span class="p">,</span> <span class="s">'iron'</span><span class="p">,</span> <span class="s">'rotas'</span><span class="p">,</span> <span class="s">'sans'</span><span class="p">,</span> <span class="s">'alike'</span><span class="p">,</span> <span class="s">'portals'</span><span class="p">,</span> <span class="s">'dividable'</span><span class="p">,</span> <span class="s">'majestically'</span><span class="p">,</span> <span class="s">'ladder'</span><span class="p">,</span> <span class="s">'communicate'</span><span class="p">,</span>  <span class="s">'orientation'</span><span class="p">,</span>  <span class="s">'grass'</span><span class="p">,</span>
+<span class="s">'visited'</span><span class="p">,</span> <span class="s">'identify'</span><span class="p">,</span> <span class="s">'setting'</span><span class="p">,</span> <span class="s">'café'</span><span class="p">,</span> <span class="s">'specimen'</span><span class="p">,</span> <span class="s">'dorm'</span><span class="p">,</span> <span class="s">'unsurpassed'</span><span class="p">,</span> <span class="s">'later'</span><span class="p">,</span> <span class="s">'tarred'</span><span class="p">,</span> <span class="s">'oil'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Limiting the NLP features considered in this way decreased the dimensionality of our TF-IDF feature matrix from 13,233 columns to 158 columns, meaning 158 terms were then used to train the model. This drastically decreases the dimensionality of the NLP feature vector, as well as decreasing potential noise.</p>
+<h2 id="02-inclusion-of-the-nlp-features-in-the-xg-boostmodel">02 Inclusion of the NLP features in the XG-Boost model</h2>
+
+<p>These 158 additional features were then fed in as additional training features to the XG-Boost model. The model’s hyperparameters were also tuned using GridSearchCV.</p>
+
+<p>The improvements in performance were quite surprising. The best MAPE score achieved on the first, and hardest to predict, quintile of data using the baseline features was a 46.74 % error. Including the 158-feature TF-IDF matrix, this error was cut nearly in half to 27.01%.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_7.png" alt="MAPE of XG-Boost model trained with log features" /></p>
+
+<p><img src="/assets/post_images/real_estate/picture8_8.png" alt="MAPE of XG-Boost model trained with log features and 158 TF-IDF features" /></p>
+
+<p>We further investigated the impact of the additional NLP features by looking at observations where the NLP features led to especially large model perfomance gains.</p>
+
+<p>We identified almost 50 properties where the prediction improvement using NLP was more than 100%. Of these, nearly all were properties where the “logs-only” model had predicted much too high.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_9.png" alt="Advertisement predictions that saw some of the highest improvements in performance with including NLP features" /></p>
+
+<p>The word “opportunity” seems to be one that really helps the model learn that a property should be valued lower. The inclusion of the words “town”, “village” and “rural” also fits with our understanding of words associated with inexpensive properties found in Part 1.</p>
+
+<p>The inclusion of NLP features improved the overall model performance drastically. However, there were some individual observations where including the NLP features increased the absolute percentage error for those properties. Upon closer investigation, many of these contained no description. This then makes sense that the model trained on a feature set which includes NLP features did a worse job predicting these observations with no description. The model now relies more on the NLP features and less on the original features. So when there are no NLP features, the model does a worse job of predicting since it is putting less weight on the original features.</p>
+
+<h2 id="03-dimensionality-reduction-of-text-features-usingpca">03 Dimensionality reduction of text features using PCA</h2>
+
+<p>It’s clear that the inclusion of NLP features greatly improved model performance. However, the number of features it adds is quite large - the NLP feature vector adds 158 additional features.</p>
+
+<p>One of the most common methods for reducing dimensionality in input features is Principal Component Analysis, or PCA. PCA works by projecting the features onto a smaller (lower-dimension) vector space.</p>
+
+<p>We started with mapping the 158-NLP feature matrix onto an 8-feature PCA feature space.</p>
+
+<p><img src="/assets/post_images/real_estate/picture8_10.png" alt="MAPE for each quintile using 8-feature PCA of the NLP feature matrix." /></p>
+
+<p>The MAPE in each price quintile is lower (better) than using the logged features alone, but significantly higher than when using all 158 NLP features.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Adding the full 158 NLP features greatly improved model performance. Using only 8 PCA principal components still improves model performance over the original model, but not nearly as much as including all 158 features.</p>
+
+<p>The decision to include all 158 features or only the 8 PCA features depends on what is needed from the model. In this case, it is likely that the gains in performance outweigh the slightly longer prediction time caused by including all NLP features.</p>
+
+<p>In the next article, we summarize the work done so far and look forward to potential next steps.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      <a href="/categories/#real-estate" class="page__taxonomy-item" rel="tag">Real Estate</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-12T00:00:00+02:00">May 12, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=NLP+with+Real+Estate+Advertisements+-+Part+2%20http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FNLP-with-Real-Estate-Advertisements-Part-2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FNLP-with-Real-Estate-Advertisements-Part-2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freal%2520estate%2Fpython%2FNLP-with-Real-Estate-Advertisements-Part-2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/real%20estate/python/NLP-with-Real-Estate-Advertisements-Part-1/" class="pagination--pager" title="NLP with Real Estate Advertisements - Part 1
+">Previous</a>
+    
+    
+      <a href="/real%20estate/python/Conclusion-Predicting-Real-Estate-Prices-with-Features-Scraped-from-the-Web/" class="pagination--pager" title="Conclusion - Predicting Real Estate Prices with Features Scraped from the Web
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/classification/tutorial/python/Classifier-Evaluation-Methods-A-Hands-On-explanation/" rel="permalink">Classifier Evaluation Methods - A Hands-On Explanation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Accuracy/ Recall/ Precision/ Confusion Matrix/ ROC Curve/ AUC 
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/web%20scraping/r/How-the-People-Really-Voted/" rel="permalink">How the People Really Voted
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Why geographically correct maps show elections results inaccurately &lt;/em
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/reinforcement%20learning/python/Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake/" rel="permalink">Human vs. Machine — Reinforcement Learning in the Context of Snake
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blogpost elaborates on how to implement a reinforcement algorithm, which not only masters the game “Snake”, it even outperforms any human in a game with...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/data%20journalism/r/United-for-30-Years-Catching-up-to-West-Germany/" rel="permalink">United for 30 Years — Catching up to West Germany
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> Visualizing 30 years of economic data between East and West Germany 
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/data4help" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Paul Mora. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'AZI2EKWO49',
+  apiKey: 'af40085957e518d9a9f4b35cf22bb3ca',
+  indexName: 'test_NAME',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
