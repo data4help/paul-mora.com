@@ -1,5 +1,5 @@
 ---
-title: "DengAI2: The application of a scikit-learn pipeline for forecasting purposes"
+title: "DengAI Challenge Second Attempt: Building a scikit-learn pipeline"
 categories:
   - Time Series
   - Python
@@ -518,7 +518,7 @@ In contrast to how the paper suggests, we do not compare the performance of the 
 
 We therefore apply the same transformation to the mean scoring function as is also applied to the $R^2$ value.
 
-$$adj. mean = 1 - \left( \frac{(1-mean) * (nobs - 1)}{nobs-nfeatures-1} \right)$$
+$`adj. mean = 1 - \left( \frac{(1-mean) * (nobs - 1)}{nobs-nfeatures-1} \right)`$
 
 In the formula above the *mean* denotes the averaged scoring function from the cross-validation using a certain value of *e*. *nobs* stand for the number of observations which were used in the training. *nfeatures* describes the number of features which resulted from this procedure using *e*.
 
@@ -737,7 +737,7 @@ binary_target.value_counts().plot.bar(ax=axs[1])
 
 
     
-![png](output_32_1.png)
+![](_posts/dengai/output_32_1.png)
     
 
 
@@ -822,7 +822,7 @@ axs.set_xlabel("Predicted Values")
 
 
     
-![png](output_36_1.png)
+![](_posts/dengai/output_36_1.png)
     
 
 
