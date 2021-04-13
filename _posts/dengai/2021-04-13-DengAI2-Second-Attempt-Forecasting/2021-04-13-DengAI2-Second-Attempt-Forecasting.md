@@ -1,5 +1,13 @@
 ---
-title: "DengAI Challenge Second Attempt: Building a scikit-learn pipeline"
+title: "
+Paul Mora
+Econometrician & Data Scientist at STATWORX
+
+ Germany
+Email
+GitHub
+LinkedIn
+DengAI Challenge Second Attempt: Building a scikit-learn pipeline"
 categories:
   - Time Series
   - Python
@@ -7,7 +15,7 @@ categories:
   - Regression
   - Smoother
 header:
-    image: title_picture.png
+    image: ./title_picture.png
 toc: true
 ---
 
@@ -70,7 +78,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_2_0.png)
+![png](./output_2_0.png)
     
 
 
@@ -155,7 +163,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_8_1.png)
+![png](./output_8_1.png)
     
 
 
@@ -204,7 +212,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_11_0.png)
+![png](./output_11_0.png)
     
 
 
@@ -243,7 +251,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_13_0.png)
+![png](./output_13_0.png)
     
 
 
@@ -472,7 +480,7 @@ save_prediction_results(test_pred_results)
 
 
     
-![png](output_26_1.png)
+![png](./output_26_1.png)
     
 
 
@@ -485,7 +493,7 @@ save_prediction_results(test_pred_results)
 
 
     
-![png](output_26_3.png)
+![png](./output_26_3.png)
     
 
 
