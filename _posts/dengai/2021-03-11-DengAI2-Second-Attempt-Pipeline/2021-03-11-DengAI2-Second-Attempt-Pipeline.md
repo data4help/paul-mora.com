@@ -730,7 +730,7 @@ binary_target.value_counts().plot.bar(ax=axs[1])
 ```
 
     
-![png](output_32_1.png)
+![png](/assets/article_images/dengai/0311/output_32_1.png)
     
 
 Before defining and arranging all pipeline steps we have to define all options which are used within the pipeline itself. We also state all the prediction models and potential hyper-parameters for those models. Note that this is done by stating the name of the pipeline step in lowercase and after two underscores we define which option of that class is parameterized. If for instance we would like to grid-search the sampling strategy of the SMOTE oversampling class, we have to wrote *smote__sampling_strategy*.
@@ -814,7 +814,7 @@ axs.set_xlabel("Predicted Values")
 
 
     
-![png](output_36_1.png)
+![png](/assets/article_images/dengai/0311/output_36_1.png)
     
 
 

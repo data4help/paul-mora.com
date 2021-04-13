@@ -7,7 +7,7 @@ categories:
   - Regression
   - Smoother
 header:
-    image: ./title_picture.png
+    image: /assets/article_images/dengai/0413/title_picture.png
 toc: true
 ---
 
@@ -70,7 +70,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_2_0.png)
+![png](/assets/article_images/dengai/0413/output_2_0.png)
     
 
 
@@ -110,7 +110,7 @@ Below we see that out-of-sample predictions from our model for the city San Juan
 
 As we can see, the MAE of around 15.7 is actually not too bad, though we are failing to accurately predict the spikes.
 
-![Forecasting for out-of-sample San Juan](last_attempt_forecast.png)
+![Forecasting for out-of-sample San Juan](/assets/article_images/dengai/0413/last_attempt_forecast.png)
 
 One positive aspect of our last attempt was to for allow multiple seasonalities through the STL part of the model. STL or *seasonal-trend decomposition using LOESS* is normally used to decompose a time series into its three components: seasonality, trend and residual. Splitting a time-series into its components comes handy when trying to make the series stationary, which normally would involve removing the trend and potentially even it's seasonality.
 
@@ -155,7 +155,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_8_1.png)
+![png](/assets/article_images/dengai/0413/output_8_1.png)
     
 
 
@@ -204,7 +204,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_11_0.png)
+![png](/assets/article_images/dengai/0413/output_11_0.png)
     
 
 
@@ -243,7 +243,7 @@ for i, city in enumerate(city_names):
 
 
     
-![png](output_13_0.png)
+![png](/assets/article_images/dengai/0413/output_13_0.png)
     
 
 
@@ -430,7 +430,7 @@ In order to have an idea of how good a classification model performs, we plot a 
 
 As already mentioned earlier, the classification model tend to have more False Positives than False Negatives, which is nicely visible through the confusion matrix below. The relatively poor performance is also likely the reason why this approach does not work as well as we hoped it would. It seems that the high spikes in values are not predictable with the features at hand.
 
-![Forecasting for out-of-sample San Juan](sj_95.png)
+![Forecasting for out-of-sample San Juan](/assets/article_images/dengai/0413/sj_95.png)
 
 ## Predictions
 
@@ -472,7 +472,7 @@ save_prediction_results(test_pred_results)
 
 
     
-![png](output_26_1.png)
+![png](/assets/article_images/dengai/0413/output_26_1.png)
     
 
 
@@ -485,7 +485,7 @@ save_prediction_results(test_pred_results)
 
 
     
-![png](output_26_3.png)
+![png](/assets/article_images/dengai/0413/output_26_3.png)
     
 
 
@@ -502,7 +502,7 @@ The two images though, also clearly show that the overall method does not seem s
 
 The achieved performance by the model after submitting our result on DrivenData.org also reflects our moderate success on predicting the target variable. Nevertheless, the journey taught us multiple lessons, and it will not be the last time we will work on the DengAI challenge.
 
-![Submitted predictions on DrivenData.org](score.png)
+![Submitted predictions on DrivenData.org](/assets/article_images/dengai/0413/score.png)
 
 ## Appendix
 
