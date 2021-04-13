@@ -8,8 +8,9 @@ header:
 toc: true
 ---
 
+*The workings of the underlying prediction pipeline*
 
-## DengAI Challenge
+## Background on the DengAI Challenge
 
 This post represents the second part out of a series of two blogpost discussing our second attempt of the DengAI forecasting challenge hosted by DrivenData.org. Within this challenge we are tasked to predict the number of dengue fever cases in two different cities, San Juan as well as Iquitos. What makes this challenge so difficult is that we are asked to forecast multiple years into the feature, even though we do not have very many observations for each city to begin with.
 
@@ -728,7 +729,9 @@ y_train[~binary_target].plot(ax=axs[0], linestyle="None", marker="o", color="blu
 binary_target.value_counts().plot.bar(ax=axs[1])
 ```
 
-![](/assets/post_images/dengai/output_32_1.png)
+    
+![png](output_32_1.png)
+    
 
 Before defining and arranging all pipeline steps we have to define all options which are used within the pipeline itself. We also state all the prediction models and potential hyper-parameters for those models. Note that this is done by stating the name of the pipeline step in lowercase and after two underscores we define which option of that class is parameterized. If for instance we would like to grid-search the sampling strategy of the SMOTE oversampling class, we have to wrote *smote__sampling_strategy*.
 
@@ -802,7 +805,18 @@ axs.set_ylabel("True Values")
 axs.set_xlabel("Predicted Values")
 ```
 
-![](/assets/post_images/dengai/output_36_1.png)
+
+
+
+    Text(0.5, 60.0, 'Predicted Values')
+
+
+
+
+    
+![png](output_36_1.png)
+    
+
 
 # Conclusion
 
