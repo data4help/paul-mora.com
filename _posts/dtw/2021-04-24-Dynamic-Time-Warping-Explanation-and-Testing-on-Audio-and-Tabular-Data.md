@@ -22,9 +22,9 @@ Another use case of time-series classification/ clustering is when trying to fin
 
 Lastly, when working with time-series data, it could happen that two or more series have **different lengths**. This problem is oftentimes a deal-breaker for many models, as most classification/ cluster algorithms are not equipped to deal with a varying amount of features.
 
-All of these problems can be solved with **Dynamic Time Warping** (DTW). The following post elaborates on how DTW works from a theoretical as well as practical point of view. The post starts by showing a basic situation in which calculating the euclidean distance leads us to the wrong conclusion and DTW can help. Afterwards we dive into the workings of DTW and show the mathematical foundation, using a basic numeric example. After that we implement the algorithm into Python code. In order to show the potential we show-case different examples. We start simple and cluster single words together. Then we increase the difficulty level and cluster entire sentences and even entire songs. To show that DTW also has strengths outside of sound-data, we also show how it can be applied to tabular data.
+All of these problems can be solved with **Dynamic Time Warping** (DTW), which is the topic of this post. We start by showing a basic situation in which using the euclidean distance would lead us to the incorrect conclusion and show how DTW can be beneficial. Afterwards we elaborate on the mathematical idea of DTW and illustrate its workings, using a simple example. After that we implement the algorithm into Python code. In order to show the potential of DTW, we show-case different usage areas, ranging from sound-data of different complexity to tabular data.
 
-We start the post by importing all the relevant packages. Note that we also import a  *_config* file in which only basic <code>matplotlib</code> standard settings are specified. Through importing these configurations in the beginning, we do not have to specify things like *font-size* every time we create a plot.
+We start the post by importing all the relevant packages we need later on. Note that we also import a  self-written *_config* file in which only basic <code>matplotlib</code> settings are specified. Through importing these configurations in the beginning, we do not have to specify things like *font-size* every time we create a plot.
 
 
 ```python
@@ -60,11 +60,11 @@ FIGURES_PATH = "../reports/figures"
 
 # Problem at hand
 
-Given that the similarity between two time-series could be easily interpreted as the similarity of two vectors, the idea could quickly arise to use the **euclidean distance**. The euclidean is defined as the sum of the squared elements of each corresponding element of two vectors. Or even more formal: The euclidean distance between vector p and q is defined as $$d(p, q) = \sqrt{\sum^n_{i=1} (q_i - p_i)^2}$$.
+Given that the similarity between two time-series could be easily interpreted as the distance of two vectors, the idea could quickly arise to use the **euclidean distance**. The euclidean is defined as the sum of the squared elements of each corresponding element of two vectors. Or even more formal: The euclidean distance between vector p and q is defined as $$d(p, q) = \sqrt{\sum^n_{i=1} (q_i - p_i)^2}$$.
 
-As already visible by the subscript *i* for each element of p **and** q, it is necessary for both time series to have equal length. This of course is especially problematic with sound-data. Here it could happen that you say the same word at a different pace, which would lead the sound-file to have a different length. One solution for that problem would be to simply clip the longer file, on order to match the size of the shorter file.
+As already visible by the subscript *i* for each element of p **and** q, it is necessary for both time series to have equal length. This of course is especially problematic with sound-data. Here it could happen that you say the same word at a different pace, which would lead the sound-files to have  different lengths. One solution to that problem would be to simply clip the longer file, in order to match the size of the shorter file.
 
-Below we find two functions for calculating the euclidean distance. The first functions clips the longer time-series in order for both time-series to have the same length. The second functions then deals with the actual calculation of the euclidean distance.
+Below we find two functions for calculating the euclidean distance. The first implements the aforementioned clipping, whereas the second functions implements the calculation of the Euclidean distance.
 
 
 ```python
@@ -84,7 +84,7 @@ def euclidean_distance_calculator(array1, array2):
     return round(dist, 2)
 ```
 
-Even though the euclidean distance is a easily understood and implementable method, it is heavily flawed when trying to find true similarities between different time-series. This is visualized through the example below. Here we have three Signals. The first two signals represent sine waves with a different frequency as well as amplitude. The third signal represents a mere straight line with a small slope.
+Even though the euclidean distance is a quickly understood and easily implementable method, it is heavily flawed when trying to find true similarities between different time-series. This is visualized through the example below. Here we have three Signals. The first two signals represent sine waves with a different frequency as well as amplitude. The third signal represents a mere straight line with a small slope.
 
 
 ```python
@@ -124,7 +124,7 @@ print(f"The euclidean distance between Signal 2 and Signal 3 is {euclidean_dista
     The euclidean distance between Signal 2 and Signal 3 is 51.1
 
 
-As already feared, the euclidean distance suggests that Signal 2 and 3 are actually more similar then Signal 1. This behavior is, because of the aforementioned reasons, undesired. A powerful alternative of the euclidean distance is the so-called **Dynamic-Time-Warping** (DTW) distance. Using the <code>fastdtw</code> implementation, we find a result which align with our initial intuition.
+As already feared, the euclidean distance suggests that Signal 2 and 3 are actually more similar than Signal 1. This behavior is, because of the aforementioned reasons, undesired. A powerful alternative of the euclidean distance is the so-called **Dynamic-Time-Warping** (DTW) distance. Using the <code>fastdtw</code> implementation, we find a result which aligns with our initial intuition.
 
 
 ```python
@@ -138,19 +138,19 @@ print(f"The DTW distance between Signal 2 and Signal 3 is {round(fastdtw(signal2
 
 # The workings of Dynamic-Time-Warping
 
-The fundamental differences between the euclidean distance and the DTW distance is that the former is simply comparing element by element, whereas the second algorithm is actively trying to look for the closest possible connections between two observations within both series.
+The fundamental differences between the euclidean distance and the DTW distance is that the former is simply comparing the sequences element by element, whereas the second algorithm is actively trying to look for the closest possible connections between two observations within each series.
 
 To better show that, let us define the following two sequences:
-$$A = a[0], a[1], ..., a[n]$$
+$$A = a[0], a[1], ..., a[n]$$ \quad
 $$B = b[0], b[1], ..., b[m]$$
 
-What DTW does it that it tries to match element $a[i]$ to the closest element of B, regardless of whether it is also at position *i*. Hence it would be possible to connect element $a[i]$ with element $b[i+4]$, if that would minimize the *distance* between these two. This *distance* is oftentimes calculated by using the euclidean distance.
+What DTW is now doing is that it tries to match element $a[i]$ to the closest element of B, regardless of whether it is also at position *i*. Hence it would be possible to connect element $a[i]$ with element $b[i+4]$, if that would minimize the *distance* between these two. This *distance* is oftentimes calculated by using the euclidean distance, but other distance measures are possible.
 
-An important concept to understand Dynamic-Time-Warping is the so-called **Warping Path**. The warping path matches the different elements within A and B in such a way that the aggregated distance of all elements is minimized. Before showing how the warping function is doing that, we first introduce some boundaries on how the matching is allowed to happen.
+The magic of Dynamic-Time-Warping is the so-called **Warping Path**. The warping-path matches the different elements within A and B in such a way that the aggregated distance of all elements is minimized. Before showing how the warping function is doing that, we first introduce some boundaries on how the matching is allowed to happen.
 
 ## Restrictions on Warping Function
 
-As already mentioned, Dynamic-Time-Warping allows each element from one sequence to match with one or even multiple other elements from another series, even if this element is not at the same index position. Though, there are some restrictions on how DTW is allowed to match the different elements. The original paper from Hiroaki Sakoe and Seibi Chiba 1978 [1] state the following five conditions.
+As already mentioned, Dynamic-Time-Warping allows each element from one sequence to match with one or even multiple other elements from another series, even if this element is not at the same index position. Though, there are some restrictions on how DTW is allowed to do that. The original paper from Hiroaki Sakoe and Seibi Chiba 1978 [1] state the following five conditions.
 
 1. **Monotonic conditions**
 This condition says that we are not allowed to match the following element, if we have not matched the current element already. Meaning that we are not allowed to go back in time
@@ -172,9 +172,9 @@ $$|i(k) - j(k)| \leq r$$
 The slope constraint is put in place in order to prevent the warping path to go too extremely into one direction, which would lead to undesirable distortions
 
 ## Distance Matrix
-Now it is time to explore how the optimal warping path is found. In order to understand that, we have to introduce yet another concept, called the **distance matrix**. This concept is easily understood though. The distance matrix quantitatively describes the cost of each possible matching path between two or more sequences.
+Now it is time to explore how the optimal warping path is found. In order to understand that, we have to introduce yet another concept, called the **distance matrix**. The concept of which is easily understood though. *The distance matrix quantitatively describes the cost of each possible matching path between two or more sequences.*
 
-Building a distance-matrix happens in two steps. The first step is to calculate some sort of a base-cost matrix. This base-cost describes the distance between every combination of points of two sequences. For illustrative purposes, consider the following two sequences:
+Building such a distance-matrix happens in two steps. The first step is to calculate some sort of a base-cost matrix. The second step is then to iteratively filling the distance-matrix, using the base-cost matrix from the first step. This base-cost describes the distance between every combination of points of two sequences. For illustrative purposes, consider the following two sequences:
 
 
 ```python
@@ -205,13 +205,12 @@ plt.show()
     
 
 
-In order to make sure that the concept of the base-cost matrix is understood, let us consider an example. For example the third cell from above and second from the left. At this position the first array (shown on the columns) has a value of 2 and the second array (shown on the index) has a value of 4. The squared distance between these two elements is equal to 4, which is also shown in the matrix.
+In order to make sure that the concept of the base-cost matrix is understood, let us consider an example from the chart above. For instance, the third cell from the top and second from the left. At this position the first array (shown on the columns) has a value of 2 and the second array (shown on the index) has a value of 4. The squared distance between these two elements is equal to 4, which is also shown in the matrix. This value of 4 can be understood as the cost of matching these two elements.
 
-The base-cost matrix can be understood as the fixed cost one would incur when choosing to go along that path. This becomes clearer as soon as we start filling in the distance-matrix. The procedure of how to fill in the distance matrix is called *dynamic programming*. That is because we cannot fill everything in at once, but we have to go one step after another.
 
-A good analogy of understanding how we fill in the distance matrix is to imagine that we have a chess-king, which starts in the lower left of the matrix and then goes and explores the matrix. For those who do not know, a chess king can only move one square at a time in every direction. The procedure begins by filling in the bottom left element of the base-cost matrix into our yet still empty distance matrix (in our case a zero).
+After we build the entire base-cost matrix, it is now time to fill the distance-matrix. Filling the distance-matrix does not happen all at once. Rather it happens one after another, since each element depends on the previously calculated value. This approach is also referred to as **dynamic programming**. A good analogy of understanding how we fill in the distance matrix is to imagine that we have a chess-king, which starts in the lower left of the matrix and then goes and explores every path of the matrix. For those who do not know, a chess king can only move one square at a time in every direction. The procedure begins by filling in the bottom left element of the base-cost matrix into our yet still empty distance matrix (in our case a zero).
 
-The chess king then starts exploring the boundary cells. Every time the chess king moves to a new square he incurs the cost of the base-cost matrix, but he also drags with him the minimum adjacent cost of the squares behind him. The graphic below shows the result of that step. The calculation of the blue 22, for example was done by checking the base-cost element at that position (9) and summing the previous value to it (13). The same applies to the red 5 in the bottom row. Here again we first check the element of the base-cost matrix at that position (4) and sum the previous value (1) to it.
+The chess king then starts exploring the boundary cells of the distance-matrix. Every time the chess king moves to a new square **he incurs the cost of the base-cost matrix, but he also drags with him the minimum adjacent cost of the squares behind him**. The graphic below shows the result of that step. The calculation of the blue 22, for example was done by checking the base-cost element at that position (9) and summing the previous value to it (13). The same applies to the red 5 in the bottom row. Here again we first check the element of the base-cost matrix at that position (4) and sum the previous value (1) to it.
 
 ![](/assets/post_images/dtw/cost_matrix1.png)
 
@@ -307,12 +306,13 @@ plt.show()
 
     
 ![png](/assets/post_images/dtw/output_26_0.png)
-    
 
+
+It is important that the concept of the distance-matrix is clear to the reader. In case a more visual explanation is desired, we recommend the following [tutorial video](https://www.youtube.com/watch?v=_K1OsqCicBY).
 
 # Warping Band
 
-Of course not all time-series are as short as the two example sequences we used above. Especially audio data can be reach extensive lengths. When considering the finding of the optimal warping path from above, it quickly becomes a daunting task to find the optimal warping path with that many possibilities. In order to limit the amount of possibilities, and for making the problem computationally feasible, the window-size parameter is introduced. This parameter was already mentioned as the fourth restrictions from the original paper. In practice this window parameter looks like the following:
+Of course not all time-series are as short as the two example sequences we used above. Especially audio data can be reach extensive lengths. When considering the finding of the optimal warping path from above, it quickly becomes a daunting task to find the optimal warping path with that many possibilities. In order to limit the amount of possibilities, and for making the problem computationally feasible, the **window-size parameter** is introduced. This parameter was already mentioned as the fourth restrictions from the original paper. In practice this window parameter looks like the following:
 
 ![](/assets/post_images/dtw/warping_band.png)
 *Source: https://pyts.readthedocs.io/en/stable/auto_examples/metrics/plot_sakoe_chiba.html#sphx-glr-auto-examples-metrics-plot-sakoe-chiba-py*
