@@ -141,8 +141,7 @@ print(f"The DTW distance between Signal 2 and Signal 3 is {round(fastdtw(signal2
 The fundamental differences between the euclidean distance and the DTW distance is that the former is simply comparing the sequences element by element, whereas the second algorithm is actively trying to look for the closest possible connections between two observations within each series.
 
 To better show that, let us define the following two sequences:
-$$A = a[0], a[1], ..., a[n]$$ \quad
-$$B = b[0], b[1], ..., b[m]$$
+$$A = a[0], a[1], ..., a[n] \quad B = b[0], b[1], ..., b[m]$$
 
 What DTW is now doing is that it tries to match element $a[i]$ to the closest element of B, regardless of whether it is also at position *i*. Hence it would be possible to connect element $a[i]$ with element $b[i+4]$, if that would minimize the *distance* between these two. This *distance* is oftentimes calculated by using the euclidean distance, but other distance measures are possible.
 
