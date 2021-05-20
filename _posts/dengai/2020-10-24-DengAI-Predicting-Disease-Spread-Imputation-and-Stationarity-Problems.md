@@ -93,7 +93,7 @@ def pct_missing_data(self, data, cols, threshold, city_name):
 
 The resulting graph below shows four features which have more than 1 percent of observations missing. Especially the feature ndvi_ne, which describes satellite vegetation in the north-west of the city has a severe amount of missing data, with more around 20% of all observation missing.
 
-![](/assets/post_images/polarization/picture1_1.png)
+![](/assets/post_images/dengai/picture1_1.png)
 
 All imputation methods applied are compared using the [normalized root mean squared error](http://normalized%20root%20mean%20squared%20error) (NRMSE). We use this quality estimation method because of its capability for making variables with different scales comparable. Given that the NRMSE is not directly implemented in Python, we use the following snippet to implement it.
 
@@ -244,7 +244,7 @@ def imputation_table(self, data, cols, city_name):
 ```
 The resulting graph below clearly shows which method is to be favored, namely the k nearest neighbours approach. The linear method also performs well, even though not as well as the knn method. The more naive methods like ffill and bfill do not perform as strongly.
 
-![](/assets/post_images/polarization/picture1_2.png)
+![](/assets/post_images/dengai/picture1_2.png)
 
 Afterwards, we impute all features which had fewer observations missing than our threshold of one percent. That means all features except the first four. The code below selects the best method for each column and afterwards imputes all actual missing values.
 
@@ -318,7 +318,7 @@ If for example we have 12 consecutive missing observations, the knn method canno
 
 The image below, which was created with the beatiful missingno package, shows us that all four columns which were classified as being above our one percent threshold have at one point 15 consecutive missing observations. This makes it impossible to use the knn method for these columns and is the reason why we cannot use this imputation method for the heavily sparse columns.
 
-![](/assets/post_images/polarization/picture1_3.png)
+![](/assets/post_images/dengai/picture1_3.png)
 
 ## Model-based imputation methods
 
@@ -440,7 +440,7 @@ def fill_diff_columns(self, data, model, diff_columns,
 
 Below we can see that our work was worthwhile. For three out of four columns we find a superior performance of the model-based approach compared to the basic imputation methods. We are now left with a fully imputed dataset with which we can proceed.
 
-![](/assets/post_images/polarization/picture1_4.png)
+![](/assets/post_images/dengai/picture1_4.png)
 
 
 ## Stationarity Problems - Seasonality and Trend
@@ -451,7 +451,7 @@ There are two types of stationarity, namely strict and covariance stationarity. 
 
 For a time series to be covariance stationary, it is required that the unconditional first two moments, so the mean and variance, are finite and do not change with time. It is important to note that the time series is very much allowed to have a varying conditional mean. Additionally, it is required that the auto-covariance of a time series is only depending on the lag number, but not on the time itself. All these requirements are also stated below.
 
-![](/assets/post_images/polarization/picture1_5.png)
+![](/assets/post_images/dengai/picture1_5.png)
 
 There are many potential reasons for a time series to be non-stationary, including seasonalities, unit roots, deterministic trends and structural breaks. In the following section we will check and adjust our exogenous variable for each of these criteria to ensure stationarity and superior forecasting behavior.
 
@@ -527,7 +527,7 @@ def spike_finder(self, data, cols, city_name):
 
 The plot below shows the resulting 20 exogenous variables. Whether or not a predominant and significant threshold is met for a variable is indicated by a red dot on top of a spike. If a red dot is visible, that means that the time series has a significantly driving frequency and therefore a strong seasonality component.
 
-![](/assets/post_images/polarization/picture1_6.png)
+![](/assets/post_images/dengai/picture1_6.png)
 
 One possibility to cross-check the results of the Fourier Transforms is to plot the Autocorrelation function. If we would try have a seasonality of order X, we would expect a significant correlation with lag X. The following snippet of code plots the autocorrelation function for all features and highlights those features which are found to have a seasonal affect according to the Fourier Transform.
 
@@ -585,7 +585,7 @@ From the ACF plots below, we can extract a lot of useful information. First of a
 
 Additionally, we find some variables (e.g. ndvi_nw) which exhibit a constant significant positive autocorrelation. This is a sign of non-stationarity, which will be addressed in the next section which will be dealing of stochastic and deterministic trends.
 
-![](/assets/post_images/polarization/picture1_7.png)
+![](/assets/post_images/dengai/picture1_7.png)
 
 In order to get rid of the seasonal component, we decompose each seasonality-affected feature into its unaffected version its seasonality component and trend component. This is done by the STL decomposition which was developed by Cleveland, McRae & Terpenning (1990). STL is an acronym for "Seasonal and Trend decomposition using Loess", while Loess is a method for estimating non-linear relationships.
 
@@ -628,7 +628,7 @@ One more obvious way to breach the assumptions of covariance stationarity is if 
 
 A deterministic trend is the simplest form of a non-stationary process and time series which exhibit such a trend can be decomposed into three components:
 
-![](/assets/post_images/polarization/picture1_71.png)
+![](/assets/post_images/dengai/picture1_71.png)
 
 The most common type of trend is a linear trend. It is relatively straight forward to test for such a trend and remove it, if one is found. We apply the original Mann-Kendall test, which does not consider seasonal effects, which we already omitted in the part above. If a trend is found, it is simply subtracted from the time series. These steps are completed in the method shown below.
 
@@ -695,25 +695,25 @@ A unit root process is the generalization of the classic random walk, which is d
 
 To see why that is the case, we assume an autoregressive model where today's value only depends on yesterday's value and an error term.
 
-![](/assets/post_images/polarization/picture1_8.png)
+![](/assets/post_images/dengai/picture1_8.png)
 
 If we parameter a_1 would now be equal to one, the process would simplify to
 
-![](/assets/post_images/polarization/picture1_9.png)
+![](/assets/post_images/dengai/picture1_9.png)
 
 By repeated substitution we could also write this expression as:
 
-![](/assets/post_images/polarization/picture1_10.png)
+![](/assets/post_images/dengai/picture1_10.png)
 
 When now calculating the variance of y_t, we face a variance which is positively and linearly dependent on time, which violates the second covariance stationarity rule.
 
-![](/assets/post_images/polarization/picture1_11.png)
+![](/assets/post_images/dengai/picture1_11.png)
 
 This would have not been the case if a_1 would be smaller than one. That is also basically what is tested in an unit-root test. Arguably the most well-known test for an unit root is the Augmented Dickey Fuller (ADF) test. This test has the null hypothesis of having a unit root present in an autoregressive model. The alternative is normally that the series is stationary or trend-stationary. Given that we already removed a (linear) trend, we assume that the alternative is a stationary series.
 
 In order to be technically correct, it is to be said that the ADF test is not directly testing that a_1 is equal to zero, but rather looks at the characteristic equation. The equation below illustrates what is meant by that:
 
-![](/assets/post_images/polarization/picture1_12.png)
+![](/assets/post_images/dengai/picture1_12.png)
 
 We can see that the difference to the equation before is that we do not look at the level of y_t, but rather at the difference of y_t. Capital Delta represent here the difference operator. The ADF is now testing whether the small delta operator is equal to zero. If that would not be the case, then the difference between yesterday's and tomorrow's value would depend on yesterday's value. That would mean if the today's value is high, the difference between today's and tomorrow's value will also be large which is a self-enforcing and explosive process which clearly depends on time and therefore breaks the assumptions of covariance stationarity.
 
@@ -787,10 +787,10 @@ The following table shows that we do not find any significant ADF test, meaning 
 ## Finishing up
 Last but not least we take a look at our processed time series. It is nicely visible that none of the time series are trending anymore and they do not exhibit significant seasonality anymore.
 
-![](/assets/post_images/polarization/picture1_13.png)
+![](/assets/post_images/dengai/picture1_13.png)
 
 Additionally we take a look at how the distributions of all of the series look. It is important to note that there are no distributional assumptions of the feature variables when it comes to forecasting. That means that even if we find highly skewed variables, it is not necessary to apply any transformation.
 
-![](/assets/post_images/polarization/picture1_14.png)
+![](/assets/post_images/dengai/picture1_14.png)
 
 After sufficiently transforming all exogenous variables, it is now time to shift our attention on the forecasting procedure of both cities.
