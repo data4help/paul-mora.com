@@ -10,7 +10,7 @@ toc: true
 In this blog-post we discuss the concept of transfer-learning and show an implementation in Python, using tensorflow. Namely, we are using the pre-trained model *MobileNetV2* and apply it on the *Oxford Flower 102* dataset, in order to build a flower classification model. Lastly, we deploy the trained model on an ios device to make live predictions, using the phone's camera. The Github Repository for this project can be found [here](https://github.com/paulmora-statworx/flower_detection).
 
 <div>
-<img src="/assets/transfer-learning/gif/testing_gif.gif" width="300"/>
+<img src="/assets/transferlearning/gif/testing_gif.gif" width="300"/>
 </div>
 
 # The concept of Transfer-Learning
