@@ -7,11 +7,11 @@ categories:
 toc: true
 ---
 
+In this blog-post we discuss the concept of transfer-learning and show an implementation in Python, using tensorflow. Namely, we are using the pre-trained model *MobileNetV2* and apply it on the *Oxford Flower 102* dataset, in order to build a flower classification model. Lastly, we deploy the trained model on an ios device to make live predictions, using the phone's camera. The Github Repository for this project can be found [here](https://github.com/paulmora-statworx/flower_detection).
+
 <div>
 <img src="/assets/transfer-learning/gif/testing_gif.gif" width="300"/>
 </div>
-
-In this blog-post we discuss the concept of transfer-learning and show an implementation in Python, using tensorflow. Namely, we are using the pre-trained model *MobileNetV2* and apply it on the *Oxford Flower 102* dataset, in order to build a flower classification model. Lastly, we deploy the trained model on an ios device to make live predictions, using the phone's camera. The Github Repository for this project can be found [here](https://github.com/paulmora-statworx/flower_detection).
 
 # The concept of Transfer-Learning
 
@@ -27,10 +27,7 @@ That the apple detection would work also on detecting pears is only because appl
 
 The question might arise why we are not simply building one model for each job: one model for detecting apples, one model for detecting pears, and so on.  The reasons why this is sometimes not feasible are multi-fold. It could be, for example, that we lack the computational power, the time, or even the amount of images needed to train a  classification model that performs well. Especially the latter reason is a common problem within image detection.
 
-<div>
 <img src="/assets/transfer-learning/ppt/starting_point.png" width="500"/>
-</div>
-
 
 The reason why a small amount of images leads to a poor performing model is easily understood when considering the workings of a neural network. When initializing a neural network, all weight parameters are initialized randomly. Through the training process these weight parameters are constantly adjusted, using back-propagation based on gradient descent. If we do not have enough images of the object we would like to classify, the network is not going to have a sufficient amount of data in order to adjust the weights appropriately (i.e., learn).
 
@@ -96,7 +93,7 @@ To better understand that, we quickly explain the workings of traditional convol
 
 When applying depth wise convolution, we still apply the kernel to the image and calculate the dot product for every feature map. The difference is that we are then not summing the results of *all* feature maps together, but rather only sum the dot products for each feature map individually. This approach results in us having the same amount of feature maps before and after applying the convolution. This is also visible by looking at the second row of the table above, in which it says that both the input and output are equal to $tk$.
 
-![](../reports/external_images/depthwise_conv.png)
+![](/assets/transfer-learning/external_images/depthwise_conv.png)
 
 [Source](https://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/)
 
@@ -104,7 +101,7 @@ When applying depth wise convolution, we still apply the kernel to the image and
 
 Lastly, we apply a so-called projection layer. What this layer is doing is that it shrinks the number of feature maps. This is done by simply using again a 1x1 kernel, but this time not in order to increase the number of feature maps, but rather in order to decrease them. The amount by which the projection layer shrinks the number of feature maps is a user-defined input, denoted as *c*.
 
-![](../reports/external_images/pointwise_conv.png)
+![](/assets/transfer-learning/external_images/pointwise_conv.png)
 
 [Source](https://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/)
 
