@@ -4,6 +4,8 @@ title: "About"
 layout: archive
 ---
 
+<img style="float: left;" src="/assets/general_images/author.jpg", width="250">
+
 I currently work at the Data Science Consulting Firm [STATWORX](https://www.statworx.com/de/). Prior to that I was a
 Data Science Consultant at EY and an Econometrician at Oxera Consulting. My main field of work focuses on time
 series modelling preferably in Python.
