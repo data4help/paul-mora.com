@@ -4,8 +4,6 @@ categories:
   - Data Journalism
   - Python
   - Dash
-header:
-    image: /assets/article_images/movies/cover2.png
 toc: true
 ---
 

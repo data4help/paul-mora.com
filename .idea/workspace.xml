@@ -3,24 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="04146c0c-dc37-43ce-8fff-f3b922b5eaef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/transfer-learning/2021-05-21-Using-the-power-of-transfer-learning-for-building-a-flower-classifier.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/transfer-learning/2021-05-21-Using-the-power-of-transfer-learning-for-building-a-flower-classifier.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/base_graph.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/bottleneck_sizes.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/depthwise_conv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/flowers.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/mobilenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/original_model.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/pointwise_conv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/external_images/relu6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/figures/history_fine_tune_model.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/figures/relative_distribution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/figures/sample_images.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/gif/testing_gif.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/ppt/base_layer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/ppt/filtering_steps.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/ppt/mobilenetv2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/ppt/starting_point.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transferlearning/ppt/test1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_pages/blog.md" beforeDir="false" afterPath="$PROJECT_DIR$/_pages/blog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/classifier/2020-11-16-Classifier-Evaluation-Methods-A-Hands-On-explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/classifier/2020-11-16-Classifier-Evaluation-Methods-A-Hands-On-explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/dengai/2020-10-24-DengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/dengai/2020-10-24-DengAI-Predicting-Disease-Spread-Imputation-and-Stationarity-Problems.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/dengai/2020-11-06-DengAI-Predicting-Disease-Spread-STL-Forecasting: ARIMA:-Box-Jenkins.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/dengai/2020-11-06-DengAI-Predicting-Disease-Spread-STL-Forecasting: ARIMA:-Box-Jenkins.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/dengai/2021-03-11-DengAI2-Second-Attempt-Pipeline/2021-03-11-DengAI2-Second-Attempt-Pipeline.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/dengai/2021-03-11-DengAI2-Second-Attempt-Pipeline/2021-03-11-DengAI2-Second-Attempt-Pipeline.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/dengai/2021-04-13-DengAI2-Second-Attempt-Forecasting/2021-04-13-DengAI2-Second-Attempt-Forecasting.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/dengai/2021-04-13-DengAI2-Second-Attempt-Forecasting/2021-04-13-DengAI2-Second-Attempt-Forecasting.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/dtw/2021-04-24-Dynamic-Time-Warping-Explanation-and-Testing-on-Audio-and-Tabular-Data.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/dtw/2021-04-24-Dynamic-Time-Warping-Explanation-and-Testing-on-Audio-and-Tabular-Data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/east/2020-11-06-United-for-30-Years-Catching-up-to-West-Germany.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/east/2020-11-06-United-for-30-Years-Catching-up-to-West-Germany.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/homework/2020-08-03-Using-Python-to-do-Your-Homework.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/homework/2020-08-03-Using-Python-to-do-Your-Homework.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/movies/2020-05-14-And-the-Oscar-goes-to-....md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/movies/2020-05-14-And-the-Oscar-goes-to-....md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/movies/2020-05-17-Multilabel-Genre-Predictor-with-Interactive-Dashboard.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/movies/2020-05-17-Multilabel-Genre-Predictor-with-Interactive-Dashboard.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/polarization/2020-10-05-How-Polarized-Is-America-Really?.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/polarization/2020-10-05-How-Polarized-Is-America-Really?.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/polarization/2020-10-15-Polarization-in-the-Senate.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/polarization/2020-10-15-Polarization-in-the-Senate.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/polarization/2020-11-13-How-the-People-Really-Voted.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/polarization/2020-11-13-How-the-People-Really-Voted.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/portfolio/2020-08-27-Empirical-Evidence-to-common-Stock-Portfolio-Questions.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/portfolio/2020-08-27-Empirical-Evidence-to-common-Stock-Portfolio-Questions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/richter_predictor/2020-06-30-Richter's-Predictor-Data-Challenge-from-DrivenData.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/richter_predictor/2020-06-30-Richter's-Predictor-Data-Challenge-from-DrivenData.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/snake/2020-11-06-Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/snake/2020-11-06-Human-vs.-Machine-Reinforcement-Learning-in-the-Context-of-Snake.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/tutorial/2020-10-29-How-to-create-Country-Heatmaps-in-R.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/tutorial/2020-10-29-How-to-create-Country-Heatmaps-in-R.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

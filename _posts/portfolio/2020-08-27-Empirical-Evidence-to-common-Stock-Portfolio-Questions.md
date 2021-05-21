@@ -4,8 +4,6 @@ categories:
   - Portfolio
   - Finance
   - Python
-header:
-    image: /assets/article_images/portfolio/cover1.png
 toc: true
 ---
 

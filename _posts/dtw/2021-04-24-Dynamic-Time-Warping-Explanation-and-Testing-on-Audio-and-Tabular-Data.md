@@ -5,8 +5,6 @@ categories:
   - Time-Series
   - Clustering
   - Python
-header:
-    image: /assets/article_images/dtw/cover.jpg
 toc: true
 ---
 

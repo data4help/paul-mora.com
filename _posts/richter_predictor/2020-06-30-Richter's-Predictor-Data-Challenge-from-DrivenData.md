@@ -3,8 +3,6 @@ title: "Richter's Predictor- Data Challenge from DrivenData"
 categories:
   - Data Challenge
   - Python
-header:
-    image: /assets/article_images/richter/cover1.png
 toc: true
 ---
 

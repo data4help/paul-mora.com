@@ -3,8 +3,6 @@ title: "United for 30 Years — Catching up to West Germany"
 categories:
   - Data Journalism
   - R
-header:
-    image: /assets/article_images/east/cover.png
 toc: true
 ---
 

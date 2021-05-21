@@ -3,8 +3,6 @@ title: "DengAI: Predicting Disease Spread - Imputation and Stationarity Problems
 categories:
   - Time Series
   - Python
-header:
-    image: /assets/article_images/dengai/cover1.png
 toc: true
 ---
 

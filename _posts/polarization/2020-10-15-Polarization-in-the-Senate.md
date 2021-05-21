@@ -4,8 +4,6 @@ categories:
   - Data Journalism
   - Web Scraping
   - R
-header:
-    image: /assets/article_images/polarization/cover2.gif
 ---
 
 

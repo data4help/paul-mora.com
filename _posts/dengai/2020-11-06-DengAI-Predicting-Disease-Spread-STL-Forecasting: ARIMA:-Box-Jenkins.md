@@ -3,8 +3,6 @@ title: "DengAI: Predicting Disease Spread — STL Forecasting/ ARIMA/ Box-Jenkin
 categories:
   - Time Series
   - Python
-header:
-    image: /assets/article_images/dengai/cover2.png
 toc: true
 ---
 

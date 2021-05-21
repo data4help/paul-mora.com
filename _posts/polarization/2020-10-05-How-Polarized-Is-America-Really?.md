@@ -4,8 +4,6 @@ categories:
   - Data Journalism
   - Web Scraping
   - R
-header:
-    image: /assets/article_images/polarization/cover1.png
 ---
 
 <em> Evidence for increasing polarization from the voting record of the United States Congress </em>

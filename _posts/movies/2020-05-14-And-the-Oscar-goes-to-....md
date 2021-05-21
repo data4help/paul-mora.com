@@ -3,8 +3,6 @@ title: "And the Oscar goes to..."
 categories:
   - Data Journalism
   - Python
-header:
-    image: /assets/article_images/movies/cover1.png
 toc: true
 ---
 

@@ -3,8 +3,6 @@ title: "DengAI Challenge Second Attempt: Building a scikit-learn pipeline"
 categories:
   - Time Series
   - Python
-header:
-    image: /assets/article_images/dengai/cover3.png
 toc: true
 ---
 

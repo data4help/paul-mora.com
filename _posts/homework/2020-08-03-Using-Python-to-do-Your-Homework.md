@@ -3,8 +3,6 @@ title: "Using Python to do Your Homework"
 categories:
   - Image Recognition
   - Python
-header:
-    image: /assets/article_images/homework/cover1.png
 toc: true
 ---
 

@@ -6,8 +6,6 @@ categories:
   - Classification
   - Regression
   - Smoother
-header:
-    image: /assets/article_images/dengai/0413/title_picture.png
 toc: true
 ---
 

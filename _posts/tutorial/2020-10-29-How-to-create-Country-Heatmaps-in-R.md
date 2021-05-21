@@ -3,8 +3,6 @@ title: "How to create Country Heatmaps in R"
 categories:
   - Tutorial
   - R
-header:
-    /assets/article_images/tutorial/cover1.png
 toc: true
 ---
 
