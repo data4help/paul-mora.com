@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04146c0c-dc37-43ce-8fff-f3b922b5eaef" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_posts/transfer-learning/2021-05-21-Using-the-power-of-transfer-learning-for-building-a-flower-classifier.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/transfer-learning/2021-05-21-Using-the-power-of-transfer-learning-for-building-a-flower-classifier.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/base_graph.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/bottleneck_sizes.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/depthwise_conv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/flowers.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/mobilenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/original_model.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/pointwise_conv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/external_images/relu6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/figures/history_fine_tune_model.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/figures/relative_distribution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/figures/sample_images.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/gif/testing_gif.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/ppt/base_layer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/ppt/filtering_steps.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/ppt/mobilenetv2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/ppt/starting_point.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/article_images/transfer_learning/ppt/test1.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
