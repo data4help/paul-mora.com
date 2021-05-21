@@ -161,7 +161,7 @@ The computation gains are the main motivation of using MobileNet overall. The di
 It is also interesting to note that the MobileNetV2 does not use a traditional ReLU function, but rather a so-called ReLU6 activation function. As the name probably already suggests, this caps all positive values at positive six, preventing the activations from becoming too large.
 
 <div>
-<img src="/assets/transfer_learning/external_images/relu6.png" width="500" align="center"/>
+<img src="/assets/post_images/transfer_learning/external_images/relu6.png" width="500" align="center"/>
 </div>
 
 # Oxford Flower 102
