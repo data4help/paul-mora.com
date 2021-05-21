@@ -103,9 +103,7 @@ To better understand that, we quickly explain the workings of traditional convol
 
 When applying depth wise convolution, we still apply the kernel to the image and calculate the dot product for every feature map. The difference is that we are then not summing the results of *all* feature maps together, but rather only sum the dot products for each feature map individually. This approach results in us having the same amount of feature maps before and after applying the convolution. This is also visible by looking at the second row of the table above, in which it says that both the input and output are equal to $tk$.
 
-<center>
 ![](/assets/post_images/transfer_learning/external_images/depthwise_conv.png)
-</center>
 
 [Source](https://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/)
 
@@ -113,9 +111,7 @@ When applying depth wise convolution, we still apply the kernel to the image and
 
 Lastly, we apply a so-called projection layer. What this layer is doing is that it shrinks the number of feature maps. This is done by simply using again a 1x1 kernel, but this time not in order to increase the number of feature maps, but rather in order to decrease them. The amount by which the projection layer shrinks the number of feature maps is a user-defined input, denoted as *c*.
 
-<center>
 ![](/assets/post_images/transfer_learning/external_images/pointwise_conv.png)
-</center>
 
 [Source](https://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/)
 
@@ -127,9 +123,7 @@ The second step would then be to apply the depth wise convolution. Given that th
 
 Lastly, we decrease the number of feature channels again, using the projection layer. Herein we set the number of desired output channels equal to 24, which is therefore going to be the resulting number of output channels.
 
-<center>
 ![](/assets/post_images/transfer_learning/ppt/filtering_steps.png)
-</center>
 
 #### Motivation
 
@@ -372,9 +366,7 @@ class OxfordFlower102DataLoader:
 
 Given that we have quite a large number of flower categories to predict (102), and the fact that these categories are not balanced, we have to make sure that we have the same proportion of each class within the training, validation and test data in order to have a stronger model and a more meaningful model evaluation. This balance is ensured by using the <code> stratify </code> argument within the train-test split from <code> sklearn </code>. The following image shows the result of using that parameter: We can see that we have same proportions within the train, test and validation data.
 
-<center>
 ![](/assets/post_images/post_images/transfer_learning/figures/relative_distribution.png)
-</center>
 
 In order to also have a better understanding what the pre-processing of the images actually looks like, we show in the following nine example images from the trainings data. We see that all images are much darker than the original ones we saw before. That change of lighting comes from the MobileNetV2 pre-process function we applied. The image in the very middle of the lower matrix nicely shows the level of distortion we apply to the images. These augmentations of images are especially useful in cases like this one where we have such training little data, since it artificially increases the pool of images we can train our model with. It is to be said, though, that we are not applying these distortions on the test and validation data, since these heavy distortions don't occur in the model's final application and should therefore not be considered in the model's performance on real flower-images. 
 
