@@ -10,7 +10,9 @@ toc: true
 In this blog-post we discuss the concept of transfer-learning and show an implementation in Python, using tensorflow. Namely, we are using the pre-trained model *MobileNetV2* and apply it on the *Oxford Flower 102* dataset, in order to build a flower classification model. Lastly, we deploy the trained model on an ios device to make live predictions, using the phone's camera. The Github Repository for this project can be found [here](https://github.com/paulmora-statworx/flower_detection).
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/gif/testing_gif.gif" width="300" align="center"/>
+</center>
 </div>
 
 # The concept of Transfer-Learning
@@ -27,7 +29,9 @@ That the apple detection would work also on detecting pears is only because appl
 
 The question might arise why we are not simply building one model for each job: one model for detecting apples, one model for detecting pears, and so on.  The reasons why this is sometimes not feasible are multi-fold. It could be, for example, that we lack the computational power, the time, or even the amount of images needed to train a  classification model that performs well. Especially the latter reason is a common problem within image detection.
 
+<center>
 <img src="/assets/post_images/transfer_learning/ppt/starting_point.png" width="500" align="center"/>
+</center>
 
 The reason why a small amount of images leads to a poor performing model is easily understood when considering the workings of a neural network. When initializing a neural network, all weight parameters are initialized randomly. Through the training process these weight parameters are constantly adjusted, using back-propagation based on gradient descent. If we do not have enough images of the object we would like to classify, the network is not going to have a sufficient amount of data in order to adjust the weights appropriately (i.e., learn).
 
@@ -40,7 +44,9 @@ Therefore, we simply separate the pre-trained model into two pieces. The first p
 After removing the top-layer from the base-model, we simply stack one or several untrained layers on top of the headless base-model. It is important to note that the new top-layers can also have a different amount of categories compared to the previous top-layers. That means, if the pre-trained model was originally trained to classify 50 different dog breeds, we can remove the last dense layer which outputs a vector with length 50, and add a layer with 30 categories, in order to classify 30 different cat breeds.
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/ppt/base_layer.png" width="500" align="center"/>
+</center>
 </div>
 
 When stacking one or more top-layers on top of the lower levels, we have to re-train the entire model. It is important to note that we are solely intending to train the top-layers, not the base-model. We achieve that by freezing the weights of the base-model and therefore only training the newly added top layer with image data from the new domain. That is because jointly training the pre-trained model with the randomly initialized top-layers would result in gradient updates that are too large, and the pre-trained model would forget what it originally learned.
@@ -60,7 +66,9 @@ When choosing which pre-trained model to go for, we were influenced in our decis
 Before implementing that model right away, we take a look at its workings and what makes the model the better choice for being deployed on a mobile phone in contrast to any other model. For that we take a look at the [original paper](https://arxiv.org/pdf/1801.04381v4.pdf). More specifically, the model architecture of the network. The graphic below shows the different layers which were used when initially training this model. Each line represents one layer, which is repeated *n* times.
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/external_images/original_model.png" width="500" align="center"/>
+</center>
 </div>
 
 [Source](https://arxiv.org/pdf/1801.04381v4.pdf)
@@ -76,7 +84,9 @@ The main difference between the workings of the MobileNetV2 and other image clas
 One noteworthy aspect we gain from the table is that this approach is not using any pooling mechanism, and is altering the image's height and width solely using the stride parameter.
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/external_images/bottleneck_sizes.png" width="500" align="center"/>
+</center>
 </div>
 
 [Source](https://arxiv.org/pdf/1801.04381v4.pdf)
@@ -93,7 +103,9 @@ To better understand that, we quickly explain the workings of traditional convol
 
 When applying depth wise convolution, we still apply the kernel to the image and calculate the dot product for every feature map. The difference is that we are then not summing the results of *all* feature maps together, but rather only sum the dot products for each feature map individually. This approach results in us having the same amount of feature maps before and after applying the convolution. This is also visible by looking at the second row of the table above, in which it says that both the input and output are equal to $tk$.
 
+<center>
 ![](/assets/post_images/transfer_learning/external_images/depthwise_conv.png)
+</center>
 
 [Source](https://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/)
 
@@ -101,7 +113,9 @@ When applying depth wise convolution, we still apply the kernel to the image and
 
 Lastly, we apply a so-called projection layer. What this layer is doing is that it shrinks the number of feature maps. This is done by simply using again a 1x1 kernel, but this time not in order to increase the number of feature maps, but rather in order to decrease them. The amount by which the projection layer shrinks the number of feature maps is a user-defined input, denoted as *c*.
 
+<center>
 ![](/assets/post_images/transfer_learning/external_images/pointwise_conv.png)
+</center>
 
 [Source](https://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/)
 
@@ -113,7 +127,9 @@ The second step would then be to apply the depth wise convolution. Given that th
 
 Lastly, we decrease the number of feature channels again, using the projection layer. Herein we set the number of desired output channels equal to 24, which is therefore going to be the resulting number of output channels.
 
+<center>
 ![](/assets/post_images/transfer_learning/ppt/filtering_steps.png)
+</center>
 
 #### Motivation
 
@@ -161,7 +177,9 @@ The computation gains are the main motivation of using MobileNet overall. The di
 It is also interesting to note that the MobileNetV2 does not use a traditional ReLU function, but rather a so-called ReLU6 activation function. As the name probably already suggests, this caps all positive values at positive six, preventing the activations from becoming too large.
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/external_images/relu6.png" width="500" align="center"/>
+</center>
 </div>
 
 # Oxford Flower 102
@@ -169,7 +187,9 @@ It is also interesting to note that the MobileNetV2 does not use a traditional R
 In order to show the power of transfer-learning we chose the Oxford Flower 102 dataset, which can be found [here](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/). This dataset contains, as the name suggests, 102 different categories of flowers in the United Kingdom. Each flower category contains between 40 and 258 images, respectively. Obviously, this amount of data is far too little to train a sophisticated neural network from, which makes it a good testing example of transfer-learning.
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/external_images/flowers.jpeg" width="500" align="center"/>
+</center>
 </div>
 
 [Source](https://www.researchgate.net/figure/Examples-of-images-in-the-Oxford-Flower-102-Dataset-Corresponding-categories-are-given_fig7_318204948)
@@ -352,12 +372,16 @@ class OxfordFlower102DataLoader:
 
 Given that we have quite a large number of flower categories to predict (102), and the fact that these categories are not balanced, we have to make sure that we have the same proportion of each class within the training, validation and test data in order to have a stronger model and a more meaningful model evaluation. This balance is ensured by using the <code> stratify </code> argument within the train-test split from <code> sklearn </code>. The following image shows the result of using that parameter: We can see that we have same proportions within the train, test and validation data.
 
+<center>
 ![](/assets/post_images/post_images/transfer_learning/figures/relative_distribution.png)
+</center>
 
 In order to also have a better understanding what the pre-processing of the images actually looks like, we show in the following nine example images from the trainings data. We see that all images are much darker than the original ones we saw before. That change of lighting comes from the MobileNetV2 pre-process function we applied. The image in the very middle of the lower matrix nicely shows the level of distortion we apply to the images. These augmentations of images are especially useful in cases like this one where we have such training little data, since it artificially increases the pool of images we can train our model with. It is to be said, though, that we are not applying these distortions on the test and validation data, since these heavy distortions don't occur in the model's final application and should therefore not be considered in the model's performance on real flower-images. 
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/figures/sample_images.png" width="500" align="center"/>
+</center>
 </div>
 
 ## Model
@@ -663,7 +687,9 @@ Looking at the examples from the tensorflow [website](https://www.tensorflow.org
 Overall we are happy with the model performance, which reaches an accuracy of **93.17%** on the unseen test data.
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/figures/history_fine_tune_model.png" width="700" align="center"/>
+</center>
 </div>
 
 # Phone Application
@@ -720,5 +746,7 @@ textfile.close()
 After some adjustment in xcode, we can then deploy the app on any iOs device and use the camera for live prediction. The result of which can be seen on the gif below.
 
 <div>
+<center>
 <img src="/assets/post_images/transfer_learning/gif/testing_gif.gif" width="300" align="center"/>
+</center>
 </div>
