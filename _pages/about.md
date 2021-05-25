@@ -7,7 +7,7 @@ author_profile: true
 
 <div>
 <center>
-<img src="/assets/post_images/about/figures/author.jpg" width="500" align="center"/>
+<img src="/assets/post_images/about/author.png" width="500" align="center"/>
 </center>
 </div>
 
