@@ -5,6 +5,12 @@ layout: archive
 author_profile: true
 ---
 
+<div>
+<center>
+<img src="/assets/post_images/about/figures/author.jpg" width="500" align="center"/>
+</center>
+</div>
+
 I currently work at the Data Science Consulting Firm [STATWORX](https://www.statworx.com/de/) as a Data Scientist
 Consultant. Prior to that I was a Data Science Consultant at [EY](https://datascience.ey.com) and an Econometrician at
 [Oxera Consulting](https://www.oxera.com/expertise/data-science-and-analytics/).
