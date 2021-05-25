@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 <center>
-<img src="/assets/post_images/about/author.png" width="500" align="center"/>
+<img src="/assets/post_images/about/author.jpeg" width="300" align="center"/>
 </center>
 
 I currently work at the Data Science Consulting Firm [STATWORX](https://www.statworx.com/de/) as a Data Scientist
