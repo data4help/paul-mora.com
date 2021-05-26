@@ -5,12 +5,17 @@ layout: archive
 ---
 
 <center>
-<img src="/assets/post_images/about/author.png" width="200" align="center"/>
+<img src="/assets/post_images/about/author.png" width="300" align="center"/>
 </center>
+
+
+<a href="https://www.linkedin.com/in/paul-mora-53a727168/" class="github-button" align="left">LinkedIn</a>
+<a href="https://github.com/paulmora-statworx" class="btn btn--info" align="center">Github</a>
+<a href="CV" class="btn btn--info" align="right">Link Text</a>
 
 [LinkedIn](https://www.linkedin.com/in/paul-mora-53a727168/){: .btn .btn--info}{: .text-left}
 [Github](https://github.com/paulmora-statworx){: .btn .btn--info}{: .text-center}
-[Text](:{{ site.url }}/download/CV.pdf){: .btn .btn--info}{: .text-right}
+[CV[1]](:{{ site.url }}/download/CV.pdf){: .btn .btn--info}{: .text-right}
 
 I currently work at the Data Science Consulting Firm [STATWORX](https://www.statworx.com/de/) as a Data Scientist
 Consultant. Prior to that I was a Data Science Consultant at [EY](https://datascience.ey.com) and an Econometrician at
@@ -30,7 +35,5 @@ of Small Area Statistics and Smart Derivative Contracts.
 
 My educational background is in Econometrics and Finance, in which I hold a Master's Degree with Distinction from the
 University of Oxford and a Bachelor's Degree from the Goethe University Frankfurt.
-
-[Please find a CV of mine here][1]
 
 [1]:{{ site.url }}/download/CV.pdf
