@@ -8,6 +8,8 @@ layout: archive
 <img src="/assets/post_images/about/author.png" width="300" align="center"/>
 </center>
 
+
+
 <center>
 <a href="https://www.linkedin.com/in/paul-mora-53a727168/" class="btn btn--info">LinkedIn</a>
 <a href="https://github.com/paulmora-statworx" class="btn btn--info">Github</a>
