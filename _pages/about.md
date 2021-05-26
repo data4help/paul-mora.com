@@ -4,11 +4,11 @@ title: "About"
 layout: archive
 ---
 
+<div>
 <center>
 <img src="/assets/post_images/about/author.png" width="300" align="center"/>
 </center>
-
-
+</div>
 
 <center>
 <a href="https://www.linkedin.com/in/paul-mora-53a727168/" class="btn btn--info">LinkedIn</a>
