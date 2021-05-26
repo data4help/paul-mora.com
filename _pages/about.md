@@ -9,13 +9,9 @@ layout: archive
 </center>
 
 
-<a href="https://www.linkedin.com/in/paul-mora-53a727168/" class="github-button" align="left">LinkedIn</a>
-<a href="https://github.com/paulmora-statworx" class="btn btn--info" align="center">Github</a>
-<a href="CV" class="btn btn--info" align="right">Link Text</a>
-
-[LinkedIn](https://www.linkedin.com/in/paul-mora-53a727168/){: .btn .btn--info}{: .text-left}
-[Github](https://github.com/paulmora-statworx){: .btn .btn--info}{: .text-center}
-[CV[1]](:{{ site.url }}/download/CV.pdf){: .btn .btn--info}{: .text-right}
+<a href="https://www.linkedin.com/in/paul-mora-53a727168/" class="btn btn--info">LinkedIn align="left"</a>
+<a href="https://github.com/paulmora-statworx" class="btn btn--info">Github align="center"</a>
+<a href=":{{ site.url }}/download/CV.pdf" class="btn btn--info">CV align="right"</a>
 
 I currently work at the Data Science Consulting Firm [STATWORX](https://www.statworx.com/de/) as a Data Scientist
 Consultant. Prior to that I was a Data Science Consultant at [EY](https://datascience.ey.com) and an Econometrician at
