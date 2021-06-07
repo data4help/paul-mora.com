@@ -7,7 +7,7 @@ Generative Adversial Networks [1], or also known as GANs are all about creating 
 When talking about a GAN, the first thing to understand is that a GAN does not consist out of one model only. In fact there are two models competing with each other. These two models are referred to as *Discriminator* and *Generator*. As the name arguably already suggests, the *Generator*'s job is to create the artificial image, whereas the *Discriminator* is trying to tell which image belongs to the real images and which one is fake.
 
 <center>
-<img src="/assets/post_images/gan/ppt/working_gan.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/ppt/working_gan.png" width="750" align="center"/>
 </center>
 
 The workings of the GAN are oftentimes compared to the never ending battle between art-forgers and the police. In the beginning the art-forgers are very bad at painting. Therefore all of their forgeries are pretty easy to tell apart from Van Gogh's or Monet's paintings. Luckily for the art-forgers though, they are always perfectly aware by exactly how much their forgery was away from the quality of a real painting. Based on that information, they update their painting technique and try again. At the same time, the police is also getting better at judging which painting is a fraud and which one is not. In the limits both the police as well as the art-forgers are constantly getting better, and with them, the created forgeries.
@@ -29,10 +29,10 @@ More specifically, whereas the *Discriminator* would like to minimize the loss o
 
 These objective functions where we have a minimization and maximization problem at the same time, are called *minimax* functions. In the following function the *Generator* is denoted as *G*, and the *Discriminator* is denoted as *D*.
 
-\begin{align}
+$$\begin{align}
 \min_{G} \max_{D} & \; V(D, G) \\
 V(D, G) = & \; \mathbb{E}_{x \sim P_{data}(x)} \left[log(D(x)) \right] + \mathbb{E}_{z \sim P_{z}(z)} \left[1-log(D(G(z)) \right]
-\end{align}
+\end{align}$$
 
 
 $P_{data}(x)$ describes the distribution of the real dataset. $P_{z}(z)$ describes the distribution of $z$, which is usually Gaussian. $G(z)$ describes the output of the *Generator* when we feed in the vector $z$. Furthermore, $D(x)$ describes the probability that the *Discriminator* thinks that the input $x$ is real. Equivalently, $D(G(z))$ describes the result of the *Discriminator* when feeding in the output of the *Generator*.
@@ -58,17 +58,14 @@ $$\begin{align*}
 
 We note that there is still one $z$ in the equation above, namely $p_z$. In order to also replace this part of the expression we are using a mathematical property of **probability density functions**. Namely, that if one variable is a monotonic transformation of another variable, then the differential area must be invariant under change of variables.
 
----
 ##### Digression: Probability density function
 
-If we have a monotonic transformation, for example $Y = g(X)$, then it follows that $|f_Y(y) dy = f_X(x) dx|$. [That is because that the probability contained in a differential area bust me invariant under change of variables.](https://en.wikipedia.org/wiki/Probability_density_function#Dependent_variables_and_change_of_variables) That is because $f_X(x)dx$ represents nothing other than mass under the density curve. $f_X(x)$ represents the height of the density function and $dx$ the width. A monotonic transformation of the product of height and width of the density function might change the level of height and width, but not the product. Because of the following we can write:
+If we have a monotonic transformation, for example $$Y = g(X)$$, then it follows that $$|f_Y(y) dy = f_X(x) dx|$$.
+[That is because that the probability contained in a differential area bust me invariant under change of variables.](https://en.wikipedia.org/wiki/Probability_density_function#Dependent_variables_and_change_of_variables) That is because $f_X(x)dx$ represents nothing other than mass under the density curve. $f_X(x)$ represents the height of the density function and $dx$ the width. A monotonic transformation of the product of height and width of the density function might change the level of height and width, but not the product. Because of the following we can write:
 
 $$\begin{align}
 f_Y(y) = \left| \frac{dx}{dy} \right| f_X(x) = \left| \frac{d}{dy} (x) \right| f_X(x) = \left| \frac{d}{dy} (g^{-1} (y)) \right| f_X(g^{-1} (y)) = \left| (g^{-1} (y)) \right| f_X(g^{-1} (y))  
 \end{align}$$
-
----
-
 
 
 Given that we are assuming that the transformation the *Generator* is applying on the latent vector $z$ is monotonic, we can rewrite $p_z (G^{-1}(x)) (G^{-1})'(x))$ as simply $p_g$. After replacing also the last occurrence of the latent vector $z$, our final equation looks like the following:
@@ -192,7 +189,7 @@ plt.show()
 ```
 
 <center>
-<img src="/assets/post_images/gan/output_13_0.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/output_13_0.png" width="750" align="center"/>
 </center>
 
 
@@ -201,7 +198,7 @@ plt.show()
 Another common problem of GANs are vanishing gradients. This problem describes the situation in which the *Discriminator* is doing too good of a job. In the most extreme case we would have a perfect *Discriminator* which would detect every real sample $D(x) = 1, \forall \; x \in p_{data}$ as real, and every fake image as fake $D(x) = 0 \forall x \; \in p_g$.
 
 <center>
-<img src="/assets/post_images/gan/ppt/vanishing_gradient.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/ppt/vanishing_gradient.png" width="750" align="center"/>
 </center>
 
 *First, we trained a DCGAN for 1, 10 and 25 epochs. Then, with the generator fixed we train a discriminator from scratch. We see the error quickly going to 0, even with very few iterations on the discriminator. This even happens after 25 epochs of the DCGAN, when the samples are remarkably good and the supports are likely to intersect, pointing to the non-continuity of the distributions. Note the logarithmic scale. For illustration purposes we also show the accuracy of the discriminator, which goes to 1 in sometimes less than 50 iterations. This is 1 even for numerical precision, and the numbers are running averages, pointing towards even faster convergence.*
@@ -218,7 +215,7 @@ A mode collapse then describes a situation in which the *Generator* found a way 
 The example below shows how the *Generator* at some point started to solely produce images from the same mode.
 
 <center>
-<img src="/assets/post_images/gan/ppt/mode_collapse.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/ppt/mode_collapse.png" width="750" align="center"/>
 </center>
 
 Source: [Metz, Luke, et al.](https://arxiv.org/pdf/1611.02163.pdf)
@@ -257,7 +254,7 @@ plt.show()
 ```
 
 <center>
-<img src="/assets/post_images/gan/output_15_0.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/output_15_0.png" width="750" align="center"/>
 </center>
 
 Now we are calculating the KL- and JS-Divergence between the base-distribution (blue) and the other three. Note that we are using [rel_entr](https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.rel_entr.html#scipy.special.rel_entr) instead of [kl_div](https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.kl_div.html), given that the latter is slightly different implemented to the definition of KL-Divergence we used earlier.
@@ -295,7 +292,7 @@ plt.show()
 ```
 
 <center>
-<img src="/assets/post_images/gan/output_17_0.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/output_17_0.png" width="750" align="center"/>
 </center>
 
 As we can see from the chart above, both, the KL- and the JS-Divergence level out fairly soon. This represents a problem since the *Generator* is not getting enough information in order to meaningful improve. It is not sufficiently communicated how bad/good of a job the *Generator* is doing. That leads then to a situation where the gradient is close to zero and the *Generator* is not able to learn anything.
@@ -320,7 +317,7 @@ plt.show()
 ```
 
 <center>
-<img src="/assets/post_images/gan/output_19_0.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/output_19_0.png" width="750" align="center"/>
 </center>
 
 ## What exactly is the Wasserstein Distance
@@ -344,7 +341,10 @@ When trying to transform distribution $A$ into distribution $B$ with the smalles
 - Move 1 units from $A_2$ to $A_3 \rightarrow A_2$ and $B_2$ match up
 - Move 2 units from $A_4$ to $A_3 \rightarrow A_3$ and $B_3$ & $A_4$ and $B_4$ match up
 
-The overall costs of transforming distribution A into distribution B is then equal to five. This was calculated by simply adding up the number of probability mass units moved (since they were all moved a distance of one respectively). More generalizable, one could use the formula $W = \sum |\sigma_i|$, in which $\sigma_{i+1} = \sigma_{i} + A_i - B_i$. Using this formula, the calculation would look the following way:
+
+The overall costs of transforming distribution A into distribution B is then equal to five. This was calculated by simply 
+adding up the number of probability mass units moved (since they were all moved a distance of one respectively). More 
+generalizable, one could use the formula $$W = \sum |\sigma_i|$$, in which $$\sigma_{i+1} = \sigma_{i} + A_i - B_i$$. Using this formula, the calculation would look the following way:
 
 $$\begin{align}
 \sigma_0 &= 0 \\
@@ -375,10 +375,9 @@ It is to be said though calculating all possible combinations is not tractable t
 
 $$W(p_r, p_g) = \frac{1}{K} \underset{||f||_L \leq K}{sup} E~p_r \left[f(x) \right] - E~p_g \left[f(x) \right]$$
 
-Herein we are using the so-called supremum, which is the opposite of the infimum, meaning that we are interested in the maximum value. Furthermore, the newly introduced function $f$ is demanded to satisfy $||f||_L \leq K$, which means it should be K-Lipschitz continuous.
+Herein we are using the so-called supremum, which is the opposite of the infimum, meaning that we are interested in the maximum value. Furthermore, the newly introduced function $$f$$ is demanded to satisfy $$||f||_L \leq K$$, which means it should be K-Lipschitz continuous.
 
 
----
 ##### Digression: Lipschitz continuity
 
 A Lipschitz continuous functions is nothing other than a continuous function with a limited slope parameter. That becomes clearer when taking a look at the mathematical definition. A function is said to be Lipschitz continuous if $$|f(x) - f(y)| \leq L \cdot |x-y| \quad \forall x, y \in \mathbf{R}$$
@@ -391,8 +390,6 @@ $$\begin{align}
 \end{align}$$
 
 From the left side of the formula above we see that this is nothing other than the slope parameter of the function, which in the limits of x converging towards y represents the derivative of the function. 
-
----
 
 How exactly that Lipschitz continuity is applied to the Wasserstein distance formula is heavy mathematics and not scope of this blog-post. The appendix of the original paper sheds some light on the derivation for those who are interested. If we now consider that the function $f$ is obeying the K-Lipschitz restriction, then we find that the Wasserstein distance is defined as:
 
@@ -411,7 +408,7 @@ We obtained the flag images from [here](https://www.countries-ofthe-world.com/fl
 From the image below we can see the resulting flags. Even though many of them are not on the level to be used as the new national flag of any emerging country, but the result is still satisfying, considering that these flags were literally created out of random-noise.
 
 <center>
-<img src="/assets/post_images/gan/flag_results.png" width="500" align="center"/>
+<img src="/assets/post_images/gan/flag_results.png" width="1000" align="center"/>
 </center>
 
 # Reference List
