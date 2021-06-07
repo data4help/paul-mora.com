@@ -58,6 +58,8 @@ $$\begin{align*}
 
 We note that there is still one $z$ in the equation above, namely $p_z$. In order to also replace this part of the expression we are using a mathematical property of **probability density functions**. Namely, that if one variable is a monotonic transformation of another variable, then the differential area must be invariant under change of variables.
 
+---
+
 ##### Digression: Probability density function
 
 If we have a monotonic transformation, for example $$Y = g(X)$$, then it follows that $$|f_Y(y) dy = f_X(x) dx|$$.
@@ -67,6 +69,7 @@ $$\begin{align}
 f_Y(y) = \left| \frac{dx}{dy} \right| f_X(x) = \left| \frac{d}{dy} (x) \right| f_X(x) = \left| \frac{d}{dy} (g^{-1} (y)) \right| f_X(g^{-1} (y)) = \left| (g^{-1} (y)) \right| f_X(g^{-1} (y))  
 \end{align}$$
 
+---
 
 Given that we are assuming that the transformation the *Generator* is applying on the latent vector $z$ is monotonic, we can rewrite $p_z (G^{-1}(x)) (G^{-1})'(x))$ as simply $p_g$. After replacing also the last occurrence of the latent vector $z$, our final equation looks like the following:
 
@@ -377,10 +380,13 @@ $$W(p_r, p_g) = \frac{1}{K} \underset{||f||_L \leq K}{sup} E~p_r \left[f(x) \rig
 
 Herein we are using the so-called supremum, which is the opposite of the infimum, meaning that we are interested in the maximum value. Furthermore, the newly introduced function $$f$$ is demanded to satisfy $$||f||_L \leq K$$, which means it should be K-Lipschitz continuous.
 
+---
 
 ##### Digression: Lipschitz continuity
 
-A Lipschitz continuous functions is nothing other than a continuous function with a limited slope parameter. That becomes clearer when taking a look at the mathematical definition. A function is said to be Lipschitz continuous if $$|f(x) - f(y)| \leq L \cdot |x-y| \quad \forall x, y \in \mathbf{R}$$
+A Lipschitz continuous functions is nothing other than a continuous function with a limited slope parameter. That becomes 
+clearer when taking a look at the mathematical definition. A function is said to be Lipschitz continuous if 
+$|f(x) - f(y)| \leq L \cdot |x-y| \quad \forall x, y \in \mathbf{R}$
 
 If we now apply a simple transformation for that formula and ensure that $x \neq y$, then we find that
 
@@ -390,6 +396,8 @@ $$\begin{align}
 \end{align}$$
 
 From the left side of the formula above we see that this is nothing other than the slope parameter of the function, which in the limits of x converging towards y represents the derivative of the function. 
+
+---
 
 How exactly that Lipschitz continuity is applied to the Wasserstein distance formula is heavy mathematics and not scope of this blog-post. The appendix of the original paper sheds some light on the derivation for those who are interested. If we now consider that the function $f$ is obeying the K-Lipschitz restriction, then we find that the Wasserstein distance is defined as:
 
