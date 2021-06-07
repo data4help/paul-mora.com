@@ -378,7 +378,10 @@ It is to be said though calculating all possible combinations is not tractable t
 
 $$W(p_r, p_g) = \frac{1}{K} \underset{||f||_L \leq K}{sup} E~p_r \left[f(x) \right] - E~p_g \left[f(x) \right]$$
 
-Herein we are using the so-called supremum, which is the opposite of the infimum, meaning that we are interested in the maximum value. Furthermore, the newly introduced function $$f$$ is demanded to satisfy $$||f||_L \leq K$$, which means it should be K-Lipschitz continuous.
+
+Herein we are using the so-called supremum, which is the opposite of the infimum, meaning that we are interested in the maximum value. Furthermore, the newly introduced function $$f$$ 
+is demanded to satisfy $||f||_L \leq K$, which means it should be K-Lipschitz continuous.
+
 
 ---
 
