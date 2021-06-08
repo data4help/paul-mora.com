@@ -31,7 +31,7 @@ Given that the lap which sets the quickest time, the so called Pole Lap, is inte
 
 We use these qualifying lap videos as they contain only one car, making the sounds data pure. In the actual race where many cars are driving, it would be much more difficult to identify and separate out the individual sounds of each engine.
 
-![Copyright: Formula One Management, Sky Sports](/assets/post_images/signal/picture1.png)
+![Copyright: Formula One Management, Sky Sports](/assets/post_images/signal/picture1.gif)
 
 Next to be very entertaining to watch, these videos are particularly useful for our task. That is because the data is labelled (we know which engine-brand is driving in which video) and the data is relatively free from any noise.
 
