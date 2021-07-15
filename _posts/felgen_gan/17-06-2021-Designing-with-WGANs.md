@@ -63,9 +63,9 @@ for i, file_name in enumerate(original_filenames):
 ```
 
 
-    
-![png](output_5_0.png)
-    
+<center>
+<img src="/assets/post_images/felgen_gan/output_5_0.png" width="750" align="center"/>
+</center>
 
 
 The images above show some examples of the images taken from the website. Even though the images are mostly gray, they still have three color channels, and therefore significantly more pixel values than gray-scale images. Since we are only interested in the overall design of the rim and not at all in its coloring, we therefore convert the image to gray-scale. Additional to that, we are reducing the complexity of the images even further, by turning every pixel value of the image either into black or white.
@@ -98,8 +98,11 @@ for i, file_name in enumerate(original_filenames):
 
 
     
-![png](output_7_0.png)
-    
+
+<center>
+<img src="/assets/post_images/felgen_gan/output_7_0.png" width="750" align="center"/>
+</center>
+   
 
 
 From the examples above one can clearly see the difference before and after our adjustment. Turning the car rims into black and white created a better contrast, and it became easier to identify the overall design.
