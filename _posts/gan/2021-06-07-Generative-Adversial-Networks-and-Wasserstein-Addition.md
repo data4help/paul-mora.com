@@ -1,3 +1,12 @@
+---
+title: "Generative Adversial Networks and Wasserstein Addition"
+categories:
+  - Generative Models
+  - Python
+toc: true
+---
+
+
 This blog-post elaborates on the workings of Generative Adversial Networks (GANs). Particularly we are looking at the high-level mathematics and intuition of GANs. Furthermore, we are looking into the weaknesses of GANs and proposed enhancements. One development of GANs we are looking deeper into is called the Wasserstein GAN (WGAN), which introduced a new distribution distance function. In the very end of the blog-post we are showing the results of applying such a WGAN model on flag images from all around the world with promising results.
 
 # Concept of GANs

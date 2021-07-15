@@ -1,5 +1,5 @@
 ---
-title: "DengAI Challenge Second Attempt: Building a scikit-learn pipeline"
+title: "DengAI Challenge Second Attempt: Forecasting - Ensemble Model "
 categories:
   - Time Series
   - Python
