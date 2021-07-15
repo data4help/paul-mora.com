@@ -754,7 +754,9 @@ if __name__ == "__main__":
 
 After training the model for around a day, we find some decent results. Below one can see the progress the model made from the very beginning. It is nicely visible that the model started with a black blob, but then quickly started to recognize the need for a round shape and some white spots in the middle. It then took the model quite a bit more time before recognizing what kind of design the rims are supposed to have in order to be mistaken for a real one. After around 300-400 epochs there is not too much change anymore and the model performance stagnates. At this point one could have already stopped training as not much is happening more. One way to get a higher level of detail would be to increase the image size, since details would then be easier to spot for the model.
 
-<img src="../reports/figures/epoch_64.gif" width="750" align="center">
+<center>
+<img src="/assets/post_images/felgen_gan/epoch_64.gif" width="750" align="center"/>
+</center>
 
 One significant drawback of GANs is the lack of a proper loss function. Since the generator and the critic are playing against each other in some sort of a zero-sum game, it is unclear what kind of loss metric we should look at in order to assess the model performance. The usage of the Wasserstein divergence helps a bit here. That is because the original paper is documenting a correlation between the loss of the generative model and the overall image quality. However, the same paper also states that:
 
@@ -767,10 +769,6 @@ One significant drawback of GANs is the lack of a proper loss function. Since th
 [Source](https://arxiv.org/abs/1701.07875)
 
 Contrasting that image from the original paper to our loss function, we can see from the blue line that an overall decline is visible. Therefore using the loss of the generative model could indeed serve us as an indication of how well the model is doing.
-
-<center>
-<img src="/assets/post_images/felgen_gan/epoch_64.gif" width="750" align="center"/>
-</center>
 
 ## Outlook
 
