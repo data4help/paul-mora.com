@@ -6,8 +6,6 @@ categories:
 toc: true
 ---
 
-# Introduction
-
 This post elaborates on the idea of using Generative Adversarial Networks to design new products, such as car rims. Every time a company is looking for a new design of a product, hundreds of designers start their work and produce multiple suggestions each. Given the nature of the business, only one out of these suggestions is going to be implemented in the end, with the all other suggestions mostly thrown away. This large inefficiency could be resolved by the possibility of creating new design suggestions as easy as a click on a button. This is where GANs come in. By feeding them with images of already existing and economically successful images, the model is ultimately able to generate new design suggestions which are not possible to tell apart from real ones. For that purpose we used a few images car rims and implemented a Wasserstein GAN with Gradient Penalty in order to see how well the model can generate new design suggestions.
 
 The post starts with a brief discussion about the history of GANs, before elaborating on the use case of design and fashion. Afterwards the data for this project is introduced and some data processing steps are introduced. Finally we show the Python code with which this project is implemented and conclude with the results in the end. For a more mathematical introduction to GANs and WGANs, please refer to my previous post about this topic.
@@ -762,13 +760,17 @@ One significant drawback of GANs is the lack of a proper loss function. Since th
 
 ...*we do not claim that this is a new method to quantitatively evaluate generative models yet. The constant scaling factor that depends on the critic’s architecture means it’s hard to compare models with different critics.*
 
-![wgan_loss.png](attachment:wgan_loss.png)
+<center>
+<img src="/assets/post_images/felgen_gan/wgan_loss.png" width="750" align="center"/>
+</center>
 
 [Source](https://arxiv.org/abs/1701.07875)
 
 Contrasting that image from the original paper to our loss function, we can see from the blue line that an overall decline is visible. Therefore using the loss of the generative model could indeed serve us as an indication of how well the model is doing.
 
-![loss_64.png](attachment:loss_64.png)
+<center>
+<img src="/assets/post_images/felgen_gan/epoch_64.gif" width="750" align="center"/>
+</center>
 
 ## Outlook
 
