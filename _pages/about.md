@@ -17,7 +17,7 @@ layout: archive
 </center>
 
 I currently work at the Data Science Consulting Firm [STATWORX](https://www.statworx.com/de/) as a Data Scientist
-Consultant. Prior to that I was a Data Science Consultant at [EY](https://datascience.ey.com) and an Econometrician at
+Consultant. Prior to that I was an Econometrician at
 [Oxera Consulting](https://www.oxera.com/expertise/data-science-and-analytics/).
 My main field of work focuses on time series modelling preferably in Python.
 
