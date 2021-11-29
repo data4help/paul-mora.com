@@ -20,7 +20,9 @@ The entire code-base for this project can be found [here](https://github.com/dat
 Instead of taking a pre-made image dataset, we scraped the meta information and images of the athletes partipating in the water disciplines of the Tokyo 2020 Olympics. As the image below shows us nicely, the database contains information about the country the athlete is participating for, as well as the gender of the person. The decision for this [website](https://www.fina.org/competitions/5/olympic-games-tokyo-2020/athletes?gender=&discipline=&countryId=) was made given the good data quality as well as the amount of data. The image below also shows a case in which we no image of the athlete was provided (first athlete). In these situation we disregarded the information altogether.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/blogpost/website.png" width="1000"/>
+</center>
 </div>
 
 After scraping the meta information from the website, we made one small addition to our dataset, namely the inclusion of the continent information. That is because we preferred to predict the continent attribute of an athlete rather than from which country they are from. There is one main reason for this decision, namely the amount of data we could obtain from the website. As already mentioned earlier, we were able to obtain 1.000 images and meta information from the athletes. Given that we have 196 official countries on earth, predicting each country separately would have resulted in approximately (1000 // 196) five images for each country, assuming that it is evenly distributed. That amount is way too little for training an image classification model, even when using the power of transfer learning. We therefore decided to map every country to the six continents: Europe, Africa, Oceania, South America, North America and Asia (sadly no athlete is from Antarctica).
@@ -120,13 +122,17 @@ pickle.load(file).head()
 Before moving to the actual classification modeling, we have to check the class imbalance in our data, in order to adjust for potential imbalances. That is necessary, since when a classification model overly sees one class (a.k.a majority class) compared to another (a.k.a minority class), it fails to learn and understand the distinguishing factors between these two classes. From the chart below, we can see that there is quite a bit of imbalance in the data. Furthermore, the two continents *Oceania* and *South America* have so few observations, that we decided to drop these two continents, as the amount of images is too low relative to the other classes. 
 
 <div>
+<center>
 <img src="./assets/post_images/multi_class/figures/task_preprocess_classification/label_imbalance.png" width="500"/>
+</center>
 </div>
 
 One valid form of countering a class-imbalance within a classification problem is to adjust the **sample weight** for each of the priorly selected categories. This weight makes the model understand the severity of getting a certain observation wrong. Predicting an observation incorrectly which has a higher weight impacts the model's training much more, than misclassifying an observation from the majority class. In the following chart, we can see that the weight is quite low for European observations, but quite high for African observations. That is because the class weight is inversely related to the amount of observations in the data. Since we have so many observation from *Europe*, the model should not stress so much about getting all of them right, but since we have so few *African* observations, the model should really pay attention to those ones. 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_preprocess_classification/sample_weights.png" width="500"/>
+</center>
 </div>
 
 In order to get a better feeling of how difficult this classification task is, we should take a look at our observations. In the following we show example images from all eight categories. There are eight categories, since we are dealing with all possible combinations of two genders and four continents. This information about the length of the output space, is also important to know, as it allows to approximately (since it does not account for imbalance) calculate what performance a random classification model would achieve, namely 1/8 = 12.5%.
@@ -134,7 +140,9 @@ In order to get a better feeling of how difficult this classification task is, w
 Furthermore, the images below give us a good indication of how difficult the task at hand is. This is especially visible when comparing the visual appearance people from *North America* and *Europe*. Since both continents have a high amount of white people, it is quite difficult to tell them apart. On the other hand, it is not difficult to tell whose *male* or *female*. In the following we will see that the model confirms these hypothesis of how difficult which classification is.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_preprocess_classification/label_examples.gif" width="1000"/>
+</center>
 </div>
 
 ## Classification Methods
@@ -150,7 +158,9 @@ Another weakness of this approach is that we treat all labels completely differe
 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/blogpost/multiclass.png" width="300"/>
+</center>
 </div>
 
 ### Multi-Label
@@ -165,7 +175,9 @@ Given that in our classification exercise we only face images from exactly one p
 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/blogpost/multilabel.png" width="400"/>
+</center>
 </div>
 
 
@@ -179,7 +191,9 @@ In the following we see an example of how an image is encoded when using the cha
 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/blogpost/chain.png" width="500"/>
+</center>
 </div>
 
 
@@ -191,7 +205,9 @@ As mentioned earlier, all of the three presented methods are basically nothing o
 Another important aspect to consider when having a small image dataset, is the power of data augmentation. Data augmentation describes the process of artificially increasing the amount of data through transforming (augmenting) the already existing database, by e.g. stretching, zooming, flipping the original image. The image under the header "Training" from the figure below shows nicely how the image under the header "Validation/ Testing" was stretched and zoomed. Through these altering of the original images, the model sees quite a bit more *different* images, than it would if we feed it only the unaltered images. The exact augmentation settings used in this project, can be found in the parameters configuration file on github.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_multilabel/augmentation.png" width="500"/>
+</center>
 </div>
 
 ## Results
@@ -211,13 +227,17 @@ The fact that the classification model performs much better along the gender att
 Overall, the performance of the multi-label approach is rather decent, of course it has its weaknesses along the continent dimension, though as mentioned above, this is also difficult task in general. 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_multilabel/confusion_matrix.png" width="500"/>
+</center>
 </div>
 
 In order to shed more light on which observation the algorithm was able to classify, and which one the classifier failed on, we provide some examples below to get a better feeling. On the **left side** we see all the examples which the classifier was able to predict, whereas the **right side** shows the failures of our model. By looking at the examples the classifier failed at, it becomes obvious why this is such a difficult classification task. 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_multilabel/pos_neg.gif" width="500"/>
+</center>
 </div>
 
 ### Multi-Class
@@ -227,13 +247,17 @@ Many of the findings of the multi-label classifications also show up during the 
 It would be quite interesting to see whether this superior performance would also remain if we increase the number of continents and/or introduce another output dimension to the model. 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_multiclass/confusion_matrix.png" width="500"/>
+</center>
 </div>
 
 When looking at which samples the multi-class classification model got wrong, we actually find several familiar faces which the multi-label method was also unable to correctly predict.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_multiclass/pos_neg.gif" width="500"/>
+</center>
 </div>
 
 ### Independent Single Classification
@@ -245,13 +269,17 @@ The assessment of the results for the chained classification can be split up int
 The confusion matrix below confirms what we hypothesized already when evaluating the performance of the two previous models. The classification algorithm performs relatively strong along the gender dimension. Most of the predictions are correct, with the algorithm being slightly stronger detecting males (97%) compared to females (89%).   
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_chain/gender/confusion_matrix.png" width="500"/>
+</center>
 </div>
 
 When looking at the examples which the algorithm failed to detect, we see that most observations where that happened are females with a short hair-cut. This does make sense as short hair-cuts are primarily worn by man, and since the algorithm is learning nothing other than statistics, we also expected such behavior of the algorithm. When we are saying that the algorithm learns to understand what gender a person is, it is of course not measuring the Testosterone level of the person, but rather it looks at similarities of the two clusters. Therefore the model is rather detecting whether the person fits more criteria of a male/female person than anything else.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_chain/gender/pos_neg.gif" width="500"/>
+</center>
 </div>
 
 #### Continent
@@ -261,11 +289,15 @@ When evaluating the model's performance along the continent dimension, we have t
 The result below shows clearly that this task is considerably more difficult than the previous one. For the *Europe* class, the algorithm even fails on more than half (47%) of its predictions.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_chain/continent/confusion_matrix.png" width="500"/>
+</center>
 </div>
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_chain/continent/pos_neg.gif" width="500"/>
+</center>
 </div>
 
 #### Total
@@ -275,7 +307,9 @@ Last but not least we take a look at the combination of the two single classific
 Given that this algorithm performs worse on average than the previous two classification techniques, it seems to be the case that the classification of the continent is significantly enhanced when knowing the gender of the person. That would suggest that there is a significant interaction effect between gender and continent. 
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/figures/task_train_classification_chain/confusion_matrix.png" width="500"/>
+</center>
 </div>
 
 ### Overall Assessment
@@ -283,7 +317,9 @@ Given that this algorithm performs worse on average than the previous two classi
 In order to better compare the models head-to-head, we plotted several classification evaluation metrics in the figure below. Herein we see that the multi-class model is slightly ahead of the other two methods for all but one classification criteria. On second place we the see the multi-label model, which manages to outperform the multi-class model in terms of its *Precision*. That suggests that for some reason the multi-label makes fewer False Positive mistakes. On the disappointing third and last place we find the combined single-classification. This results suggests that failing to incorporate any interaction effects between the gender and continent attribute worsens the overall prediction power of the combination.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/blogpost/results.png" width="700"/>
+</center>
 </div>
 
 ### Hemmingway - Loss
@@ -295,7 +331,9 @@ In order to also attribute partial credit, we have to pick another evaluation me
 This very method can neatly applied to our prediction problem, since it recognizes that the number of symbol changes between *male_europe* and *male_africa* is smaller than between *male_europe* and *female_africa*. The figure below shows the results when calculating the hamming loss for all three approaches. One has to remember that we are looking at a **loss**, therefore a smaller score is better. In contrast to the previous figure, the multi-label approach outperforms the other two. That makes also somewhat sense, as we used a loss somewhat related to hamming loss (binary accuracy) for the training of the multi-label algorithm.
 
 <div>
+<center>
 <img src="/assets/post_images/multi_class/blogpost/hamming_loss.png" width="700"/>
+</center>
 </div>
 
 ## Conclusion
