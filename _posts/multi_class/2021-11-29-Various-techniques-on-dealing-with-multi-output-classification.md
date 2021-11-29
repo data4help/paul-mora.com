@@ -16,7 +16,7 @@ The entire code-base for this project can be found [here](https://github.com/dat
 
 ## Data
 
-Instead of taking a pre-made image dataset, we scraped the meta information and images of the athletes partipating in the water disciplines of the Tokyo 2020 Olympics. As the image below shows us nicely, the database contains information about the country the athlete is participating for, as well as the gender of the person. The decision for this [website](https://www.fina.org/competitions/5/olympic-games-tokyo-2020/athletes?gender=&discipline=&countryId=) was made given the good data quality as well as the amount of data. The image below also shows a case in which we no image of the athlete was provided (first athlete). In these situation we disregarded the information altogether.
+Instead of taking a pre-made image dataset, we scraped the meta information and images of the athletes participating in the water disciplines of the Tokyo 2020 Olympics. As the image below shows us nicely, the database contains information about the country the athlete is participating for, as well as the gender of the person. The decision for this [website](https://www.fina.org/competitions/5/olympic-games-tokyo-2020/athletes?gender=&discipline=&countryId=) was made given the good data quality as well as the amount of data. The image below also shows a case in which we no image of the athlete was provided (first athlete). In these situation we disregarded the information altogether.
 
 <div>
 <center>
