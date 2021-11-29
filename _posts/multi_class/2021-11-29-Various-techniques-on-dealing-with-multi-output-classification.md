@@ -122,7 +122,7 @@ Before moving to the actual classification modeling, we have to check the class 
 
 <div>
 <center>
-<img src="./assets/post_images/multi_class/figures/task_preprocess_classification/label_imbalance.png" width="500"/>
+<img src="/assets/post_images/multi_class/figures/task_preprocess_classification/label_imbalance.png" width="500"/>
 </center>
 </div>
 
