@@ -321,7 +321,7 @@ In order to better compare the models head-to-head, we plotted several classific
 </center>
 </div>
 
-### Hemmingway - Loss
+### Hamming Loss
 
 The figure above has one potentially flaw though which should be mentioned, namely that it fails to award points for a partially correct prediction. That is because of the nature of the target. All three classifiers return in the end a prediction such as *male_europe*. This very prediction is then compared to the true label. If the true label is *male_europe*, then we speak of a correct prediction. Though, a *male_asia* and a *africa_female* would be both equally incorrect, even though that *male_asia* is much closer to the truth to the true label than *africa_female*, where both of the attributes are incorrectly classified.
 
