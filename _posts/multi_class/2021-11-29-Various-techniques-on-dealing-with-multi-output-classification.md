@@ -8,7 +8,6 @@ categories:
 toc: true
 ---
 
-
 This post elaborates on possibilities when facing a multi-output classification problem. A multi-output describes a combination of several outputs put together. For example, a multi-output would describe a situation in which we are not only classifying whether the image shows a dog or a cat, but also which color the animal is. This task could be split up into two individual classification tasks (kind and color of animal), though we could also answer these two questions directly, within one model. The questions remains, when to use which approach - meaning when to use a combination of disjoint classification models, and when to use a specifically designed multi-output model.
 
 In order to shed some light on that question, this post uses several classification techniques to come up with some guidance of when to use which. More specifically, we apply a multi-label, a multi-class and a combination of single-classification models on a dataset, before evaluating the models individually and jointly.
